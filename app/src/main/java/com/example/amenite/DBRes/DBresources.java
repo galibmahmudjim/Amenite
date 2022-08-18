@@ -3,6 +3,8 @@ package com.example.amenite.DBRes;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -20,38 +22,13 @@ import java.util.concurrent.TimeUnit;
 
 public class DBresources {
     private static final String TAG = "DBResources";
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://amenite-default-rtdb.firebaseio.com/");
+    public DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://amenite-default-rtdb.firebaseio.com/");
     public void Signup(String Email, String Password, String PhoneNumber, String Username)
     {
+        databaseReference.child("Profile").child(Username).child("Username").setValue(Username);
         databaseReference.child("Profile").child(Username).child("Email").setValue(Email);
-    }
-    public void isUsernameExist(EditText Username ) throws InterruptedException {
-       final CountDownLatch countDownLatch = new CountDownLatch(1);
-       databaseReference.child("Profile").addValueEventListener(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot snapshot) {
-               System.out.println("Inside");
-               countDownLatch.countDown();
-           }
-           @Override
-           public void onCancelled(@NonNull DatabaseError error) {
-           }
-       });
-        countDownLatch.await(2,TimeUnit.SECONDS);
-        System.out.println("Outside");
-    }
-    public boolean listDays()
-    {
-        final  CountDownLatch done = new CountDownLatch(1);
-        databaseReference.child("Profile").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                System.out.println("In");
-            }
-        });
-        System.out.println("Out");
-        return false;
-
+        databaseReference.child("Profile").child(Username).child("Phone_Number").setValue(PhoneNumber);
+        databaseReference.child("Profile").child(Username).child("Password").setValue(Password);
     }
 
 }

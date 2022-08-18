@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@color/brown"
     tools:context=".Signup.SignupActivity">
     <TextView
         android:id="@+id/SignupActivitySignupTextview"
@@ -33,37 +34,47 @@
         android:hint="Email"
         android:layout_marginBottom="5dp"
         />
+    <EditText
+        android:id="@+id/SignupActivityPhonenumberEdittext"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="Phone Number"
+        android:layout_marginBottom="5dp"
+        />
 
     <EditText
         android:id="@+id/SignupActivityPasswordEdittext"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:hint="Password"
+        android:inputType="textPassword"
         android:layout_marginBottom="5dp"/>
 
     <EditText
         android:id="@+id/SignupActivityConfirmPasswordEdittext"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:inputType="textPassword"
         android:hint="Confirm Password"
         android:layout_marginBottom="5dp"
         />
+        />
 
     <Button
-        android:id="@+id/SignupSubmitButton"
+        android:id="@+id/SignupActivitySubmitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
         android:layout_marginBottom="5dp"/>
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/SignupActivityLoadingProgressBar"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:max="3"
-        android:progress="100" />
+        />
 
 
 </LinearLayout>
