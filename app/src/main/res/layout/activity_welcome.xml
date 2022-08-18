@@ -15,14 +15,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome to Amenite"
-        android:background="@color/white"
         android:layout_marginBottom="45dp"
         android:textSize="30dp"
         />
 
     <Button
         android:id="@+id/WelcomeLoginButton"
-        android:onClick="onClickWelcomeLoginButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"

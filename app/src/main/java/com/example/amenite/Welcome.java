@@ -6,7 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.amenite.login.LoginActivity;
+import com.example.amenite.Login.LoginActivity;
+import com.example.amenite.Signup.SignupActivity;
 
 public class Welcome extends AppCompatActivity {
 
@@ -14,10 +15,18 @@ public class Welcome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-    }
+        findViewById(R.id.WelcomeLoginButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Welcome.this, LoginActivity.class));
 
-    public void onClickWelcomeLoginButton(View view) {
-        Intent i = new Intent(Welcome.this, LoginActivity.class);
-        startActivity(i);
+            }
+        });
+        findViewById(R.id.WelcomeSignupButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Welcome.this, SignupActivity.class));
+            }
+        });
     }
 }

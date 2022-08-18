@@ -14,9 +14,11 @@
         android:theme="@style/Theme.Amenite"
         tools:targetApi="31">
         <activity
-            android:name=".login.LoginActivity"
-            android:exported="false"
-            />
+            android:name=".Signup.SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Login.LoginActivity"
+            android:exported="false" />
         <activity
             android:name=".Welcome"
             android:exported="false" />

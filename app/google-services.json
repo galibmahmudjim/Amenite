@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "134314415540",
+    "project_id": "amenite",
+    "storage_bucket": "amenite.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134314415540:android:94e4a70a422de61255cee1",
+        "android_client_info": {
+          "package_name": "com.example.amenite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134314415540-eroim319sh76jfj1vt57ngb6avnf0lki.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.amenite",
+            "certificate_hash": "fa1e865b61ae4a43afcbd63606303121fcd98d75"
+          }
+        },
+        {
+          "client_id": "134314415540-v7pg6atkk63be5advck2omeinn9onlps.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb9doho3Jbv-RRbfPKkrVFdLBoZsA6APM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134314415540-v7pg6atkk63be5advck2omeinn9onlps.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
