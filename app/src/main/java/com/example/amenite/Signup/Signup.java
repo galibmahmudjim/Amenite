@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.Welcome;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,13 +23,12 @@ import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class Signup {
+public class Signup extends SignupActivity {
     private static final String TAG = "Error";
     private String username;
     private String email;
     private String password;
     private String passwordconfirm;
-
     public static void signup( EditText Username, EditText Email, EditText Phonenumber, EditText Password, EditText PasswordConfirm, ProgressBar progressBar) throws InterruptedException {
         DBresources dBresources = new DBresources();
         progressBar.setVisibility(View.VISIBLE);
@@ -71,21 +73,21 @@ public class Signup {
                 int phonenumber=0;
                 for(DataSnapshot dataSnapshot:snapshot.getChildren())
                 {
-                    //Log.e(TAG, "onDataChange: "+dataSnapshot.child("Username").getValue(String.class).toString() );
 
                     if(Username.getText().toString().equals(dataSnapshot.child("Username").getValue(String.class).toString()) && !Username.getText().toString().isEmpty())
                     {
+                        Log.e(TAG, "onDataChange: "+dataSnapshot.child("Username").getValue(String.class).toString() );
                         username=1;
                     }
                     if(Email.getText().toString().equals(dataSnapshot.child("Email").getValue(String.class).toString()) && !Email.getText().toString().isEmpty())
                     {
-                        Log.e(TAG, "onDataChange: "+dataSnapshot.child("Email").getValue(String.class).toString() );
+                        Log.e(TAG, "onDataChange:Email "+dataSnapshot.child("Email").getValue(String.class).toString() );
                         email = 1;
                     }
 
                     if(mainnumber.equals(dataSnapshot.child("Phone_Number").getValue(String.class).toString()) && !Phonenumber.getText().toString().isEmpty())
                     {
-                       // Log.e(TAG, "onDataChange: "+dataSnapshot.child("Phone_Number").getValue(String.class).toString() );
+                        Log.e(TAG, "onDataChange:pn "+dataSnapshot.child("Phone_Number").getValue(String.class).toString() );
                         phonenumber = 1;
                     }
                 }
@@ -106,6 +108,7 @@ public class Signup {
 
                     Toast toast = Toast.makeText(progressBar.getContext(), "Signup Successfull", Toast.LENGTH_SHORT);
                     toast.show();
+
                 }
                 progressBar.setVisibility(View.GONE);
 

@@ -2,14 +2,15 @@ package com.example.amenite.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.amenite.DBRes.DBresources;
+import com.example.amenite.Home.AdminHomeActivity;
+import com.example.amenite.Home.CustomerHomeActivity;
 import com.example.amenite.R;
-import com.google.firebase.database.DatabaseReference;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText loginActivityEmailEditText;
@@ -26,6 +27,13 @@ public class LoginActivity extends AppCompatActivity {
         loginActivityLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(loginActivityEmailEditText.getText().toString().equals(new String("admin")))
+                {
+
+                    startActivity(new Intent(LoginActivity.this, AdminHomeActivity.class));
+                }
+                else
+                startActivity(new Intent(LoginActivity.this, CustomerHomeActivity.class));
                 }
         });
     }

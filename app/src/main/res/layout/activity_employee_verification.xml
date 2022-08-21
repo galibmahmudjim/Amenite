@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress3"
+        android:layout_width="337dp"
+        android:layout_height="46dp"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="33dp"
+        android:autoSizeTextType="uniform"
+        android:ems="10"
+        android:hint="Employee mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="337dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+
+        android:layout_marginTop="190dp"
+        android:autoSizeTextType="uniform"
+        android:text="Employee Name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="102dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="54dp"
+        android:background="@color/darkPurple"
+        android:text="Verify"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress3" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="137dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="43dp"
+        android:background="@color/darkPurple"
+        android:text="Disapprove"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button8" />
+</androidx.constraintlayout.widget.ConstraintLayout>

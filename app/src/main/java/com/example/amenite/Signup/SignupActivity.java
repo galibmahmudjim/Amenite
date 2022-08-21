@@ -36,7 +36,7 @@ public class SignupActivity extends AppCompatActivity {
                  if(signupActivityUsernameEdittext.getError()==null&& signupActivityEmailEdittext.getError()==null&& signupActivityConfirmPasswordEdittext.getError()==null&&
                  signupActivityPhonenumberEdittext.getError()==null)
                  {
-                     startActivity(new Intent(SignupActivity.this,Welcome.class));
+                     //startActivity(new Intent(SignupActivity.this,Welcome.class));
                  }
                 } catch (InterruptedException e) {
                     e.printStackTrace();

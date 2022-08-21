@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ghost_white"
+
+    tools:context=".Home.CustomerHomeActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="382dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="623dp"
+        android:autoSizeTextType="uniform"
+        android:text="Choose Service"
+        android:textAlignment="center"
+        android:textColor="@color/darkPurple"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerHomeActivityContactusButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="103dp"
+        android:layout_height="91dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/beauty" />
+
+    <Button
+        android:id="@+id/CustomerHomeActivityBeautyButton"
+        android:layout_width="145dp"
+        android:layout_height="62dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="116dp"
+        android:text="Beauty "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="114dp"
+        android:layout_height="114dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView5"
+        app:layout_constraintEnd_toStartOf="@+id/CustomerHomeActivityElectronicandappliancesButton"
+        app:srcCompat="@drawable/electronics" />
+
+    <Button
+        android:id="@+id/CustomerHomeActivityElectronicandappliancesButton"
+        android:layout_width="152dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="64dp"
+        android:text="ELELCTRONIC AND APPLIANCES"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerHomeActivityBeautyButton"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="150dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/bus" />
+
+    <Button
+        android:id="@+id/CustomerHomeActivityTravelButton"
+        android:layout_width="129dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginBottom="68dp"
+        android:text="TRAVEL"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerHomeActivityElectronicandappliancesButton"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="125dp"
+        android:layout_height="151dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:srcCompat="@drawable/homeservice" />
+
+    <Button
+        android:id="@+id/CustomerHomeActivityHomeserviceButton"
+        android:layout_width="120dp"
+        android:layout_height="99dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="100dp"
+        android:text="Home service"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/CustomerHomeActivityContactusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="5dp"
+        android:text="Contact Us"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/CustomerHomeActivityBeautyButton"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+</androidx.constraintlayout.widget.ConstraintLayout>
