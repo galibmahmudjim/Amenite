@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="top|center"
-    tools:context=".ContactUsActivity">
+    tools:context=".Customer.ContactUsActivity">
 
     <TextView
         android:layout_width="wrap_content"

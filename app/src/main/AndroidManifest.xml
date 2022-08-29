@@ -18,41 +18,44 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/amenite_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Amenite"
         tools:targetApi="31">
         <activity
-            android:name=".Services.BeautyServiceActivity"
+            android:name=".Customer.CustomerDonationActivity"
             android:exported="false" />
         <activity
-            android:name=".Services.ElecrtronicandAppliancesServiceActivity"
+            android:name=".Customer.Services.BeautyServiceActivity"
             android:exported="false" />
         <activity
-            android:name=".Services.HomeServiceActivity"
+            android:name=".Customer.Services.ElecrtronicandAppliancesServiceActivity"
             android:exported="false" />
         <activity
-            android:name=".Services.TravelServiceActivites"
+            android:name=".Customer.Services.HomeServiceActivity"
             android:exported="false" />
         <activity
-            android:name=".Home.EmployeeHomeActivity"
+            android:name=".Customer.Services.TravelServiceActivites"
             android:exported="false" />
         <activity
-            android:name=".Home.AdminHomeActivity"
+            android:name=".Employee.EmployeeHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ContactUsActivity"
+            android:name=".Admin.AdminHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".EmployeeVerificationActivity"
+            android:name=".Customer.ContactUsActivity"
             android:exported="false" />
         <activity
-            android:name=".Home.CustomerHomeActivity"
+            android:name=".Admin.EmployeeVerificationActivity"
             android:exported="false" />
         <activity
-            android:name=".Signup.SignupActivity"
+            android:name=".Customer.CustomerHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignupActivity"
             android:exported="false" />
         <activity
             android:name=".Login.LoginActivity"

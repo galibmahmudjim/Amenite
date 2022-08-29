@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.amenite.Home.AdminHomeActivity;
-import com.example.amenite.Home.CustomerHomeActivity;
+import com.example.amenite.Admin.AdminHomeActivity;
+import com.example.amenite.Customer.CustomerHomeActivity;
 import com.example.amenite.R;
 
 public class LoginActivity extends AppCompatActivity {

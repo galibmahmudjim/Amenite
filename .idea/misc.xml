@@ -5,13 +5,15 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.116" />
         <entry key="app/src/main/res/drawable/Bus_background.xml" value="0.116" />
-        <entry key="app/src/main/res/drawable/amenite_logo.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/amenite_logo.xml" value="0.335" />
         <entry key="app/src/main/res/drawable/progressbar.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rounded_edittext.xml" value="0.131" />
         <entry key="app/src/main/res/layout/activity_admin_home.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_beauty_service.xml" value="0.1203125" />
         <entry key="app/src/main/res/layout/activity_contact_us.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_cstomer_home.xml" value="0.13179347826086957" />
+        <entry key="app/src/main/res/layout/activity_customer_donation.xml" value="0.12537993920972645" />
         <entry key="app/src/main/res/layout/activity_customer_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_elecrtronicand_appliances_service.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/layout/activity_employee_home.xml" value="0.335" />

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "134314415540",
+    "firebase_url": "https://amenite-default-rtdb.firebaseio.com",
     "project_id": "amenite",
     "storage_bucket": "amenite.appspot.com"
   },

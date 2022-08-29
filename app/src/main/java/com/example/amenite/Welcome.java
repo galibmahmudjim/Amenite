@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.amenite.Login.LoginActivity;
-import com.example.amenite.Signup.SignupActivity;
 
 public class Welcome extends AppCompatActivity {
 
