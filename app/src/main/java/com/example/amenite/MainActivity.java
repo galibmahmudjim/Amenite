@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 startActivity(new Intent(MainActivity.this, Welcome.class));
+                finish();
             }
         }, 3000);
     }

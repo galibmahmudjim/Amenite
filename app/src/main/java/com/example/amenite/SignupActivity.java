@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -18,10 +19,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.auth.PhoneMultiFactorAssertion;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.Query;
@@ -41,6 +44,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText signupActivityPhonenumberEdittext;
     private ProgressBar signupActivityLoadingProgressBar;
     private EditText signupActivityOtpEdittext;
+    private Button signupActivitySubmitButton;
 
     private final String TAG = "Amenite_check";
     private String username;
@@ -49,8 +53,10 @@ public class SignupActivity extends AppCompatActivity {
     private String password;
     private String passwordconfirm;
     private FirebaseAuth mAuth;
+    private Boolean verificationInProcess = false;
     String VerificationID;
     PhoneAuthProvider.ForceResendingToken token;
+
     public void signup( EditText Username, EditText Email, EditText Phonenumber, EditText Password, EditText PasswordConfirm, ProgressBar progressBar, View view) throws InterruptedException {
         DBresources dBresources = new DBresources();
         progressBar.setVisibility(View.VISIBLE);
@@ -85,6 +91,10 @@ public class SignupActivity extends AppCompatActivity {
         else if(Phonenumber.getText().toString().length()==11)
         {
             phonenumber ="+88"+ Phonenumber.getText().toString();
+        }
+        else
+        {
+            Phonenumber.setError("Invalid Number");
         }
         //dBresources.Signup(Email.getText().toString(),Password.getText().toString(),Phonenumber.getText().toString(),Username.getText().toString());
         Query emailquery = dBresources.database.collection("User").whereEqualTo("Email",Email.getText().toString());
@@ -164,13 +174,11 @@ public class SignupActivity extends AppCompatActivity {
         Tasks.whenAllSuccess(t1,t2,t3).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
             @Override
             public void onSuccess(List<Object> objects) {
-                progressBar.setVisibility(View.GONE);
-               // if(Username.getError()==null&&Email.getError()==null&&Phonenumber.getError()==null&&Password.getError()==null)
-                //{
-                    Map<String,String> users = dBresources.Signup(Email.getText().toString(),Password.getText().toString(),Phonenumber.getText().toString(),Username.getText().toString());
-                    requestOTP(phonenumber);
-
-                //}
+                if(Username.getError()==null&&Email.getError()==null&&Phonenumber.getError()==null&&Password.getError()==null)
+                {
+                     Map<String,String> users = dBresources.Signup(Email.getText().toString(),Password.getText().toString(),Phonenumber.getText().toString(),Username.getText().toString());
+                     requestOTP(phonenumber);
+                }
 
             }
         });
@@ -189,8 +197,10 @@ public class SignupActivity extends AppCompatActivity {
                 super.onCodeSent(s, forceResendingToken);
                 VerificationID = s;
                 token = forceResendingToken;
-                signupActivityLoadingProgressBar.setVisibility(View.GONE);
                 signupActivityOtpEdittext.setVisibility(View.VISIBLE);
+                signupActivityLoadingProgressBar.setVisibility(View.GONE);
+                signupActivitySubmitButton.setText("Verify");
+                verificationInProcess = true;
             }
 
             @Override
@@ -234,17 +244,50 @@ public class SignupActivity extends AppCompatActivity {
          signupActivityLoadingProgressBar = (ProgressBar) findViewById(R.id.SignupActivityLoadingProgressBar);
          signupActivityOtpEdittext = (EditText) findViewById(R.id.SignupActivityOtpEdittext);
          signupActivityLoadingProgressBar.setVisibility(View.GONE);
+         signupActivitySubmitButton = (Button)  findViewById(R.id.SignupActivitySubmitButton);
         findViewById(R.id.SignupActivitySubmitButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 try {
-                   signup(signupActivityUsernameEdittext,signupActivityEmailEdittext,signupActivityPhonenumberEdittext,signupActivityPasswordEdittext,signupActivityConfirmPasswordEdittext,signupActivityLoadingProgressBar, view);
+                   if(verificationInProcess==false) {
+                       signup(signupActivityUsernameEdittext, signupActivityEmailEdittext, signupActivityPhonenumberEdittext, signupActivityPasswordEdittext, signupActivityConfirmPasswordEdittext, signupActivityLoadingProgressBar, view);
+                   }
+                   else
+                   {
+                       String otpcode = signupActivityOtpEdittext.getText().toString();
+                       if(!otpcode.isEmpty() && otpcode.length()==6)
+                       {
+                           PhoneAuthCredential credential = PhoneAuthProvider.getCredential(VerificationID,otpcode);
+                           verifyAuth(credential);
+                       }
+                       else
+                       {
+                           signupActivityOtpEdittext.setError("Not valid otp");
+                       }
+                   }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
 
+            }
+        });
+    }
+
+    private void verifyAuth(PhoneAuthCredential credential) {
+        mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(SignupActivity.this,"Authentication is successful", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(SignupActivity.this,"Authentication failed", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
     }
