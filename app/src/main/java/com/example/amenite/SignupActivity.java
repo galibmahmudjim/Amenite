@@ -17,6 +17,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.Query;
@@ -25,15 +30,27 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 public class SignupActivity extends AppCompatActivity {
+    private EditText signupActivityUsernameEdittext;
+    private EditText signupActivityEmailEdittext;
+    private EditText signupActivityPasswordEdittext;
+    private EditText signupActivityConfirmPasswordEdittext;
+    private EditText signupActivityPhonenumberEdittext;
+    private ProgressBar signupActivityLoadingProgressBar;
+    private EditText signupActivityOtpEdittext;
 
     private final String TAG = "Amenite_check";
     private String username;
     private String email;
+    private String phonenumber;
     private String password;
     private String passwordconfirm;
+    private FirebaseAuth mAuth;
+    String VerificationID;
+    PhoneAuthProvider.ForceResendingToken token;
     public void signup( EditText Username, EditText Email, EditText Phonenumber, EditText Password, EditText PasswordConfirm, ProgressBar progressBar, View view) throws InterruptedException {
         DBresources dBresources = new DBresources();
         progressBar.setVisibility(View.VISIBLE);
@@ -61,14 +78,13 @@ public class SignupActivity extends AppCompatActivity {
         {
             PasswordConfirm.setError("Please Enter the same password");
         }
-        String mainnumber;
-        if(Phonenumber.getText().toString().length()>11)
+        if(Phonenumber.getText().toString().length()==14)
         {
-            mainnumber = Phonenumber.getText().toString().substring(3);
+            phonenumber = Phonenumber.getText().toString();
         }
-        else
+        else if(Phonenumber.getText().toString().length()==11)
         {
-            mainnumber = Phonenumber.getText().toString();
+            phonenumber ="+88"+ Phonenumber.getText().toString();
         }
         //dBresources.Signup(Email.getText().toString(),Password.getText().toString(),Phonenumber.getText().toString(),Username.getText().toString());
         Query emailquery = dBresources.database.collection("User").whereEqualTo("Email",Email.getText().toString());
@@ -149,35 +165,75 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onSuccess(List<Object> objects) {
                 progressBar.setVisibility(View.GONE);
-                if(Username.getError()==null&&Email.getError()==null&&Phonenumber.getError()==null&&Password.getError()==null)
-                {
+               // if(Username.getError()==null&&Email.getError()==null&&Phonenumber.getError()==null&&Password.getError()==null)
+                //{
                     Map<String,String> users = dBresources.Signup(Email.getText().toString(),Password.getText().toString(),Phonenumber.getText().toString(),Username.getText().toString());
-                    dBresources.database.collection("User").document(Username.getText().toString()).set(users).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Log.d(TAG, "onSuccess: Successfull");
-                            Toast.makeText(SignupActivity.this,"Registration complete",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(SignupActivity.this,LoginActivity.class));
-                        }
-                    });
+                    requestOTP(phonenumber);
 
-                }
+                //}
 
             }
         });
     }
 
+    private void requestOTP(String phonenumber) {
+        mAuth=FirebaseAuth.getInstance();
+        PhoneAuthProvider.OnVerificationStateChangedCallbacks myCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            @Override
+            public void onCodeAutoRetrievalTimeOut(@NonNull String s) {
+                super.onCodeAutoRetrievalTimeOut(s);
+            }
+
+            @Override
+            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                super.onCodeSent(s, forceResendingToken);
+                VerificationID = s;
+                token = forceResendingToken;
+                signupActivityLoadingProgressBar.setVisibility(View.GONE);
+                signupActivityOtpEdittext.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+
+            }
+
+            @Override
+            public void onVerificationFailed(@NonNull FirebaseException e) {
+               // Toast.makeText(SignupActivity.this,"Cannot Create Acxount "+e.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+        };
+        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
+                .setPhoneNumber(phonenumber)       // Phone number to verify
+                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                .setActivity(this)                 // Activity (for callback binding)
+                .setCallbacks(myCallBack)          // OnVerificationStateChangedCallbacks
+                .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
+
+    /*dBresources.database.collection("User").document(Username.getText().toString()).set(users).addOnSuccessListener(new OnSuccessListener<Void>() {
+      //      @Override
+            public void onSuccess(Void unused) {
+                Log.d(TAG, "onSuccess: Successfull");
+                Toast.makeText(SignupActivity.this,"Registration complete",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+            }
+        });*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        EditText signupActivityUsernameEdittext = (EditText) findViewById(R.id.SignupActivityUsernameEdittext);
-        EditText signupActivityEmailEdittext = (EditText) findViewById(R.id.SignupActivityEmailEdittext);
-        EditText signupActivityPasswordEdittext = (EditText) findViewById(R.id.SignupActivityPasswordEdittext);
-        EditText signupActivityConfirmPasswordEdittext = (EditText) findViewById(R.id.SignupActivityConfirmPasswordEdittext);
-        EditText signupActivityPhonenumberEdittext = (EditText)findViewById(R.id.SignupActivityPhonenumberEdittext);
-        ProgressBar signupActivityLoadingProgressBar = (ProgressBar) findViewById(R.id.SignupActivityLoadingProgressBar);
-        signupActivityLoadingProgressBar.setVisibility(View.GONE);
+         signupActivityUsernameEdittext = (EditText) findViewById(R.id.SignupActivityUsernameEdittext);
+         signupActivityEmailEdittext = (EditText) findViewById(R.id.SignupActivityEmailEdittext);
+         signupActivityPasswordEdittext = (EditText) findViewById(R.id.SignupActivityPasswordEdittext);
+         signupActivityConfirmPasswordEdittext = (EditText) findViewById(R.id.SignupActivityConfirmPasswordEdittext);
+         signupActivityPhonenumberEdittext = (EditText)findViewById(R.id.SignupActivityPhonenumberEdittext);
+         signupActivityLoadingProgressBar = (ProgressBar) findViewById(R.id.SignupActivityLoadingProgressBar);
+         signupActivityOtpEdittext = (EditText) findViewById(R.id.SignupActivityOtpEdittext);
+         signupActivityLoadingProgressBar.setVisibility(View.GONE);
         findViewById(R.id.SignupActivitySubmitButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
