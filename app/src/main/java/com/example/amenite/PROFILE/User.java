@@ -6,4 +6,5 @@ public class User {
         public String Role;
         public String Phonenumber;
         public String UserID;
+        public String Username;
 }

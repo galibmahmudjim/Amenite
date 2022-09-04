@@ -6,8 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
-import com.google.firebase.database.FirebaseDatabase;
+import com.example.amenite.Admin.AdminHomeActivity;
+import com.example.amenite.Customer.CustomerHomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,4 +28,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 3000);
     }
+
 }

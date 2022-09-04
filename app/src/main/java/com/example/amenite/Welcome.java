@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.amenite.Login.LoginActivity;
-
 public class Welcome extends AppCompatActivity {
 
     @Override

@@ -13,8 +13,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.amenite.DBRes.DBresources;
-import com.example.amenite.Login.LoginActivity;
-import com.example.amenite.PROFILE.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -25,11 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.auth.PhoneMultiFactorAssertion;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
@@ -72,7 +66,7 @@ public class SignupActivity extends AppCompatActivity {
         {
             Email.setError("Invalid Email");
         }
-        if(Phonenumber.getText().toString().isEmpty())
+        if(Phonenumber.getText().toString().length()!=11)
         {
             Phonenumber.setError("Invalid Phone Number");
         }
@@ -98,11 +92,12 @@ public class SignupActivity extends AppCompatActivity {
         }
         else
         {
-            Phonenumber.setError("Invalid Number");
+            phonenumber="";
         }
+        Log.d(TAG, "signup: Phone"+phonenumber);
 
         Query emailquery = dBresources.database.collection("User").whereEqualTo("Email",Email.getText().toString());
-        Query phonequery = dBresources.database.collection("User").whereEqualTo("Phone_Number",Phonenumber.getText().toString());
+        Query phonequery = dBresources.database.collection("User").whereEqualTo("Phone_Number",phonenumber);
         Query usernamequery = dBresources.database.collection("User").whereEqualTo("Username",Username.getText().toString());
         Task t1 = emailquery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -136,10 +131,6 @@ public class SignupActivity extends AppCompatActivity {
                         //Log.d(TAG, "onComplete: ");
                         Phonenumber.setError("This Phone Number is already in use.");
                     }
-                    else
-                    {
-                        // Phonenumber.setError(null);
-                    }
                 }
                 else
                 {
@@ -156,12 +147,7 @@ public class SignupActivity extends AppCompatActivity {
                 {
                     if(!querySnapshot.isEmpty())
                     {
-                        //Log.d(TAG, "onComplete: ");
                         Username.setError("Username Taken");
-                    }
-                    else
-                    {
-                        // Username.setError(null);
                     }
                 }
                 else
@@ -180,9 +166,14 @@ public class SignupActivity extends AppCompatActivity {
                     userDetails = new HashMap<>();
                     userDetails.put("Email",Email.getText().toString());
                     userDetails.put("Username",Username.getText().toString());
+                    userDetails.put("Role","Customer");
                     userDetails.put("Phone_Number",phonenumber);
                     userDetails.put("Password",Password.getText().toString());
                      requestOTP(phonenumber);
+                }
+                else
+                {
+                    progressBar.setVisibility(View.GONE);
                 }
 
             }
@@ -224,7 +215,6 @@ public class SignupActivity extends AppCompatActivity {
                 .setActivity(this)
                 .setCallbacks(myCallBack)
                 .build();
-        PhoneAuthProvider.verifyPhoneNumber(options);
 
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
@@ -243,6 +233,23 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
         });
+         Tasks.whenAllSuccess(t1).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
+             @Override
+             public void onSuccess(List<Object> objects) {
+                 UserId = dBresources.firebaseAuth.getCurrentUser().getUid();
+                 Task t2 = dBresources.database.collection("User").document(UserId).set(userDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                     @Override
+                     public void onComplete(@NonNull Task<Void> task) {
+                         if(task.isSuccessful())
+                         {
+                             startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                             signupActivityLoadingProgressBar.setVisibility(View.GONE);
+                             dBresources.firebaseAuth.signOut();
+                         }
+                     }
+                 });
+             }
+         });
 
     }
 
@@ -277,9 +284,7 @@ public class SignupActivity extends AppCompatActivity {
                          signupActivityLoadingProgressBar.setVisibility(View.VISIBLE);
                          PhoneAuthCredential credential = PhoneAuthProvider.getCredential(VerificationID,otpcode);
                          verifyAuth(credential);
-                         UserId = dBresources.firebaseAuth.getCurrentUser().getUid();
-                         Task createquery = dBresources.database.collection("User").document(UserId).set()
-                         signupActivityLoadingProgressBar.setVisibility(View.GONE);
+
                      }
                  }
             }
