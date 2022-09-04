@@ -18,7 +18,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
@@ -218,7 +220,7 @@ public class SignupActivity extends AppCompatActivity {
 
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
-    private void verifyAuth(PhoneAuthCredential credential) {
+    private void verifyAuth(AuthCredential credential) {
          Task t1 = mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -242,6 +244,21 @@ public class SignupActivity extends AppCompatActivity {
                      public void onComplete(@NonNull Task<Void> task) {
                          if(task.isSuccessful())
                          {
+                             AuthCredential credential1 = EmailAuthProvider.getCredential(signupActivityEmailEdittext.getText().toString(),signupActivityPasswordEdittext.getText().toString());
+                             dBresources.firebaseAuth.getCurrentUser().linkWithCredential(credential1)
+                                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                         @Override
+                                         public void onComplete(@NonNull Task<AuthResult> task) {
+                                             if(task.isSuccessful())
+                                             {
+                                                 Log.d(TAG, "onComplete: Success");
+                                             }
+                                             else
+                                             {
+                                                 Toast.makeText(SignupActivity.this,"Auth is failed",Toast.LENGTH_SHORT).show();
+                                             }
+                                         }
+                                     });
                              startActivity(new Intent(SignupActivity.this, LoginActivity.class));
                              signupActivityLoadingProgressBar.setVisibility(View.GONE);
                              dBresources.firebaseAuth.signOut();
@@ -282,8 +299,9 @@ public class SignupActivity extends AppCompatActivity {
                      if(!otpcode.isEmpty() && otpcode.length()==6)
                      {
                          signupActivityLoadingProgressBar.setVisibility(View.VISIBLE);
-                         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(VerificationID,otpcode);
+                         AuthCredential credential = PhoneAuthProvider.getCredential(VerificationID,otpcode);
                          verifyAuth(credential);
+
 
                      }
                  }

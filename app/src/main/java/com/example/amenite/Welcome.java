@@ -4,14 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
-public class Welcome extends AppCompatActivity {
+import com.example.amenite.DBRes.DBresources;
 
+public class Welcome extends AppCompatActivity {
+    private static final String TAG = "Amenite_check";
+    private DBresources dBresources = new DBresources();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
         findViewById(R.id.WelcomeLoginButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -25,5 +30,9 @@ public class Welcome extends AppCompatActivity {
                 startActivity(new Intent(Welcome.this, SignupActivity.class));
             }
         });
+        if(dBresources.firebaseUser!=null)
+        {
+            finish();
+        }
     }
 }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.amenite.Admin.AdminHomeActivity;
 import com.example.amenite.Customer.CustomerHomeActivity;
@@ -19,6 +20,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -60,12 +63,27 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                         else
                                         {
-                                            if(user.Role=="Customer") {
-                                                loginActivityPasswordEditText.setError("Incorrect Password");
+                                            dBresources.firebaseAuth.signInWithEmailAndPassword(User.Emailid,User.password)
+                                                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                                            if(task.isSuccessful()) {
+                                                                dBresources.firebaseUser = dBresources.firebaseAuth.getCurrentUser();
+                                                            }
+                                                            else
+                                                            {
+                                                                Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                                                        Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    });
+                                            if(user.Role.equals("Customer")) {
                                                 startActivity(new Intent(LoginActivity.this, CustomerHomeActivity.class));
+                                                finish();
                                             }
                                             else {
                                                 startActivity((new Intent(LoginActivity.this, AdminHomeActivity.class)));
+                                                finish();
                                             }
                                         }
                                         Log.d(TAG, document.getId() + " => " +user.password+" "+loginActivityPasswordEditText.getText().toString());
@@ -74,22 +92,8 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     });
-        Tasks.whenAllSuccess(t1).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
-            @Override
-            public void onSuccess(List<Object> objects) {
-                if(loginActivityEmailEditText.getError()==null && loginActivityPasswordEditText.getError()==null)
-                {
-                    authverify(user.Phonenumber);
-                }
-            }
-        });
-    }
-
-    private void authverify(String phonenumber) {
-
 
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +125,4 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
