@@ -252,6 +252,8 @@ public class SignupActivity extends AppCompatActivity {
                                              if(task.isSuccessful())
                                              {
                                                  Log.d(TAG, "onComplete: Success");
+                                                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+
                                              }
                                              else
                                              {
@@ -259,9 +261,8 @@ public class SignupActivity extends AppCompatActivity {
                                              }
                                          }
                                      });
-                             startActivity(new Intent(SignupActivity.this, LoginActivity.class));
                              signupActivityLoadingProgressBar.setVisibility(View.GONE);
-                             dBresources.firebaseAuth.signOut();
+                             //dBresources.firebaseAuth.signOut();
                          }
                      }
                  });
