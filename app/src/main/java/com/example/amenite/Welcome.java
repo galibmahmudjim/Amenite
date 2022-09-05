@@ -30,9 +30,6 @@ public class Welcome extends AppCompatActivity {
                 startActivity(new Intent(Welcome.this, SignupActivity.class));
             }
         });
-        if(dBresources.firebaseUser!=null)
-        {
-            finish();
-        }
+
     }
 }
