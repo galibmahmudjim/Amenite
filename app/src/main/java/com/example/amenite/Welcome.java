@@ -32,4 +32,13 @@ public class Welcome extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(dBresources.firebaseUser!=null)
+        {
+          //  finish();
+        }
+    }
 }
