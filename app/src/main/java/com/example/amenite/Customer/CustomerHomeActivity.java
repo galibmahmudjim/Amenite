@@ -102,6 +102,5 @@ public class CustomerHomeActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-    dr
 
 }
