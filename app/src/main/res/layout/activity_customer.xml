@@ -1,0 +1,52 @@
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CustomerNavigationDrawerDrawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ghost_white"
+    android:fitsSystemWindows="true"
+    android:theme="@style/Theme.Material3.Light.NoActionBar"
+    tools:context=".Customer.CustomerActivity"
+    tools:openDrawer="start">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/CustomerNavigationDrawerToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00008577"
+            android:elevation="4dp"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:navigationIcon="@drawable/menu">
+
+            <TextView
+                android:id="@+id/CustomerActivityToolbarTextview"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:gravity="top"
+                android:textSize="20sp" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <FrameLayout
+            android:id="@+id/CustomerActivityFragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/CustomerNavigationDrawerNavigationview"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/customer_menu_header"
+        app:menu="@menu/customer_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

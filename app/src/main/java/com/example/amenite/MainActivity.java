@@ -6,12 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-
-import com.example.amenite.Admin.AdminHomeActivity;
-import com.example.amenite.Customer.CustomerHomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //getSupportActionBar().hide();
+        //xzgetSupportActionBar().hide();
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {

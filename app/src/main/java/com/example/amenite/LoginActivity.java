@@ -13,20 +13,14 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.amenite.Admin.AdminHomeActivity;
-import com.example.amenite.Customer.CustomerHomeActivity;
+import com.example.amenite.Customer.CustomerActivity;
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     private final String TAG = "Amenite_check";
@@ -78,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                                                         }
                                                     });
                                             if(user.Role.equals("Customer")) {
-                                                startActivity(new Intent(LoginActivity.this, CustomerHomeActivity.class));
+                                                startActivity(new Intent(LoginActivity.this, CustomerActivity.class));
                                                 finish();
                                             }
                                             else {

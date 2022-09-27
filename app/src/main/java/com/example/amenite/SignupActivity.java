@@ -43,7 +43,6 @@ public class SignupActivity extends AppCompatActivity {
     private ProgressBar signupActivityLoadingProgressBar;
     private EditText signupActivityOtpEdittext;
     private Button signupActivitySubmitButton;
-
     private final String TAG = "Amenite_check";
     private String username;
     private String email;
@@ -262,7 +261,7 @@ public class SignupActivity extends AppCompatActivity {
                                          }
                                      });
                              signupActivityLoadingProgressBar.setVisibility(View.GONE);
-                             //dBresources.firebaseAuth.signOut();
+                             dBresources.firebaseAuth.signOut();
                          }
                      }
                  });
