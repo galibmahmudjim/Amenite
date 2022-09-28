@@ -6,8 +6,10 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.116" />
         <entry key="app/src/main/res/drawable/Bus_background.xml" value="0.116" />
         <entry key="app/src/main/res/drawable/amenite_logo.xml" value="0.335" />
+        <entry key="app/src/main/res/drawable/contactus_icon.xml" value="0.136" />
         <entry key="app/src/main/res/drawable/ic_untitled_logo.xml" value="0.116" />
         <entry key="app/src/main/res/drawable/logout_icon.xml" value="0.116" />
+        <entry key="app/src/main/res/drawable/menu.xml" value="0.136" />
         <entry key="app/src/main/res/drawable/progressbar.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rounded_edittext.xml" value="0.131" />
@@ -32,6 +34,7 @@
         <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.165" />
         <entry key="app/src/main/res/layout/customer_drawer_layout.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/customer_menu_header.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/layout/fragment_contact_us.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/fragment_customer_home.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/fragment_home_fragment.xml" value="0.121875" />
         <entry key="app/src/main/res/layout/fragmentcustomer_home.xml" value="0.196875" />

@@ -29,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginActivityLoginButton;
     private ProgressBar loginActivityloadingProgressbar;
     DBresources dBresources = new DBresources();
-    User user = new User();
 
 
     private void Login() {
@@ -44,13 +43,13 @@ public class LoginActivity extends AppCompatActivity {
                                 if(!querySnapshot.isEmpty())
                                 {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
-                                        user.Emailid= (String) document.get("Email");
-                                        user.password= (String) document.get("Password");
-                                        user.Phonenumber= (String) document.get("Phone_Number");
-                                        user.UserID=document.getId();
-                                        user.Role= (String) document.get("Role");
-                                        user.Username = (String) document.get("Username");
-                                        if(!user.password.equals(loginActivityPasswordEditText.getText().toString()))
+                                        User.Emailid= (String) document.get("Email");
+                                        User.password= (String) document.get("Password");
+                                        User.Phonenumber= (String) document.get("Phone_Number");
+                                        User.UserID=document.getId();
+                                        User.Role= (String) document.get("Role");
+                                        User.Username = (String) document.get("Username");
+                                        if(!User.password.equals(loginActivityPasswordEditText.getText().toString()))
                                         {
                                             loginActivityPasswordEditText.setError("Incorrect Password");
                                             loginActivityloadingProgressbar.setVisibility(View.GONE);
@@ -66,21 +65,23 @@ public class LoginActivity extends AppCompatActivity {
                                                             }
                                                             else
                                                             {
+                                                                User.Emailid=null;
+                                                                User.Role=null;
+                                                                User.Username=null;
                                                                 Toast.makeText(LoginActivity.this, "Authentication failed.",
                                                                         Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     });
-                                            if(user.Role.equals("Customer")) {
+                                            if(User.Role.equals("Customer")) {
                                                 startActivity(new Intent(LoginActivity.this, CustomerActivity.class));
                                                 finish();
                                             }
-                                            else {
+                                            else if(User.Role.equals("Admin")) {
                                                 startActivity((new Intent(LoginActivity.this, AdminHomeActivity.class)));
                                                 finish();
                                             }
                                         }
-                                        Log.d(TAG, document.getId() + " => " +user.password+" "+loginActivityPasswordEditText.getText().toString());
                                     }
                                 }
                             }

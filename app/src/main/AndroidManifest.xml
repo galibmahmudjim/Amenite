@@ -49,9 +49,6 @@
             android:name=".Admin.AdminHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".Customer.ContactUsActivity"
-            android:exported="false" />
-        <activity
             android:name=".Admin.EmployeeVerificationActivity"
             android:exported="false" />
         <activity
