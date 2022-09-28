@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/customerMenuHome"
@@ -10,4 +12,20 @@
             android:icon="@drawable/logout_icon"
             android:title="Logout" />
     </group>
+    <item android:title="Communicate">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/customerMenuContactus"
+                    android:icon="@drawable/contactus_icon"
+                    android:title="Contact Us" />
+            </group>
+        </menu>
+    </item>
+    <group>
+        <item
+            android:id="@+id/ExitApp"
+            android:title="Exit" />
+    </group>
+
 </menu>
