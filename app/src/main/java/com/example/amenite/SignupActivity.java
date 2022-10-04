@@ -60,6 +60,7 @@ public class SignupActivity extends AppCompatActivity {
 
     public void signup( EditText Fullname, EditText Username, EditText Email, EditText Phonenumber, EditText Password, EditText PasswordConfirm, ProgressBar progressBar, View view) throws InterruptedException {
         progressBar.setVisibility(View.VISIBLE);
+        System.out.println();
         if(Fullname.getText().toString().isEmpty())
         {
             Fullname.setError("Please Insert Your Name");
