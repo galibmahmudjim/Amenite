@@ -45,12 +45,12 @@ public class MainActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         if (!querySnapshot.isEmpty()) {
                                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                                User.Emailid = (String) document.get("Email");
-                                                User.password = (String) document.get("Password");
-                                                User.Phonenumber = (String) document.get("Phone_Number");
+                                                User.Emailid = document.get("Email").toString();
+                                                User.password = document.get("Password").toString();
+                                                User.Phonenumber =  document.get("Phone_Number").toString();
                                                 User.UserID = document.getId();
-                                                User.Role = (String) document.get("Role");
-                                                User.Username = (String) document.get("Username");
+                                                User.Role = document.get("Role").toString();
+                                                User.Username =  document.get("Username").toString();
                                                 Log.d(TAG, ": "+User.Role+" "+User.Username);
                                                 if (User.Role.equals("Customer")) {
                                                     startActivity(new Intent(MainActivity.this, CustomerActivity.class));

@@ -7,6 +7,8 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@color/ghost_white"
+    android:theme="@style/Theme.Material3.Light.NoActionBar"
     tools:context=".SignupActivity">
     <TextView
         android:id="@+id/SignupActivitySignupTextview"
@@ -15,6 +17,14 @@
         android:text="Sign Up"
         android:textSize="25dp"
         android:layout_marginBottom="20dp"
+        />
+
+    <EditText
+        android:id="@+id/SignupActivityFullnameEditText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="Full Name"
+        android:layout_marginBottom="0dp"
         />
     <EditText
         android:id="@+id/SignupActivityUsernameEdittext"

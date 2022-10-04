@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:gravity="center"
+    android:background="@color/ghost_white"
+    android:theme="@style/Theme.Material3.Light.NoActionBar"
     android:orientation="vertical">
     <TextView
         android:id="@+id/LoginActivityLoginTextview"

@@ -43,11 +43,12 @@ public class LoginActivity extends AppCompatActivity {
                                 if(!querySnapshot.isEmpty())
                                 {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
-                                        User.Emailid= (String) document.get("Email");
-                                        User.password= (String) document.get("Password");
-                                        User.Phonenumber= (String) document.get("Phone_Number");
-                                        User.UserID=document.getId();
-                                        User.Role= (String) document.get("Role");
+                                        User.Emailid=  document.get("Email").toString();
+                                        User.password= document.get("Password").toString();
+                                        User.Phonenumber= document.get("Phone_Number").toString();
+                                        User.UserID=document.getId().toString();
+                                        User.Username =  document.get("Name").toString();
+                                        User.Role= document.get("Role").toString();
                                         User.Username = (String) document.get("Username");
                                         if(!User.password.equals(loginActivityPasswordEditText.getText().toString()))
                                         {

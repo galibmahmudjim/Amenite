@@ -43,6 +43,7 @@ public class SignupActivity extends AppCompatActivity {
     private ProgressBar signupActivityLoadingProgressBar;
     private EditText signupActivityOtpEdittext;
     private Button signupActivitySubmitButton;
+    private EditText signupActivityFullnameEdittext;
     private final String TAG = "Amenite_check";
     private String username;
     private String email;
@@ -57,8 +58,12 @@ public class SignupActivity extends AppCompatActivity {
     PhoneAuthProvider.ForceResendingToken token;
     DBresources dBresources = new DBresources();
 
-    public void signup( EditText Username, EditText Email, EditText Phonenumber, EditText Password, EditText PasswordConfirm, ProgressBar progressBar, View view) throws InterruptedException {
+    public void signup( EditText Fullname, EditText Username, EditText Email, EditText Phonenumber, EditText Password, EditText PasswordConfirm, ProgressBar progressBar, View view) throws InterruptedException {
         progressBar.setVisibility(View.VISIBLE);
+        if(Fullname.getText().toString().isEmpty())
+        {
+            Fullname.setError("Please Insert Your Name");
+        }
         if(Username.getText().toString().isEmpty())
         {
             Username.setError("Invalid Username");
@@ -165,6 +170,7 @@ public class SignupActivity extends AppCompatActivity {
                 {
 
                     userDetails = new HashMap<>();
+                    userDetails.put("Name",Fullname.getText().toString());
                     userDetails.put("Email",Email.getText().toString());
                     userDetails.put("Username",Username.getText().toString());
                     userDetails.put("Role","Customer");
@@ -280,6 +286,7 @@ public class SignupActivity extends AppCompatActivity {
          signupActivityConfirmPasswordEdittext = (EditText) findViewById(R.id.SignupActivityConfirmPasswordEdittext);
          signupActivityPhonenumberEdittext = (EditText)findViewById(R.id.SignupActivityPhonenumberEdittext);
          signupActivityLoadingProgressBar = (ProgressBar) findViewById(R.id.SignupActivityLoadingProgressBar);
+         signupActivityFullnameEdittext = findViewById(R.id.SignupActivityFullnameEditText);
          signupActivityOtpEdittext = (EditText) findViewById(R.id.SignupActivityOtpEdittext);
          signupActivityLoadingProgressBar.setVisibility(View.GONE);
          signupActivitySubmitButton = (Button)  findViewById(R.id.SignupActivitySubmitButton);
@@ -288,7 +295,7 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View view) {
                  if(verificationInProcess==false) {
                      try {
-                         signup(signupActivityUsernameEdittext, signupActivityEmailEdittext, signupActivityPhonenumberEdittext, signupActivityPasswordEdittext, signupActivityConfirmPasswordEdittext, signupActivityLoadingProgressBar, view);
+                         signup(signupActivityFullnameEdittext, signupActivityUsernameEdittext, signupActivityEmailEdittext, signupActivityPhonenumberEdittext, signupActivityPasswordEdittext, signupActivityConfirmPasswordEdittext, signupActivityLoadingProgressBar, view);
                      } catch (InterruptedException e) {
                          e.printStackTrace();
                      }

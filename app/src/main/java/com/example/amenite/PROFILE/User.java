@@ -9,6 +9,7 @@ public class User {
         public static String Phonenumber;
         public static String UserID;
         public static String Username;
+        public static String Fullname;
         public static boolean currentUser()
         {
                 DBresources dBresources = new DBresources();
