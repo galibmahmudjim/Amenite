@@ -135,7 +135,6 @@ public class SignupActivity extends AppCompatActivity {
                 {
                     if(!querySnapshot.isEmpty())
                     {
-                        //Log.d(TAG, "onComplete: ");
                         Phonenumber.setError("This Phone Number is already in use.");
                     }
                 }

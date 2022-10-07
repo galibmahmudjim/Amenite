@@ -5,6 +5,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <queries>
         <intent>
@@ -24,23 +27,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Amenite"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDb9doho3Jbv-RRbfPKkrVFdLBoZsA6APM" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".Customer.CustomerAddressMapsActivity"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".Customer.CustomerDonationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Customer.Services.BeautyServiceActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Customer.Services.ElecrtronicandAppliancesServiceActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Customer.Services.HomeServiceActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Customer.Services.TravelServiceActivites"
             android:exported="false" />
         <activity
             android:name=".Employee.EmployeeHomeActivity"
@@ -53,8 +60,8 @@
             android:exported="false" />
         <activity
             android:name=".Customer.CustomerActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".SignupActivity"
             android:exported="false" />

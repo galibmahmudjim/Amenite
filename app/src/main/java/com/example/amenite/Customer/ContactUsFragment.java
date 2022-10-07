@@ -21,8 +21,6 @@ public class ContactUsFragment extends Fragment {
     public ContactUsFragment() {
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentContactUsBinding = FragmentContactUsBinding.inflate(inflater,container,false);

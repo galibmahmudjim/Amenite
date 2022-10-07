@@ -13,11 +13,13 @@
         <entry key="app/src/main/res/drawable/progressbar.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rounded_edittext.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/textinputborder.xml" value="0.136" />
         <entry key="app/src/main/res/layout/activity_admin_home.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_beauty_service.xml" value="0.1203125" />
         <entry key="app/src/main/res/layout/activity_contact_us.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_cstomer_home.xml" value="0.13179347826086957" />
-        <entry key="app/src/main/res/layout/activity_customer.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_customer.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_customer_address_maps.xml" value="0.1816123188405797" />
         <entry key="app/src/main/res/layout/activity_customer_donation.xml" value="0.12537993920972645" />
         <entry key="app/src/main/res/layout/activity_customer_home.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_customer_navigation_drawer.xml" value="0.1203125" />
@@ -35,6 +37,9 @@
         <entry key="app/src/main/res/layout/customer_drawer_layout.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/customer_menu_header.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/layout/fragment_contact_us.xml" value="0.19791666666666666" />
+        <entry key="app/src/main/res/layout/fragment_customer_address_map.xml" value="0.1816123188405797" />
+        <entry key="app/src/main/res/layout/fragment_customer_address_maps.xml" value="0.1816123188405797" />
+        <entry key="app/src/main/res/layout/fragment_customer_beauty_service.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_customer_home.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/fragment_home_fragment.xml" value="0.121875" />
         <entry key="app/src/main/res/layout/fragmentcustomer_home.xml" value="0.196875" />

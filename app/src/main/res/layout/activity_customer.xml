@@ -15,7 +15,6 @@
         android:layout_height="match_parent"
         android:gravity="left"
         android:orientation="vertical">
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/CustomerNavigationDrawerToolbar"
             android:layout_width="match_parent"
