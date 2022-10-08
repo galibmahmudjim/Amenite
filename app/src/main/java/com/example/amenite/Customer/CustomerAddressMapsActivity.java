@@ -19,7 +19,9 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.amenite.R;
@@ -39,9 +41,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -54,11 +59,10 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
     private double lan;
     private double lat;
     private LatLng latLng;
-    Location currentlocation;
-    FusedLocationProviderClient fusedLocatonProviderClient;
 
     private GoogleMap mMap;
     private ActivityCustomerAddressMapsBinding binding;
+    private SupportMapFragment mapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +70,36 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
 
         binding = ActivityCustomerAddressMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Initalize();
+        binding.CustomerAddressMapAddressSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                String location = binding.CustomerAddressMapAddressSearch.getQuery().toString();
+                List<Address> addressList = null;
+                if(location!=null || location!="")
+                {
+                    Geocoder geocoder = new Geocoder(CustomerAddressMapsActivity.this);
+                    try {
+                        addressList = geocoder.getFromLocationName(location,1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Address address = addressList.get(0);
+                    LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,20));
+                }
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+    }
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.CustomerAddressMap);
+    private void Initalize() {
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.CustomerAddressMap);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull GoogleMap googleMap) {
@@ -120,32 +151,7 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
             }
         });
     }
-    private void setupAutoCompleteFragment() {
 
-        // Initialize the AutocompleteSupportFragment.
-        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
-                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
-
-        // Specify the types of place data to return.
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
-
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(@NonNull Place place) {
-                // TODO: Get info about the selected place.
-                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
-            }
-
-
-            @Override
-            public void onError(@NonNull Status status) {
-                // TODO: Handle the error.
-                Log.i(TAG, "An error occurred: " + status);
-            }
-        });
-
-
-    }
 
     private String getAddress(double latitude, double longitude) {
         StringBuilder result = new StringBuilder();
@@ -173,7 +179,6 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
 
         return result.toString();
     }
-
 
 
     @Override
@@ -218,4 +223,33 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
         }
 
     }
+
+
+
+    /*private void PlaceAutoComplete()
+    {
+        String apiKey = getString(R.string.ApiKey);
+        if(!Places.isInitialized())
+        {
+            Places.initialize(getApplicationContext(),apiKey);
+        }
+        Log.d(TAG, "onCreate: "+Place.Field.NAME);
+        AutocompleteSupportFragment autocompleteSupportFragment = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        autocompleteSupportFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+        autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                // mapFragment.getMapAsync(CustomerAddressMapsActivity.this);
+                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
+            }
+
+
+            @Override
+            public void onError(@NonNull Status status) {
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: " + status);
+            }
+        });
+    }
+    */
 }
