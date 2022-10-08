@@ -11,15 +11,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.amenite.R;
 import com.example.amenite.databinding.ActivityCustomerAddressMapsBinding;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -34,12 +39,21 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 
 public class CustomerAddressMapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private static final String TAG = "Amenite_check";
     private static final int LOCATION_PERMISSION_CODE = 1;
     private double lan;
     private double lat;
+    private LatLng latLng;
     Location currentlocation;
     FusedLocationProviderClient fusedLocatonProviderClient;
 
@@ -52,83 +66,128 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
 
         binding = ActivityCustomerAddressMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        fusedLocatonProviderClient = LocationServices.getFusedLocationProviderClient(this.getApplicationContext());
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.CustomerAddressMap);
-        mapFragment.getMapAsync(this);
-    }
-
-    private void getCurrentLocation() {
-        locationPermission();
-        if (ActivityCompat.checkSelfPermission(CustomerAddressMapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CustomerAddressMapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(CustomerAddressMapsActivity.this, "Location permission denied", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        LocationRequest locationRequest = LocationRequest.create();
-        locationRequest.setInterval(6000);
-        locationRequest.setPriority(Priority.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setFastestInterval(5000);
-        LocationCallback locationCallback = new LocationCallback() {
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void onLocationResult(@NonNull LocationResult locationResult) {
-                if (locationResult==null)
-                {
-                    Toast.makeText(getApplicationContext(),"Location Result = null",Toast.LENGTH_SHORT).show();
-                       return;
+            public void onMapReady(@NonNull GoogleMap googleMap) {
+                if (ActivityCompat.checkSelfPermission(CustomerAddressMapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CustomerAddressMapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                    return;
                 }
-            }
-        };
-        fusedLocatonProviderClient.requestLocationUpdates(locationRequest,locationCallback,null);
+                mMap = googleMap;
+                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                googleMap.setMyLocationEnabled(true);
+                googleMap.getUiSettings().setZoomControlsEnabled(true);
+                View zoomButton = ((View) mapFragment.getView().findViewById(Integer.parseInt("2")).
+                        getParent()).findViewById(Integer.parseInt("1"));
+                RelativeLayout.LayoutParams rlp1 = (RelativeLayout.LayoutParams) zoomButton.getLayoutParams();
+                rlp1.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
+                rlp1.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+                rlp1.setMargins(0, 1500, 180, 0);
+
+                googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+
+                View locationButton = ((View) mapFragment.getView().findViewById(Integer.parseInt("1")).
+                        getParent()).findViewById(Integer.parseInt("2"));
+                RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
+                rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
+                rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+                rlp.setMargins(0, 1400, 180, 0);
 
 
-        Task<Location> task = fusedLocatonProviderClient.getLastLocation();
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                currentlocation = location;
-                if (location != null) {
-                    Log.d(TAG, "onSuccess: " + location.getLongitude() + " " + location.getLatitude());
-                    lat = location.getLatitude();
-                    lan = location.getLongitude();
-                    LatLng  latLng = new LatLng(lat,lan);
-                    mMap.addMarker(new MarkerOptions().position(latLng).title("Current Possition"));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+                googleMap.getUiSettings().setCompassEnabled(true);
+                googleMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
+                    @Override
+                    public void onCameraIdle() {
+                        latLng = mMap.getCameraPosition().target;
+                        googleMap.clear();
+                        try {
+                            Log.e(TAG + " Changing address", getAddress(latLng.latitude, latLng.longitude));
+                            Log.e(TAG + " Latitude", latLng.latitude + "");
+                            Log.e(TAG + " Longitude", latLng.longitude + "");
+                            String lat = latLng.latitude + "";
+                            String lng = latLng.longitude + "";
+                            String location = getAddress(latLng.latitude, latLng.longitude);
+                            binding.CustomerAddressMapAddressTextview.setText(location);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
 
-                }
             }
         });
     }
+    private void setupAutoCompleteFragment() {
+
+        // Initialize the AutocompleteSupportFragment.
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        // Specify the types of place data to return.
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                // TODO: Get info about the selected place.
+                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
+            }
 
 
-    @SuppressLint("MissingSuperCall")
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (LOCATION_PERMISSION_CODE)
-        {
-            case LOCATION_PERMISSION_CODE:
-                if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
-                {
-                    getCurrentLocation();
-                }
-                break;
-        }
+            @Override
+            public void onError(@NonNull Status status) {
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: " + status);
+            }
+        });
+
 
     }
+
+    private String getAddress(double latitude, double longitude) {
+        StringBuilder result = new StringBuilder();
+        try {
+            Log.d(TAG, "getAddress: ");
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            if (addresses.size() > 0) {
+                System.out.println("size====" + addresses.size());
+                Address address = addresses.get(0);
+
+                for (int i = 0; i <= addresses.get(0).getMaxAddressLineIndex(); i++) {
+                    if (i == addresses.get(0).getMaxAddressLineIndex()) {
+                        result.append(addresses.get(0).getAddressLine(i));
+                    } else {
+                        result.append(addresses.get(0).getAddressLine(i) + ",");
+                    }
+                }
+                System.out.println("ad==" + address);
+                System.out.println("result---" + result.toString());
+            }
+        } catch (IOException e) {
+            Log.e("tag", e.getMessage());
+        }
+
+        return result.toString();
+    }
+
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        getCurrentLocation();
+        locationPermission();
     }
-
 
 
     private void locationPermission() {
         if (ActivityCompat.checkSelfPermission(CustomerAddressMapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(CustomerAddressMapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
         } else {
-            ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION},LOCATION_PERMISSION_CODE);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_CODE);
         }
         LocationManager lm = (LocationManager) CustomerAddressMapsActivity.this.getSystemService(Context.LOCATION_SERVICE);
         boolean gps_enabled = false;
