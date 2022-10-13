@@ -11,12 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="top"
+        android:background="@color/ghost_white"
         android:orientation="vertical"
         android:padding="20dp">
 
-
         <androidx.cardview.widget.CardView
             style="@style/CardView"
+            android:background="@color/ghost_white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="3dp"
@@ -27,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="@color/ghost_white"
                 android:orientation="vertical">
 
                 <TextView
@@ -50,6 +52,7 @@
 
         <androidx.cardview.widget.CardView
             style="@style/CardView"
+            android:background="@color/ghost_white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="3dp"
@@ -84,6 +87,7 @@
             style="@style/CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/ghost_white"
             app:cardCornerRadius="3dp"
             app:cardElevation="4dp"
             app:cardUseCompatPadding="true">
@@ -115,6 +119,7 @@
             style="@style/CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/ghost_white"
             app:cardCornerRadius="3dp"
             app:cardElevation="4dp"
             app:cardUseCompatPadding="true">
@@ -132,14 +137,35 @@
                     android:padding="5dp"
                     android:text="Address"
                     android:textColor="@color/darkPurple" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/CustomerBeautyServiceAddressMapTextview"
+                        android:layout_width="0dp"
+                        android:layout_weight="7"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:hint="Find Address from Map"
+                        android:textColor="@color/darkPurple" />
+                    <ImageButton
+                        android:id="@+id/CustomerBeautyServiceAddressMapButton"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/mapmylocationlcon"
+                        />
 
+                </LinearLayout>
                 <EditText
-                    android:id="@+id/CustomerBeautyServiceAddressrEdittext"
+                    android:id="@+id/CustomerBeautyServiceAddressDetailsEdittext"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="3"
                     android:padding="8dp"
-                    android:text="" />
+                    android:hint="Address Details (Optional)" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

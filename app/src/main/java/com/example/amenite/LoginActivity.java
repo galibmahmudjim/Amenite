@@ -62,7 +62,14 @@ public class LoginActivity extends AppCompatActivity {
                                                         @Override
                                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                                             if(task.isSuccessful()) {
-                                                                dBresources.firebaseUser = dBresources.firebaseAuth.getCurrentUser();
+                                                                dBresources.firebaseUser = dBresources.firebaseAuth.getCurrentUser();if(User.Role.equals("Customer")) {
+                                                                    startActivity(new Intent(LoginActivity.this, CustomerActivity.class));
+                                                                    finish();
+                                                                }
+                                                                else if(User.Role.equals("Admin")) {
+                                                                    startActivity((new Intent(LoginActivity.this, AdminHomeActivity.class)));
+                                                                    finish();
+                                                                }
                                                             }
                                                             else
                                                             {
@@ -74,14 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                                                             }
                                                         }
                                                     });
-                                            if(User.Role.equals("Customer")) {
-                                                startActivity(new Intent(LoginActivity.this, CustomerActivity.class));
-                                                finish();
-                                            }
-                                            else if(User.Role.equals("Admin")) {
-                                                startActivity((new Intent(LoginActivity.this, AdminHomeActivity.class)));
-                                                finish();
-                                            }
+
                                         }
                                     }
                                 }

@@ -37,7 +37,6 @@
         android:layout_height="54dp"
         android:layout_marginStart="124dp"
         android:layout_marginTop="76dp"
-
         android:autoSizeTextType="uniform"
         android:background="@color/darkPurple"
         android:text="Foundation Info"

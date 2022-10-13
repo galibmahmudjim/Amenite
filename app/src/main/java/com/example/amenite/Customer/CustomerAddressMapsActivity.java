@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -22,8 +23,10 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.amenite.Customer.Services.CustomerBeautyServiceFragment;
 import com.example.amenite.R;
 import com.example.amenite.databinding.ActivityCustomerAddressMapsBinding;
 import com.google.android.gms.common.api.Status;
@@ -59,6 +62,7 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
     private double lan;
     private double lat;
     private LatLng latLng;
+    private String location;
 
     private GoogleMap mMap;
     private ActivityCustomerAddressMapsBinding binding;
@@ -96,6 +100,7 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
                 return false;
             }
         });
+
     }
 
     private void Initalize() {
@@ -140,7 +145,7 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
                             Log.e(TAG + " Longitude", latLng.longitude + "");
                             String lat = latLng.latitude + "";
                             String lng = latLng.longitude + "";
-                            String location = getAddress(latLng.latitude, latLng.longitude);
+                             location = getAddress(latLng.latitude, latLng.longitude);
                             binding.CustomerAddressMapAddressTextview.setText(location);
                         } catch (Exception e) {
                             e.printStackTrace();
