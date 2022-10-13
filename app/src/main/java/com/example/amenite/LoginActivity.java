@@ -62,7 +62,8 @@ public class LoginActivity extends AppCompatActivity {
                                                         @Override
                                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                                             if(task.isSuccessful()) {
-                                                                dBresources.firebaseUser = dBresources.firebaseAuth.getCurrentUser();if(User.Role.equals("Customer")) {
+                                                                dBresources.firebaseUser = dBresources.firebaseAuth.getCurrentUser();
+                                                                if(User.Role.equals("Customer")) {
                                                                     startActivity(new Intent(LoginActivity.this, CustomerActivity.class));
                                                                     finish();
                                                                 }

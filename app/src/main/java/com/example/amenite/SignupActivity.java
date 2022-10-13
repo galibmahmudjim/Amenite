@@ -101,7 +101,6 @@ public class SignupActivity extends AppCompatActivity {
         {
             phonenumber="";
         }
-        Log.d(TAG, "signup: Phone"+phonenumber);
 
         Query emailquery = dBresources.database.collection("User").whereEqualTo("Email",Email.getText().toString());
         Query phonequery = dBresources.database.collection("User").whereEqualTo("Phone_Number",phonenumber);
@@ -109,19 +108,16 @@ public class SignupActivity extends AppCompatActivity {
         Task t1 = emailquery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                Log.d(TAG, "onComplete: in");
                 QuerySnapshot querySnapshot = task.getResult();
                 if(task.isSuccessful())
                 {
                     if(!querySnapshot.isEmpty())
                     {
-                        Log.d(TAG, "onComplete: "+querySnapshot.getQuery());
                         Email.setError("This Email is already in use.");
                     }
                 }
                 else
                 {
-                    Log.d(TAG, "Failed: "+task.getException());
                 }
             }
 
@@ -129,7 +125,6 @@ public class SignupActivity extends AppCompatActivity {
        Task t2 = phonequery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                Log.d(TAG, "onComplete: in");
                 QuerySnapshot querySnapshot = task.getResult();
                 if(task.isSuccessful())
                 {
@@ -140,14 +135,12 @@ public class SignupActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Log.d(TAG, "Failed: "+task.getException());
                 }
             }
         });
         Task t3 = usernamequery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                Log.d(TAG, "onComplete: in");
                 QuerySnapshot querySnapshot = task.getResult();
                 if(task.isSuccessful())
                 {
@@ -158,7 +151,6 @@ public class SignupActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Log.d(TAG, "Failed: "+task.getException());
                 }
             }
         });
@@ -199,6 +191,7 @@ public class SignupActivity extends AppCompatActivity {
             public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(s, forceResendingToken);
                 VerificationID = s;
+                Log.d(TAG, "onCodeSent: "+VerificationID);
                 token = forceResendingToken;
                 signupActivityOtpEdittext.setVisibility(View.VISIBLE);
                 signupActivityLoadingProgressBar.setVisibility(View.GONE);
@@ -208,12 +201,15 @@ public class SignupActivity extends AppCompatActivity {
 
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                final String code = phoneAuthCredential.getSmsCode();
+
+                Log.d(TAG, "onVerificationCompleted: "+code);
 
             }
 
             @Override
             public void onVerificationFailed(@NonNull FirebaseException e) {
-               // Toast.makeText(SignupActivity.this,"Cannot Create Acxount "+e.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignupActivity.this,"Cannot Create Account "+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         };
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
@@ -222,6 +218,7 @@ public class SignupActivity extends AppCompatActivity {
                 .setActivity(this)
                 .setCallbacks(myCallBack)
                 .build();
+        
 
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
@@ -229,6 +226,7 @@ public class SignupActivity extends AppCompatActivity {
          Task t1 = mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                Log.d(TAG, "onComplete: Com");
                 if(task.isSuccessful())
                 {
                     Toast.makeText(SignupActivity.this,"Authentication is successful", Toast.LENGTH_SHORT).show();
@@ -236,7 +234,7 @@ public class SignupActivity extends AppCompatActivity {
                 else
                 {
                     Toast.makeText(SignupActivity.this,"Authentication failed", Toast.LENGTH_SHORT).show();
-
+                    signupActivityLoadingProgressBar.setVisibility(View.GONE);
                 }
             }
         });
@@ -256,7 +254,6 @@ public class SignupActivity extends AppCompatActivity {
                                          public void onComplete(@NonNull Task<AuthResult> task) {
                                              if(task.isSuccessful())
                                              {
-                                                 Log.d(TAG, "onComplete: Success");
                                                  startActivity(new Intent(SignupActivity.this, LoginActivity.class));
 
                                              }
