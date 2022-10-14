@@ -7,42 +7,66 @@
     android:background="@color/ghost_white"
     tools:context="Customer.Services.CustomerBeautyServiceFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/lightPurple"
         android:gravity="top"
-        android:background="@color/ghost_white"
         android:orientation="vertical"
         android:padding="20dp">
 
-        <androidx.cardview.widget.CardView
-            style="@style/CardView"
-            android:background="@color/ghost_white"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button3"
+            android:layout_width="137dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="132dp"
+            android:background="@color/ghost_white"
+            android:text="Next Step"
+
+            android:textColor="@color/lightPurple"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="626dp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView10"
+            style="@style/CardView"
+            android:layout_width="345dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/ghost_white"
             app:cardCornerRadius="3dp"
             app:cardElevation="4dp"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4"
+            tools:layout_conversion_absoluteHeight="84dp"
+            tools:layout_conversion_absoluteWidth="371dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@color/ghost_white"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                tools:layout_conversion_absoluteHeight="69dp"
+                tools:layout_conversion_absoluteWidth="361dp"
+                tools:layout_editor_absoluteX="25dp"
+                tools:layout_editor_absoluteY="27dp">
 
                 <TextView
                     android:id="@+id/CustomerBeautyServiceNameTextview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="355dp"
+                    android:layout_height="match_parent"
                     android:padding="5dp"
                     android:text="Name"
-                    android:textColor="@color/darkPurple" />
+                    android:textColor="@color/lightPurple" />
 
                 <EditText
                     android:id="@+id/CustomerBeautyServiceNameEdittext"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="27dp"
                     android:layout_weight="3"
                     android:padding="8dp"
                     android:text="" />
@@ -51,124 +75,165 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView11"
             style="@style/CardView"
+            android:layout_width="340dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="68dp"
             android:background="@color/ghost_white"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             app:cardCornerRadius="3dp"
             app:cardElevation="4dp"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView10"
+            tools:layout_conversion_absoluteHeight="84dp"
+            tools:layout_conversion_absoluteWidth="371dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/CustomerBeautyServiceEmailTextview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="Email"
-                    android:textColor="@color/darkPurple" />
+            <TextView
+                android:id="@+id/CustomerBeautyServiceEmailTextview"
+                android:layout_width="347dp"
+                android:layout_height="46dp"
+                android:padding="5dp"
+                android:text="Email"
+                android:textColor="@color/lightPurple"
+                tools:layout_conversion_absoluteHeight="29dp"
+                tools:layout_conversion_absoluteWidth="361dp" />
 
-                <EditText
-                    android:id="@+id/CustomerBeautyServiceEmailEdittext"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:padding="8dp"
-                    android:text="" />
-            </LinearLayout>
+            <EditText
+                android:id="@+id/CustomerBeautyServiceEmailEdittext"
+                android:layout_width="352dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text=""
+                tools:layout_conversion_absoluteHeight="40dp"
+                tools:layout_conversion_absoluteWidth="361dp" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView12"
             style="@style/CardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="350dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="60dp"
             android:background="@color/ghost_white"
             app:cardCornerRadius="3dp"
             app:cardElevation="4dp"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView11"
+            tools:layout_conversion_absoluteHeight="84dp"
+            tools:layout_conversion_absoluteWidth="371dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/CustomerBeautyServicePhonenumberTextview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="Phone Number"
-                    android:textColor="@color/darkPurple" />
+            <TextView
+                android:id="@+id/CustomerBeautyServicePhonenumberTextview"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Phone Number"
+                android:textColor="@color/lightPurple"
+                tools:layout_conversion_absoluteHeight="29dp"
+                tools:layout_conversion_absoluteWidth="361dp" />
 
-                <EditText
-                    android:id="@+id/CustomerBeautyServicePhonenumberEdittext"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:padding="8dp"
-                    android:text="" />
-            </LinearLayout>
+            <EditText
+                android:id="@+id/CustomerBeautyServicePhonenumberEdittext"
+                android:layout_width="336dp"
+                android:layout_height="52dp"
+                android:padding="8dp"
+                android:text=""
+                tools:layout_conversion_absoluteHeight="40dp"
+                tools:layout_conversion_absoluteWidth="361dp" />
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView13"
             style="@style/CardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="350dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="104dp"
             android:background="@color/ghost_white"
             app:cardCornerRadius="3dp"
             app:cardElevation="4dp"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toTopOf="@+id/button3"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_conversion_absoluteHeight="127dp"
+            tools:layout_conversion_absoluteWidth="371dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/CustomerBeautyServiceAddressTextview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="Address"
-                    android:textColor="@color/darkPurple" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-                    <TextView
-                        android:id="@+id/CustomerBeautyServiceAddressMapTextview"
-                        android:layout_width="0dp"
-                        android:layout_weight="7"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:hint="Find Address from Map"
-                        android:textColor="@color/darkPurple" />
-                    <ImageButton
-                        android:id="@+id/CustomerBeautyServiceAddressMapButton"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/mapmylocationlcon"
-                        />
-
-                </LinearLayout>
-                <EditText
-                    android:id="@+id/CustomerBeautyServiceAddressDetailsEdittext"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:padding="8dp"
-                    android:hint="Address Details (Optional)" />
-            </LinearLayout>
+            <EditText
+                android:id="@+id/CustomerBeautyServiceAddressDetailsEdittext"
+                android:layout_width="326dp"
+                android:layout_height="50dp"
+                android:hint="Address Details (Optional)"
+                android:padding="8dp"
+                tools:layout_conversion_absoluteHeight="40dp"
+                tools:layout_conversion_absoluteWidth="361dp" />
         </androidx.cardview.widget.CardView>
 
+        <TextView
+            android:id="@+id/CustomerBeautyServiceAddressMapTextview"
+            android:layout_width="301dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="104dp"
+            android:background="@color/ghost_white"
+            android:hint="Find Address from Map"
+            android:padding="5dp"
+            android:textColor="@color/lightPurple"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CustomerBeautyServiceAddressTextview"
+            tools:layout_conversion_absoluteHeight="29dp"
+            tools:layout_conversion_absoluteWidth="316dp" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/CustomerBeautyServiceAddressTextview"
+            android:layout_width="101dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/ghost_white"
+            android:padding="5dp"
+            android:text="Address"
+            android:textColor="@color/lightPurple"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView12"
+            tools:layout_conversion_absoluteHeight="29dp"
+            tools:layout_conversion_absoluteWidth="361dp" />
+
+        <ImageButton
+            android:id="@+id/CustomerBeautyServiceAddressMapButton"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:src="@drawable/mapmylocationlcon"
+            tools:layout_conversion_absoluteHeight="43dp"
+            tools:layout_conversion_absoluteWidth="45dp"
+            tools:layout_editor_absoluteX="313dp"
+            tools:layout_editor_absoluteY="411dp" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="132dp"
+            android:layout_height="84dp"
+            android:layout_marginEnd="144dp"
+            android:layout_marginBottom="6dp"
+            android:src="@drawable/appointment"
+            app:layout_constraintBottom_toTopOf="@+id/cardView10"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/flower2"
+            tools:layout_editor_absoluteX="325dp"
+            tools:layout_editor_absoluteY="559dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+

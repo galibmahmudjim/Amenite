@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:gravity="center">
+
+    <EditText
+        android:id="@+id/profileEditText1"
+        android:layout_width="409dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="19dp"
+        android:layout_weight="3"
+        android:padding="8dp"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileEditText2" />
+
+    <TextView
+        android:id="@+id/ProfileTextview1"
+        android:layout_width="400dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="19dp"
+        android:padding="5dp"
+        android:text="Date of Birth"
+        android:textColor="@color/darkPurple"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileEditText2" />
+
+    <EditText
+        android:id="@+id/profileEditText2"
+        android:layout_width="409dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="17dp"
+        android:layout_weight="3"
+        android:padding="8dp"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileEdittext3" />
+
+    <TextView
+        android:id="@+id/profileTextView2"
+        android:layout_width="400dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="17dp"
+        android:padding="5dp"
+        android:text="Gender"
+        android:textColor="@color/darkPurple"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileEdittext3" />
+
+    <EditText
+        android:id="@+id/profileEdittext3"
+        android:layout_width="409dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="3"
+        android:padding="8dp"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileEdittext4" />
+
+    <TextView
+        android:id="@+id/profileTextview3"
+        android:layout_width="400dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:text="Contact no"
+        android:textColor="@color/darkPurple"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileEdittext4" />
+
+    <EditText
+        android:id="@+id/profileEdittext4"
+        android:layout_width="409dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="3"
+        android:padding="8dp"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerBeautyServiceNameEdittext" />
+
+    <TextView
+        android:id="@+id/profileTextview4"
+        android:layout_width="400dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="16dp"
+        android:padding="5dp"
+        android:text="E-mail"
+        android:textColor="@color/darkPurple"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerBeautyServiceNameEdittext" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        style="@style/CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ghost_white"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/ghost_white"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        android:layout_width="146dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="132dp"
+
+        android:layout_marginTop="56dp"
+        android:background="#B899F1"
+        android:text="Edit profile"
+        android:textColor="#53279F"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileEditText1" />
+
+    <EditText
+        android:id="@+id/CustomerBeautyServiceNameEdittext"
+        android:layout_width="409dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="1dp"
+        android:layout_weight="3"
+        android:padding="8dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/CustomerBeautyServiceNameTextview"
+        android:layout_width="400dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="1dp"
+        android:padding="5dp"
+        android:text="Name"
+        android:textColor="@color/darkPurple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="114dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        app:srcCompat="@drawable/profile" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/flower2"
+        tools:layout_editor_absoluteX="336dp"
+        tools:layout_editor_absoluteY="580dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
