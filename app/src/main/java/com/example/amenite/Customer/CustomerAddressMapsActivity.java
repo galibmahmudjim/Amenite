@@ -71,49 +71,19 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityCustomerAddressMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Initalize();
-        binding.CustomerAddressMapAddressSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                String location = binding.CustomerAddressMapAddressSearch.getQuery().toString();
-                List<Address> addressList = null;
-                if(location!=null || location!="")
-                {
-                    Geocoder geocoder = new Geocoder(CustomerAddressMapsActivity.this);
-                    try {
-                        addressList = geocoder.getFromLocationName(location,1);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Address address = addressList.get(0);
-                    LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,20));
-                }
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String s) {
-                return false;
-            }
-        });
-
-    }
-
-    private void Initalize() {
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.CustomerAddressMap);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull GoogleMap googleMap) {
-                if (ActivityCompat.checkSelfPermission(CustomerAddressMapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CustomerAddressMapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                    return;
-                }
                 mMap = googleMap;
                 googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                if (ActivityCompat.checkSelfPermission(CustomerAddressMapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CustomerAddressMapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                Log.d(TAG, "onMapReady: Map");
                 googleMap.setMyLocationEnabled(true);
                 googleMap.getUiSettings().setZoomControlsEnabled(true);
                 View zoomButton = ((View) mapFragment.getView().findViewById(Integer.parseInt("2")).
@@ -145,7 +115,7 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
                             Log.e(TAG + " Longitude", latLng.longitude + "");
                             String lat = latLng.latitude + "";
                             String lng = latLng.longitude + "";
-                             location = getAddress(latLng.latitude, latLng.longitude);
+                            location = getAddress(latLng.latitude, latLng.longitude);
                             binding.CustomerAddressMapAddressTextview.setText(location);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -155,6 +125,37 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
 
             }
         });
+
+
+        binding.CustomerAddressMapAddressSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                String location = binding.CustomerAddressMapAddressSearch.getQuery().toString();
+                List<Address> addressList = null;
+                if (location != null || location != "") {
+                    Geocoder geocoder = new Geocoder(CustomerAddressMapsActivity.this);
+                    try {
+                        addressList = geocoder.getFromLocationName(location, 1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Address address = addressList.get(0);
+                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
+    }
+
+    private void Initalize() {
+
     }
 
 
@@ -214,7 +215,6 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
         }
 
         if (!gps_enabled && !network_enabled) {
-            // notify user
             new AlertDialog.Builder(CustomerAddressMapsActivity.this)
                     .setMessage("GPS Service Not Enables")
                     .setPositiveButton("Turn on GPS", new DialogInterface.OnClickListener() {

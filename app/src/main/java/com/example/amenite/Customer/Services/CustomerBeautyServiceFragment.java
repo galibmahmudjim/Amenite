@@ -24,7 +24,7 @@ public class CustomerBeautyServiceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         fragmentCustomerBeautyServiceBinding = FragmentCustomerBeautyServiceBinding.inflate(inflater,container,false);
         View view = fragmentCustomerBeautyServiceBinding.getRoot();
-        fragmentCustomerBeautyServiceBinding.CustomerBeautyServiceAddressMapButton.setOnClickListener(new View.OnClickListener() {
+        fragmentCustomerBeautyServiceBinding.CutomerBeautyAppoinmentMapAddressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), CustomerAddressMapsActivity.class));

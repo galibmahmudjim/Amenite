@@ -44,7 +44,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.654"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        tools:layout_editor_absoluteY="265dp" />
+        tools:layout_editor_absoluteY="265dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextTextPersonName3"
@@ -107,7 +108,7 @@
         android:layout_height="171dp"
         android:layout_marginStart="95dp"
         android:layout_marginTop="54dp"
-        android:src="@drawable/employee_Profile"
+        android:src="@drawable/employee_profile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -117,6 +118,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/flower2"
         tools:layout_editor_absoluteX="299dp"
-        tools:layout_editor_absoluteY="549dp" />
+        tools:layout_editor_absoluteY="549dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
