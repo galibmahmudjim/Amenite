@@ -18,7 +18,6 @@ public class CustomerHomeFragment extends Fragment {
     public CustomerHomeFragment() {
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentCustomerHomeBinding =  FragmentCustomerHomeBinding.inflate(inflater,container,false);

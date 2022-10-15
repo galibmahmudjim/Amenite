@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/customerMenuProfile"
+            android:title="Profile" />
+        <item
             android:id="@+id/customerMenuHome"
             android:icon="@drawable/home_icon"
             android:title="Home" />

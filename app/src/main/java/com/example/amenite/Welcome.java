@@ -35,7 +35,9 @@ public class Welcome extends AppCompatActivity {
         findViewById(R.id.WelcomeSignupButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 startActivity(new Intent(Welcome.this, SignupActivity.class));
+
             }
         });
 

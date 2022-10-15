@@ -7,8 +7,43 @@
     android:background="@drawable/gradient"
     tools:context=".MainActivity">
 
+    <EditText
+        android:id="@+id/adminProfileeditText5"
+        android:layout_width="161dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="56dp"
+        android:background="@color/ghost_white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdminProfileeditText3" />
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/adminProfiletextView5"
+        android:layout_width="105dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="100dp"
+        android:text="Gender"
+        android:textColor="@color/Purple"
+
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdminProfiletextView2" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="196dp"
+        android:layout_height="162dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="38dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/admin" />
+    <TextView
+        android:id="@+id/AdminProfiletextView1"
         android:layout_width="68dp"
         android:layout_height="50dp"
         android:layout_marginStart="44dp"
@@ -21,47 +56,47 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="86dp"
-        android:layout_height="48dp"
+        android:id="@+id/AdminProfiletextView2"
+        android:layout_width="113dp"
+        android:layout_height="50dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
-        android:text="Work Type"
+        android:text="Appointment date"
         android:textColor="@color/Purple"
 
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/AdminProfiletextView1" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/AdminProfileeditText1"
         android:layout_width="157dp"
         android:layout_height="48dp"
+        android:layout_marginTop="63dp"
         android:background="@color/ghost_white"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.654"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        tools:layout_editor_absoluteY="265dp"
+        app:layout_constraintHorizontal_bias="0.563"
+        app:layout_constraintStart_toEndOf="@+id/AdminProfiletextView1"
+        app:layout_constraintTop_toBottomOf="@+id/imageView17"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/AdminProfileeditText3"
         android:layout_width="161dp"
         android:layout_height="48dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="48dp"
         android:background="@color/ghost_white"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.637"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/adminprofileeditText4" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/adminProfiletextView3"
         android:layout_width="105dp"
         android:layout_height="44dp"
         android:layout_marginStart="40dp"
@@ -72,7 +107,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/AdminProfiletextView2" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/adminButton"
@@ -91,34 +126,24 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/adminprofileeditText4"
         android:layout_width="163dp"
         android:layout_height="48dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="49dp"
         android:background="@color/ghost_white"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdminProfileeditText1" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="204dp"
-        android:layout_height="171dp"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="54dp"
-        android:src="@drawable/employee_profile1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/imageView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/flower2"
-        tools:layout_editor_absoluteX="299dp"
-        tools:layout_editor_absoluteY="549dp"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adminProfileeditText5" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

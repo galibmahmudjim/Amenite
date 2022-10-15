@@ -1,4 +1,4 @@
-package com.example.amenite.Employee;
+package com.example.amenite.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,12 +6,11 @@ import android.os.Bundle;
 
 import com.example.amenite.R;
 
-public class EmployeeHomeActivity extends AppCompatActivity {
+public class AdminEditProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_employee_home);
-
+        setContentView(R.layout.activity_admin_edit_profile);
     }
 }

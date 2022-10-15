@@ -48,6 +48,14 @@ public class CustomerActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+
+                    case R.id.customerMenuProfile:
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.CustomerActivityFragmentContainer, new ProfileFragment())
+                                .commit();
+                        activityCustomerBinding.CustomerActivityToolbarTextview.setText("Profile");
+                        break;
+
                     case R.id.customerMenuHome:
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.CustomerActivityFragmentContainer, new CustomerHomeFragment())
@@ -77,7 +85,8 @@ public class CustomerActivity extends AppCompatActivity {
                         AlertDialog exitalert = exitapp.create();
                         exitalert.show();
                         break;
-                    case R.id.customerMenuLogout:
+
+                        case R.id.customerMenuLogout:
                         AlertDialog.Builder confirmlogout = new AlertDialog.Builder(CustomerActivity.this);
                         confirmlogout.setMessage("Do you want to Logout?");
                         confirmlogout.setTitle("Logout");

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.amenite.Admin.AdminHomeActivity;
 import com.example.amenite.Customer.CustomerActivity;
 import com.example.amenite.DBRes.DBresources;
+import com.example.amenite.Employee.EmployeeHomeActivity;
 import com.example.amenite.PROFILE.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -47,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                                         User.password= document.get("Password").toString();
                                         User.Phonenumber= document.get("Phone_Number").toString();
                                         User.UserID=document.getId().toString();
-                                        User.Username =  document.get("Name").toString();
+                                        User.Fullname =  document.get("Name").toString();
                                         User.Role= document.get("Role").toString();
                                         User.Username = (String) document.get("Username");
                                         if(!User.password.equals(loginActivityPasswordEditText.getText().toString()))
@@ -69,8 +70,17 @@ public class LoginActivity extends AppCompatActivity {
                                                                 }
                                                                 else if(User.Role.equals("Admin")) {
                                                                     startActivity((new Intent(LoginActivity.this, AdminHomeActivity.class)));
+                                                                    Log.d(TAG, "onComplete: alhamdulillah");
                                                                     finish();
                                                                 }
+
+                                                                else if(User.Role.equals("Employee")) {
+                                                                    startActivity((new Intent(LoginActivity.this, EmployeeHomeActivity.class)));
+                                                                    Log.d(TAG, "onComplete: alhamdulillah");
+                                                                    finish();
+                                                                }
+
+
                                                             }
                                                             else
                                                             {
