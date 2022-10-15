@@ -14,11 +14,6 @@
     android:paddingBottom="15dp">
 
 
-    <ImageView
-        android:layout_width="203dp"
-        android:layout_height="127dp"
-        android:layout_marginBottom="30dp"
-        app:srcCompat="@drawable/flower" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/EditProfileNameCardview"
@@ -47,7 +42,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#53279F"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@color/ghost_white"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -77,7 +73,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#53279F"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@color/ghost_white"
+                />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -107,7 +105,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#53279F"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@color/ghost_white"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

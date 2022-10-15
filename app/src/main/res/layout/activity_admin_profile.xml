@@ -110,7 +110,7 @@
         app:layout_constraintTop_toBottomOf="@+id/AdminProfiletextView2" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/adminButton"
         android:layout_width="221dp"
 
         android:layout_height="37dp"

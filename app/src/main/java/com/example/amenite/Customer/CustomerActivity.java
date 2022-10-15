@@ -90,7 +90,8 @@ public class CustomerActivity extends AppCompatActivity {
                         AlertDialog exitalert = exitapp.create();
                         exitalert.show();
                         break;
-                    case R.id.customerMenuLogout:
+
+                        case R.id.customerMenuLogout:
                         AlertDialog.Builder confirmlogout = new AlertDialog.Builder(CustomerActivity.this);
                         confirmlogout.setMessage("Do you want to Logout?");
                         confirmlogout.setTitle("Logout");
