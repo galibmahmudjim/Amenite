@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/adminProfileeditText5"
+        android:layout_width="161dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="56dp"
+        android:background="@color/ghost_white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdminProfileeditText3" />
+
+    <TextView
+        android:id="@+id/adminProfiletextView5"
+        android:layout_width="105dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="100dp"
+        android:text="Gender"
+        android:textColor="@color/Purple"
+
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdminProfiletextView2" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="196dp"
+        android:layout_height="162dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="38dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/admin" />
+    <TextView
+        android:id="@+id/AdminProfiletextView1"
+        android:layout_width="68dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="276dp"
+        android:text="Name"
+        android:textColor="@color/Purple"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/AdminProfiletextView2"
+        android:layout_width="113dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:text="Appointment date"
+        android:textColor="@color/Purple"
+
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdminProfiletextView1" />
+
+    <EditText
+        android:id="@+id/AdminProfileeditText1"
+        android:layout_width="157dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="63dp"
+        android:background="@color/ghost_white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.563"
+        app:layout_constraintStart_toEndOf="@+id/AdminProfiletextView1"
+        app:layout_constraintTop_toBottomOf="@+id/imageView17"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/AdminProfileeditText3"
+        android:layout_width="161dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="48dp"
+        android:background="@color/ghost_white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adminprofileeditText4" />
+
+    <TextView
+        android:id="@+id/adminProfiletextView3"
+        android:layout_width="105dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="28dp"
+        android:text="Phone number"
+        android:textColor="@color/Purple"
+
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdminProfiletextView2" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        android:layout_width="221dp"
+
+        android:layout_height="37dp"
+        android:layout_marginBottom="80dp"
+
+        android:background="@color/ghost_white"
+        android:text="Edit Profile"
+        android:textColor="@color/Purple"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/adminprofileeditText4"
+        android:layout_width="163dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="49dp"
+        android:background="@color/ghost_white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdminProfileeditText1" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/adminEdit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adminProfileeditText5" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
