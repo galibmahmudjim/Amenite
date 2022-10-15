@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.116" />
         <entry key="app/src/main/res/drawable/Bus_background.xml" value="0.116" />
         <entry key="app/src/main/res/drawable/amenite_logo.xml" value="0.335" />
+        <entry key="app/src/main/res/drawable/basic_toolbar.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/button_shape.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/buttonshape.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/contactus_icon.xml" value="0.136" />
@@ -13,10 +14,12 @@
         <entry key="app/src/main/res/drawable/logout_icon.xml" value="0.116" />
         <entry key="app/src/main/res/drawable/mapmylocationlcon.xml" value="0.136" />
         <entry key="app/src/main/res/drawable/menu.xml" value="0.136" />
+        <entry key="app/src/main/res/drawable/popupwindow.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/progressbar.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rounded_edittext.xml" value="0.131" />
         <entry key="app/src/main/res/drawable/searchviewshape.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/textbox_shape.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/textinputborder.xml" value="0.136" />
         <entry key="app/src/main/res/layout/activity_admin_home.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_beauty_service.xml" value="0.1203125" />
@@ -24,9 +27,13 @@
         <entry key="app/src/main/res/layout/activity_cstomer_home.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/layout/activity_customer.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_customer_address_maps.xml" value="0.1816123188405797" />
+        <entry key="app/src/main/res/layout/activity_customer_beauty_appoinment_confirm.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_customer_beauty_service.xml" value="0.121875" />
+        <entry key="app/src/main/res/layout/activity_customer_choose_beauty_service.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_customer_donation.xml" value="0.12537993920972645" />
         <entry key="app/src/main/res/layout/activity_customer_home.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_customer_navigation_drawer.xml" value="0.1203125" />
+        <entry key="app/src/main/res/layout/activity_customer_pop_up_confirm_window.xml" value="0.11" />
         <entry key="app/src/main/res/layout/activity_elecrtronicand_appliances_service.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/layout/activity_employee_home.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_employee_verification.xml" value="0.1203125" />
@@ -40,10 +47,12 @@
         <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.165" />
         <entry key="app/src/main/res/layout/customer_drawer_layout.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/customer_menu_header.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/layout/customer_service_conmfirm_popup.xml" value="0.1816123188405797" />
+        <entry key="app/src/main/res/layout/fragment_choose_beauty_service.xml" value="0.1816123188405797" />
         <entry key="app/src/main/res/layout/fragment_contact_us.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/fragment_customer_address_map.xml" value="0.1816123188405797" />
         <entry key="app/src/main/res/layout/fragment_customer_address_maps.xml" value="0.1816123188405797" />
-        <entry key="app/src/main/res/layout/fragment_customer_beauty_service.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_customer_beauty_service.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_customer_home.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_employee__edit_profile_.xml" value="0.165" />
@@ -52,6 +61,7 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1816123188405797" />
         <entry key="app/src/main/res/layout/fragmentcustomer_home.xml" value="0.196875" />
         <entry key="app/src/main/res/layout/layout.xml" value="0.1203125" />
+        <entry key="app/src/main/res/layout/toolbar.xml" value="0.1816123188405797" />
         <entry key="app/src/main/res/menu/customer_menu.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/Bus.xml" value="0.116" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/Bus_round.xml" value="0.116" />

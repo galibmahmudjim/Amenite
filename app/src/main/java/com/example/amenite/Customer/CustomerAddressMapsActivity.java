@@ -4,63 +4,40 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.amenite.Customer.Services.CustomerBeautyServiceFragment;
+import com.example.amenite.Customer.Services.CustomerBeautyServiceActivity;
 import com.example.amenite.R;
 import com.example.amenite.databinding.ActivityCustomerAddressMapsBinding;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.Priority;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.widget.Autocomplete;
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
 public class CustomerAddressMapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private static final String TAG = "Amenite_check";
     private static final int LOCATION_PERMISSION_CODE = 1;
-    private double lan;
-    private double lat;
+    private double land;
+    private double latd;
     private LatLng latLng;
     private String location;
 
@@ -73,59 +50,18 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
         super.onCreate(savedInstanceState);
         binding = ActivityCustomerAddressMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Initalize();
 
-        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.CustomerAddressMap);
-        mapFragment.getMapAsync(new OnMapReadyCallback() {
+        binding.CustomerAddressMapSelectButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onMapReady(@NonNull GoogleMap googleMap) {
-                mMap = googleMap;
-                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                if (ActivityCompat.checkSelfPermission(CustomerAddressMapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CustomerAddressMapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                Log.d(TAG, "onMapReady: Map");
-                googleMap.setMyLocationEnabled(true);
-                googleMap.getUiSettings().setZoomControlsEnabled(true);
-                View zoomButton = ((View) mapFragment.getView().findViewById(Integer.parseInt("2")).
-                        getParent()).findViewById(Integer.parseInt("1"));
-                RelativeLayout.LayoutParams rlp1 = (RelativeLayout.LayoutParams) zoomButton.getLayoutParams();
-                rlp1.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
-                rlp1.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
-                rlp1.setMargins(0, 1500, 180, 0);
-
-                googleMap.getUiSettings().setMyLocationButtonEnabled(true);
-
-                View locationButton = ((View) mapFragment.getView().findViewById(Integer.parseInt("1")).
-                        getParent()).findViewById(Integer.parseInt("2"));
-                RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
-                rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
-                rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
-                rlp.setMargins(0, 1400, 180, 0);
-
-
-                googleMap.getUiSettings().setCompassEnabled(true);
-                googleMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
-                    @Override
-                    public void onCameraIdle() {
-                        latLng = mMap.getCameraPosition().target;
-                        googleMap.clear();
-                        try {
-                            Log.e(TAG + " Changing address", getAddress(latLng.latitude, latLng.longitude));
-                            Log.e(TAG + " Latitude", latLng.latitude + "");
-                            Log.e(TAG + " Longitude", latLng.longitude + "");
-                            String lat = latLng.latitude + "";
-                            String lng = latLng.longitude + "";
-                            location = getAddress(latLng.latitude, latLng.longitude);
-                            binding.CustomerAddressMapAddressTextview.setText(location);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
+            public void onClick(View view) {
+                Intent intent = new Intent(CustomerAddressMapsActivity.this, CustomerBeautyServiceActivity.class);
+                intent.putExtra("Address",binding.CustomerAddressMapAddressTextview.getText().toString());
+                intent.putExtra("Latitude",latd);
+                intent.putExtra("Longitude",land);
+                startActivity(intent);
             }
         });
-
 
         binding.CustomerAddressMapAddressSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -155,6 +91,57 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
     }
 
     private void Initalize() {
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.CustomerAddressMap);
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(@NonNull GoogleMap googleMap) {
+                mMap = googleMap;
+                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                if (ActivityCompat.checkSelfPermission(CustomerAddressMapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CustomerAddressMapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    locationPermission();
+                    return;
+                }
+                googleMap.setMyLocationEnabled(true);
+                googleMap.getUiSettings().setZoomControlsEnabled(true);
+                View zoomButton = ((View) mapFragment.getView().findViewById(Integer.parseInt("2")).
+                        getParent()).findViewById(Integer.parseInt("1"));
+                RelativeLayout.LayoutParams rlp1 = (RelativeLayout.LayoutParams) zoomButton.getLayoutParams();
+                rlp1.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
+                rlp1.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+                rlp1.setMargins(0, 1500, 180, 0);
+
+                googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+
+                View locationButton = ((View) mapFragment.getView().findViewById(Integer.parseInt("1")).
+                        getParent()).findViewById(Integer.parseInt("2"));
+                RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
+                rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
+                rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+                rlp.setMargins(0, 1400, 180, 0);
+
+
+                googleMap.getUiSettings().setCompassEnabled(true);
+                googleMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
+                    @Override
+                    public void onCameraIdle() {
+                        latLng = mMap.getCameraPosition().target;
+                        googleMap.clear();
+                        try {
+                            String lat = latLng.latitude + "";
+                            String lng = latLng.longitude + "";
+                            land = latLng.longitude;
+                            latd = latLng.latitude;
+                            location = getAddress(latLng.latitude, latLng.longitude);
+                            binding.CustomerAddressMapAddressTextview.setText(location);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+            }
+        });
+
 
     }
 
@@ -162,7 +149,6 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
     private String getAddress(double latitude, double longitude) {
         StringBuilder result = new StringBuilder();
         try {
-            Log.d(TAG, "getAddress: ");
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
             if (addresses.size() > 0) {
@@ -180,7 +166,6 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
                 System.out.println("result---" + result.toString());
             }
         } catch (IOException e) {
-            Log.e("tag", e.getMessage());
         }
 
         return result.toString();
@@ -226,6 +211,7 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
                     .setNegativeButton("Cancel", null)
                     .show();
         }
+        Initalize();
 
     }
 

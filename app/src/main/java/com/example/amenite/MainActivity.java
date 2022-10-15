@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
                                                 User.UserID = document.getId();
                                                 User.Role = document.get("Role").toString();
                                                 User.Username =  document.get("Username").toString();
-                                                Log.d(TAG, ": "+User.Role+" "+User.Username);
                                                 if (User.Role.equals("Customer")) {
                                                     startActivity(new Intent(MainActivity.this, CustomerActivity.class));
                                                     finish();

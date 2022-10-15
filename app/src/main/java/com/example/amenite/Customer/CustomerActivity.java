@@ -11,18 +11,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.amenite.Customer.Services.CustomerBeautyServiceFragment;
 import com.example.amenite.R;
 import com.example.amenite.Welcome;
 import com.example.amenite.databinding.ActivityCustomerBinding;
-import com.example.amenite.databinding.CustomerMenuHeaderBinding;
-import com.google.android.material.navigation.NavigationBarItemView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 

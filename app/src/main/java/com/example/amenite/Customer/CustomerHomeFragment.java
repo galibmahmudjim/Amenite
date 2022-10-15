@@ -2,14 +2,13 @@ package com.example.amenite.Customer;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.amenite.Customer.Services.CustomerBeautyServiceFragment;
+import com.example.amenite.Customer.Services.CustomerBeautyServiceActivity;
 import com.example.amenite.R;
 import com.example.amenite.databinding.FragmentCustomerHomeBinding;
 
@@ -28,9 +27,7 @@ public class CustomerHomeFragment extends Fragment {
         fragmentCustomerHomeBinding.CustomerHomeFragmentBeautyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.CustomerActivityFragmentContainer,CustomerBeautyServiceFragment.class,null)
-                        .commit();
+                startActivity(new Intent(getActivity(), CustomerBeautyServiceActivity.class));
 
 
             }

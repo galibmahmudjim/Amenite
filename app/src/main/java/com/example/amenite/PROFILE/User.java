@@ -10,6 +10,9 @@ public class User {
         public static String UserID;
         public static String Username;
         public static String Fullname;
+        public static String Address;
+        public static String Longitude;
+        public static String latitude;
         public static boolean currentUser()
         {
                 DBresources dBresources = new DBresources();
