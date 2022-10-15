@@ -4,11 +4,16 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
+import com.example.amenite.databinding.FragmentEditProfileBinding;
+import com.example.amenite.databinding.FragmentProfileBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,10 +62,53 @@ public class EditProfileFragment extends Fragment {
         }
     }
 
+    private FragmentEditProfileBinding fragmentChangeCustomerProfileBinding;
+    private TextView Name;
+    private TextView PhoneNumber;
+    private TextView Email;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false);
+
+        fragmentChangeCustomerProfileBinding =  FragmentEditProfileBinding.inflate(inflater,container,false);
+        View view = fragmentChangeCustomerProfileBinding.getRoot();
+
+        Name = (TextView) view.findViewById(R.id.EditProfileNameEdittext);
+        PhoneNumber = (TextView) view.findViewById(R.id.EditProfilePhonenumberEdittext);
+        Email = (TextView) view.findViewById(R.id.EditProfileEmailEdittext);
+
+
+        fragmentChangeCustomerProfileBinding.EditProfilUpdateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println(69);
+                Log.d("Bismillah","69");
+
+                User.Fullname=Name.getText().toString();
+                Log.d("Bismillah","69");
+
+
+                User.Phonenumber= PhoneNumber.getText().toString();
+                Log.d("Bismillah","69");
+
+                User.Emailid= Email.getText().toString();
+                Log.d("Bismillah","69");
+
+                Name.setText("");
+
+                PhoneNumber.setText("");
+
+                Email.setText("");
+
+
+
+            }
+        });
+
+        return view;
+
+
     }
 }
