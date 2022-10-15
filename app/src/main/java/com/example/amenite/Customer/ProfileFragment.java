@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.amenite.Customer.Services.CustomerBeautyServiceFragment;
 import com.example.amenite.LoginActivity;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;

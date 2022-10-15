@@ -18,14 +18,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:paddingEnd="5dp"
-        android:paddingTop="5dp"
+        android:background="@color/ghost_white"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="15dp"
+        android:paddingEnd="15dp"
         android:layout_marginBottom="15dp"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/ghost_white"
             android:gravity="left"
             android:orientation="horizontal"
@@ -40,7 +43,7 @@
                 android:text="Name:"
                 android:textColor="#B02A3736"
                 android:background="@color/ghost_white"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/CustomerProfileNameImageview"
@@ -49,7 +52,7 @@
                 android:layout_weight="3"
                 android:textColor="#B02A3736"
                 android:background="@color/ghost_white"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -64,27 +67,29 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="left"
             android:orientation="horizontal"
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:background="@color/ghost_white"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingEnd="15dp">
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:text="Phone Number:"
-                android:textSize="18dp"
-                android:textColor="#B02A3736"
+                android:layout_weight="2"
                 android:background="@color/ghost_white"
-                />
+                android:text="Phone Number:"
+                android:textColor="#B02A3736"
+                android:textSize="15dp" />
             <TextView
                 android:id="@+id/CustomerProfilePhonenumberTextview"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:textColor="#B02A3736"
                 android:background="@color/ghost_white"
                 />
@@ -103,18 +108,20 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="left"
             android:orientation="horizontal"
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:background="@color/ghost_white"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingEnd="15dp">
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Email:"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:textColor="#B02A3736"
                 android:background="@color/ghost_white"
                 />
@@ -123,7 +130,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:textColor="#B02A3736"
                 android:background="@color/ghost_white"
                 />
@@ -131,7 +138,7 @@
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:paddingEnd="5dp"
@@ -141,18 +148,20 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="left"
             android:orientation="horizontal"
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:background="@color/ghost_white"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingEnd="15dp">
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Address:"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:textColor="#B02A3736"
                 android:background="@color/ghost_white"
                 />
@@ -161,7 +170,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:textColor="#B02A3736"
                 android:background="@color/ghost_white"
                 />
@@ -182,9 +191,11 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:orientation="horizontal"
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:background="@color/ghost_white"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingEnd="15dp">
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="2"
@@ -199,7 +210,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:textColor="#B02A3736"
                 android:background="@color/ghost_white"
                 />
@@ -218,18 +229,20 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="left"
             android:orientation="horizontal"
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:background="@color/ghost_white"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingEnd="15dp">
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Gender:"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:textColor="#B02A3736"
                 android:background="@color/ghost_white"
                 />
@@ -238,7 +251,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:textColor="#B02A3736"
                 android:background="@color/ghost_white"
                 />

@@ -52,8 +52,8 @@ public class CustomerBeautyAppoinmentConfirmActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.activity_customer_pop_up_confirm_window);
                 dialog.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
                 WindowManager.LayoutParams layoutParams = dialog.getWindow().getAttributes();
-                layoutParams.x = 100;
-                layoutParams.y = 170;
+                layoutParams.x = 10;
+                layoutParams.y = 10;
                 dialog.getWindow().setAttributes(layoutParams);
                 dialog.show();
 
