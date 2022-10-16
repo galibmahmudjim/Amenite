@@ -17,10 +17,14 @@ import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.Employee.EmployeeHomeActivity;
 import com.example.amenite.PROFILE.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,24 +49,30 @@ public class MainActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         if (!querySnapshot.isEmpty()) {
                                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                                User.Fullname = document.get("Name").toString();
                                                 User.Emailid = document.get("Email").toString();
                                                 User.password = document.get("Password").toString();
                                                 User.Phonenumber =  document.get("Phone_Number").toString();
                                                 User.UserID = document.getId();
                                                 User.Role = document.get("Role").toString();
                                                 User.Username =  document.get("Username").toString();
-                                                if (User.Role.equals("Customer")) {
-                                                    startActivity(new Intent(MainActivity.this, CustomerActivity.class));
-                                                    finish();
-                                                } else if (User.Role.equals("Admin")) {
-                                                    startActivity((new Intent(MainActivity.this, AdminHomeActivity.class)));
-                                                    finish();
-                                                }
                                             }
                                         }
                                     }
                                 }
                             });
+                    Tasks.whenAllSuccess(t1).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
+                        @Override
+                        public void onSuccess(List<Object> objects) {
+                            if (User.Role.equals("Customer")) {
+                                startActivity(new Intent(MainActivity.this, CustomerActivity.class));
+                                finish();
+                            } else if (User.Role.equals("Admin")) {
+                                startActivity((new Intent(MainActivity.this, AdminHomeActivity.class)));
+                                finish();
+                            }
+                        }
+                    });
                 }
                 else
                 {

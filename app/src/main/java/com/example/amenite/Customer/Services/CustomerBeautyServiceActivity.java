@@ -3,6 +3,8 @@ package com.example.amenite.Customer.Services;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.location.Address;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -44,7 +46,16 @@ public class CustomerBeautyServiceActivity extends AppCompatActivity {
                 intent1.putExtra("AddressDetails", activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentAddressEdittext.getText().toString());
                 intent1.putExtra("Latitue",intent.getDoubleExtra("Latitude",0.000));
                 intent1.putExtra("Longitude",intent.getDoubleExtra("Longitude",0.00));
-                startActivity(intent1);
+
+                if(activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentMapAddressTextview.getText().toString().isEmpty())
+                {
+                    activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentMapAddressButton.setBackgroundColor(Color.parseColor("#A41E2C29"));
+                    activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentMapAddressTextview.setError("Pick Address from map");
+                }
+                else
+                {
+                    startActivity(intent1);
+                }
 
             }
         });

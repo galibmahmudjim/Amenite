@@ -44,6 +44,8 @@ public class LoginActivity extends AppCompatActivity {
                                 if(!querySnapshot.isEmpty())
                                 {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                        User.Fullname=  document.get("Name").toString();
                                         User.Emailid=  document.get("Email").toString();
                                         User.password= document.get("Password").toString();
                                         User.Phonenumber= document.get("Phone_Number").toString();

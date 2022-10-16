@@ -21,6 +21,8 @@
         <entry key="app/src/main/res/drawable/searchviewshape.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/textbox_shape.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/textinputborder.xml" value="0.136" />
+        <entry key="app/src/main/res/drawable/upper_line.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_admin_edit_profile.xml" value="0.14492753623188406" />
         <entry key="app/src/main/res/layout/activity_admin_home.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_beauty_service.xml" value="0.1203125" />
         <entry key="app/src/main/res/layout/activity_contact_us.xml" value="0.165" />
@@ -33,7 +35,7 @@
         <entry key="app/src/main/res/layout/activity_customer_donation.xml" value="0.12537993920972645" />
         <entry key="app/src/main/res/layout/activity_customer_home.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_customer_navigation_drawer.xml" value="0.1203125" />
-        <entry key="app/src/main/res/layout/activity_customer_pop_up_confirm_window.xml" value="0.11" />
+        <entry key="app/src/main/res/layout/activity_customer_pop_up_confirm_window.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_elecrtronicand_appliances_service.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/layout/activity_employee_home.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_employee_verification.xml" value="0.1203125" />
