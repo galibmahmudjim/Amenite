@@ -68,4 +68,21 @@ public class CustomerChooseBeautyServiceActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = getIntent();
+        Intent intent1 = new Intent(CustomerChooseBeautyServiceActivity.this,CustomerBeautyServiceActivity.class);
+        intent1.putExtra("Name", intent.getStringExtra("Name"));
+        intent1.putExtra("PhoneNumber",intent.getStringExtra("PhoneNumber"));
+        intent1.putExtra("PhoneNumber2",intent.getStringExtra("PhoneNumber2"));
+        intent1.putExtra("Email",intent.getStringExtra("Email") );
+        intent1.putExtra("AddressMap",intent.getStringExtra("AddressMap"));
+        intent1.putExtra("AddressDetails",intent.getStringExtra("AddressDetails") );
+        intent1.putExtra("Latitue",intent.getDoubleExtra("Latitude",0.000));
+        intent1.putExtra("Longitude",intent.getDoubleExtra("Longitude",0.00));
+        intent1.putExtra("Service","Beauty Care");
+        startActivity(intent1);
+    }
 }

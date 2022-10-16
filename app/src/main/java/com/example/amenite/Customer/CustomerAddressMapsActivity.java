@@ -60,6 +60,7 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
                 intent.putExtra("Latitude",latd);
                 intent.putExtra("Longitude",land);
                 startActivity(intent);
+                finish();
             }
         });
 

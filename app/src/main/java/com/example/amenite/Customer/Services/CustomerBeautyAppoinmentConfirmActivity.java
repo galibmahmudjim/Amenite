@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.amenite.Customer.CustomerHomeFragment;
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
@@ -143,6 +144,9 @@ public class CustomerBeautyAppoinmentConfirmActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                     popupWindow.dismiss();
+                                    startActivity(new Intent(CustomerBeautyAppoinmentConfirmActivity.this, CustomerHomeFragment.class));
+                                    HashMap<String,String> appoinment;
+                                   // appoinment.put("")
 
                                 }
                             });
@@ -150,6 +154,23 @@ public class CustomerBeautyAppoinmentConfirmActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = getIntent();
+        Intent intent1 = new Intent(CustomerBeautyAppoinmentConfirmActivity.this,CustomerChooseBeautyServiceActivity.class);
+        intent1.putExtra("Name", intent.getStringExtra("Name"));
+        intent1.putExtra("PhoneNumber",intent.getStringExtra("PhoneNumber"));
+        intent1.putExtra("PhoneNumber2",intent.getStringExtra("PhoneNumber2"));
+        intent1.putExtra("Email",intent.getStringExtra("Email") );
+        intent1.putExtra("AddressMap",intent.getStringExtra("AddressMap"));
+        intent1.putExtra("AddressDetails",intent.getStringExtra("AddressDetails") );
+        intent1.putExtra("Latitue",intent.getDoubleExtra("Latitude",0.000));
+        intent1.putExtra("Longitude",intent.getDoubleExtra("Longitude",0.00));
+        intent1.putExtra("Service","Beauty Care");
+        startActivity(intent1);
     }
 
     private double totalpayment(double base, double add, double vat)
