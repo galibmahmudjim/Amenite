@@ -22,35 +22,41 @@ public class CustomerBeautyServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activityCustomerBeautyServiceBinding = ActivityCustomerBeautyServiceBinding.inflate(getLayoutInflater());
         setContentView(activityCustomerBeautyServiceBinding.getRoot());
-        activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentNameTextview.setText(User.Fullname);
-        activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentPhonenumberTextview.setText(User.Phonenumber);
-        activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentEmailTextview.setText(User.Emailid);
-        activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentMapAddressButton.setOnClickListener(new View.OnClickListener() {
+        activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentNameTextview.setText(User.Fullname);
+        activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentPhonenumberTextview.setText(User.Phonenumber);
+        activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentEmailTextview.setText(User.Emailid);
+        activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentPhonenumber1Edittext.setText(getIntent().getStringExtra("PhoneNumber2"));
+        activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentAddressEdittext.setText(getIntent().getStringExtra("AddressDetails"));
+        activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentMapAddressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: cloc");
-                startActivity(new Intent(CustomerBeautyServiceActivity.this, CustomerAddressMapsActivity.class));
+                Intent intent = new Intent(CustomerBeautyServiceActivity.this, CustomerAddressMapsActivity.class);
+                intent.putExtra("PhoneNumber2",activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentPhonenumber1Edittext.getText().toString());
+                intent.putExtra("AddressDetails",activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentAddressEdittext.getText().toString());
+                startActivity(intent);
+
             }
         });
         Intent intent = getIntent();
-        activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentMapAddressTextview.setText(intent.getStringExtra("Address"));
-        activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentNextButton.setOnClickListener(new View.OnClickListener() {
+        activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentMapAddressTextview.setText(intent.getStringExtra("Address"));
+        activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent1 = new Intent(CustomerBeautyServiceActivity.this,CustomerChooseBeautyServiceActivity.class);
-                intent1.putExtra("Name", activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentNameTextview.getText().toString());
-                intent1.putExtra("PhoneNumber", activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentPhonenumberTextview.getText().toString());
-                intent1.putExtra("PhoneNumber2", activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentPhonenumber1Edittext.getText().toString());
-                intent1.putExtra("Email", activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentEmailTextview.getText().toString());
-                intent1.putExtra("AddressMap", activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentMapAddressTextview.getText().toString());
-                intent1.putExtra("AddressDetails", activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentAddressEdittext.getText().toString());
-                intent1.putExtra("Latitue",intent.getDoubleExtra("Latitude",0.000));
+                intent1.putExtra("Name", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentNameTextview.getText().toString());
+                intent1.putExtra("PhoneNumber", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentPhonenumberTextview.getText().toString());
+                intent1.putExtra("PhoneNumber2", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentPhonenumber1Edittext.getText().toString());
+                intent1.putExtra("Email", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentEmailTextview.getText().toString());
+                intent1.putExtra("AddressMap", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentMapAddressTextview.getText().toString());
+                intent1.putExtra("AddressDetails", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentAddressEdittext.getText().toString());
+                intent1.putExtra("Service","Beauty");
+                intent1.putExtra("Latitude",intent.getDoubleExtra("Latitude",0.000));
                 intent1.putExtra("Longitude",intent.getDoubleExtra("Longitude",0.00));
-
-                if(activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentMapAddressTextview.getText().toString().isEmpty())
+                intent1.putExtra("PhoneNumber2",activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentPhonenumber1Edittext.getText().toString());
+                if(activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentMapAddressTextview.getText().toString().isEmpty())
                 {
-                    activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentMapAddressButton.setBackgroundColor(Color.parseColor("#A41E2C29"));
-                    activityCustomerBeautyServiceBinding.CutomerBeautyAppoinmentMapAddressTextview.setError("Pick Address from map");
+                    activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentMapAddressButton.setBackgroundColor(Color.parseColor("#A41E2C29"));
+                    activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentMapAddressTextview.setError("Pick Address from map");
                 }
                 else
                 {

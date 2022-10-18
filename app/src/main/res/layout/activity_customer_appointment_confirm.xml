@@ -11,7 +11,7 @@
     android:paddingTop="5dp"
     android:paddingEnd="10dp"
     android:paddingBottom="5dp"
-    tools:context=".Customer.Services.CustomerAppoinmentConfirmActivity">
+    tools:context=".Customer.Services.CustomerAppointmentConfirmActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/CustomerAppoinmentConfirmNameTextview"
+                        android:id="@+id/CustomerAppointmentConfirmNameTextview"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
@@ -102,7 +102,7 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/CustomerAppoinmentConfirmPhoneNumberTextview"
+                        android:id="@+id/CustomerAppointmentConfirmPhoneNumberTextview"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
@@ -140,7 +140,7 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/CustomerAppoinmentConfirmPhonenumber2Textview"
+                        android:id="@+id/CustomerAppointmentConfirmPhonenumber2Textview"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
@@ -179,7 +179,7 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/CustomerAppoinmentConfirmEmailTextview"
+                        android:id="@+id/CustomerAppointmentConfirmEmailTextview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="6"
@@ -218,7 +218,7 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/CustomerAppoinmentConfirmAddressTextview"
+                        android:id="@+id/CustomerAppointmentConfirmAddressTextview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
@@ -258,7 +258,7 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/CustomerAppoinmentConfirmServiceTextview"
+                        android:id="@+id/CustomerAppointmentConfirmServiceTextview"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
@@ -296,7 +296,7 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/CustomerAppoinmentConfirmAddserviceTextview"
+                        android:id="@+id/CustomerAppointmentConfirmAddserviceTextview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -335,7 +335,7 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/CustomerAppoinmentConfirmDateTextview"
+                        android:id="@+id/CustomerAppointmentConfirmDateTextview"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
@@ -374,7 +374,7 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/CustomerAppoinmentConfirmTimeTextview"
+                        android:id="@+id/CustomerAppointmentConfirmTimeTextview"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
@@ -440,7 +440,7 @@
                                 android:textSize="15dp" />
 
                             <TextView
-                                android:id="@+id/CustomerAppoinmentConfirmBasefareTextview"
+                                android:id="@+id/CustomerAppointmentConfirmBasefareTextview"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -474,7 +474,7 @@
                                 android:textSize="15dp" />
 
                             <TextView
-                                android:id="@+id/CustomerAppoinmentConfirmAddchargeTextview"
+                                android:id="@+id/CustomerAppointmentConfirmAddchargeTextview"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -508,7 +508,7 @@
                                 android:textSize="15dp" />
 
                             <TextView
-                                android:id="@+id/CustomerAppoinmentConfirmVatTextview"
+                                android:id="@+id/CustomerAppointmentConfirmVatTextview"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -543,7 +543,7 @@
                                 android:textSize="15dp" />
 
                             <TextView
-                                android:id="@+id/CustomerAppoinmentConfirmTotalTextview"
+                                android:id="@+id/CustomerAppointmentConfirmTotalTextview"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -566,7 +566,7 @@
             android:gravity="center"
             >
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/CustomerAppoinmentConfirmCancelButton"
+                android:id="@+id/CustomerAppointmentConfirmCancelButton"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_marginTop="20dp"
@@ -578,7 +578,7 @@
                 android:text="Cancel"
                 android:layout_height="wrap_content"/>
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/CustomerAppoinmentConfirmConfirmButton"
+                android:id="@+id/CustomerAppointmentConfirmConfirmButton"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_marginTop="20dp"

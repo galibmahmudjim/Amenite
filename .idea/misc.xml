@@ -29,6 +29,7 @@
         <entry key="app/src/main/res/layout/activity_cstomer_home.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/layout/activity_customer.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_customer_address_maps.xml" value="0.1816123188405797" />
+        <entry key="app/src/main/res/layout/activity_customer_appoinment_confirm.xml" value="0.14492753623188406" />
         <entry key="app/src/main/res/layout/activity_customer_beauty_appoinment_confirm.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_customer_beauty_service.xml" value="0.121875" />
         <entry key="app/src/main/res/layout/activity_customer_choose_beauty_service.xml" value="0.125" />

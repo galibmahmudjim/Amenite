@@ -15,11 +15,27 @@
       },
       "oauth_client": [
         {
+          "client_id": "134314415540-3fnjake9qi5plqfn9i06tu5gos9arpph.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.amenite",
+            "certificate_hash": "59e3df8bab8b1f704eee5dfa58afc7725dc6bc9c"
+          }
+        },
+        {
           "client_id": "134314415540-eroim319sh76jfj1vt57ngb6avnf0lki.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.amenite",
             "certificate_hash": "fa1e865b61ae4a43afcbd63606303121fcd98d75"
+          }
+        },
+        {
+          "client_id": "134314415540-gj88r1kjmscistbp58t533lbi0svc6nf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.amenite",
+            "certificate_hash": "f77ada5dbb04570383a2209c1d1062347f724d12"
           }
         },
         {

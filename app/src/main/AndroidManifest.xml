@@ -28,11 +28,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Amenite"
         tools:targetApi="31">
+        <service
+            android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <activity
+            android:name=".Customer.Services.CustomerAppointmentConfirmActivity"
+            android:exported="false" />
         <activity
             android:name=".Customer.Services.CustomerBeautyServiceActivity"
             android:exported="false" />
         <activity
-            android:name=".Customer.Services.CustomerBeautyAppoinmentConfirmActivity"
+            android:name=".Customer.Services.CustomerBeautyAppointmentConfirmActivity"
             android:exported="false" />
         <activity
             android:name=".Customer.Services.CustomerChooseBeautyServiceActivity"
@@ -49,8 +58,9 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".Admin.AdminProfileActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".Admin.AdminProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".Customer.CustomerAddressMapsActivity"
             android:exported="false" />
