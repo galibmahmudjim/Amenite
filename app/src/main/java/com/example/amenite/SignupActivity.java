@@ -160,7 +160,6 @@ public class SignupActivity extends AppCompatActivity {
             public void onSuccess(List<Object> objects) {
                 if(Username.getError()==null&&Email.getError()==null&&Phonenumber.getError()==null&&Password.getError()==null)
                 {
-
                     userDetails = new HashMap<>();
                     userDetails.put("Name",Fullname.getText().toString());
                     userDetails.put("Email",Email.getText().toString());
@@ -168,7 +167,7 @@ public class SignupActivity extends AppCompatActivity {
                     userDetails.put("Role","Customer");
                     userDetails.put("Phone_Number",phonenumber);
                     userDetails.put("Password",Password.getText().toString());
-                     requestOTP(phonenumber);
+                    requestOTP(phonenumber);
                 }
                 else
                 {
@@ -287,7 +286,7 @@ public class SignupActivity extends AppCompatActivity {
          signupActivityOtpEdittext = (EditText) findViewById(R.id.SignupActivityOtpEdittext);
          signupActivityLoadingProgressBar.setVisibility(View.GONE);
          signupActivitySubmitButton = (Button)  findViewById(R.id.SignupActivitySubmitButton);
-        findViewById(R.id.SignupActivitySubmitButton).setOnClickListener(new View.OnClickListener() {
+         findViewById(R.id.SignupActivitySubmitButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                  if(verificationInProcess==false) {
@@ -306,8 +305,9 @@ public class SignupActivity extends AppCompatActivity {
                          AuthCredential credential = PhoneAuthProvider.getCredential(VerificationID,otpcode);
                          verifyAuth(credential);
 
-
                      }
+
+
                  }
             }
         });

@@ -28,6 +28,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Amenite"
         tools:targetApi="31">
+
         <activity
             android:name=".Customer.Services.CustomerBeautyServiceActivity"
             android:exported="false" />
@@ -49,8 +50,12 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".Admin.AdminProfileActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".Admin.AdminProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.AdminEditProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".Customer.CustomerAddressMapsActivity"
             android:exported="false" />
@@ -63,6 +68,14 @@
         <activity
             android:name=".Employee.EmployeeHomeActivity"
             android:exported="false" />
+        <activity
+            android:name=".Employee.EmployeeProfileActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Employee.EmployeeEditProfileActivity"
+            android:exported="false" />
+
         <activity
             android:name=".Admin.AdminHomeActivity"
             android:exported="false" />
