@@ -59,7 +59,10 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
                 intent.putExtra("Address",binding.CustomerAddressMapAddressTextview.getText().toString());
                 intent.putExtra("Latitude",latd);
                 intent.putExtra("Longitude",land);
+                Bundle extra = getIntent().getExtras();
+                intent.putExtras(extra);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -201,7 +204,7 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
 
         if (!gps_enabled && !network_enabled) {
             new AlertDialog.Builder(CustomerAddressMapsActivity.this)
-                    .setMessage("GPS Service Not Enables")
+                    .setMessage("GPS Service Not Available")
                     .setPositiveButton("Turn on GPS", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface paramDialogInterface, int paramInt) {
@@ -215,7 +218,14 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Bundle extras = getIntent().getExtras();
+        Intent intent = new Intent(CustomerAddressMapsActivity.this,CustomerBeautyServiceActivity.class);
+        intent.putExtras(extras);
+        startActivity(intent);
+    }
 
     /*private void PlaceAutoComplete()
     {
@@ -243,4 +253,6 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
         });
     }
     */
+
+
 }

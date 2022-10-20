@@ -11,7 +11,7 @@
     android:paddingTop="10dp"
     android:paddingEnd="10dp"
     android:paddingBottom="10dp"
-    tools:context=".Customer.Services.CustomerBeautyAppoinmentConfirmActivity">
+    tools:context=".Customer.Services.CustomerBeautyAppointmentConfirmActivity">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="180dp"
@@ -36,11 +36,11 @@
                 android:layout_height="0dp"
                 android:layout_marginBottom="15dp"
                 android:layout_weight="1"
-                android:text="Select Appoinment Time And Date"
+                android:text="Select Appointment Time And Date"
                 android:textColor="#A4817B8C" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/CustomerBeautyAppoinmentConfirmActivityDateButton"
+                android:id="@+id/CustomerBeautyAppointmentConfirmActivityDateButton"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginBottom="15dp"
@@ -50,7 +50,7 @@
                 android:textAlignment="center" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/CustomerBeautyAppoinmentConfirmActivityTimeButton"
+                android:id="@+id/CustomerBeautyAppointmentConfirmActivityTimeButton"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
@@ -84,7 +84,7 @@
             android:text="Additional Services(optional)"
             android:textColor="#A4817B8C" />
         <EditText
-            android:id="@+id/CustomerBeautyAppoinmentConfirmActivityAdditionalserviceExittext"
+            android:id="@+id/CustomerBeautyAppointmentConfirmActivityAdditionalserviceExittext"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="10dp"
@@ -100,7 +100,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/CustomerBeautyAppoinmentConfirmActivityConfirmButton"
+        android:id="@+id/CustomerBeautyAppointmentConfirmActivityConfirmButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_shape"

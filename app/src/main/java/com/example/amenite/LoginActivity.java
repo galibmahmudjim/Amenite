@@ -72,13 +72,11 @@ public class LoginActivity extends AppCompatActivity {
                                                                 }
                                                                 else if(User.Role.equals("Admin")) {
                                                                     startActivity((new Intent(LoginActivity.this, AdminHomeActivity.class)));
-                                                                    Log.d(TAG, "onComplete: alhamdulillah");
                                                                     finish();
                                                                 }
 
                                                                 else if(User.Role.equals("Employee")) {
                                                                     startActivity((new Intent(LoginActivity.this, EmployeeHomeActivity.class)));
-                                                                    Log.d(TAG, "onComplete: alhamdulillah");
                                                                     finish();
                                                                 }
 
