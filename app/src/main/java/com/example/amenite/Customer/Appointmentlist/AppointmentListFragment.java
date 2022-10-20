@@ -36,13 +36,13 @@ public class AppointmentListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_appointment_list, container, false);
         DBresources dBresources = new DBresources();
-        recyclerView = recyclerView.findViewById(R.id.CustomerApoointmentlistRecyclerview);
+        recyclerView = view.findViewById(R.id.CustomerApoointmentlistRecyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         appoinmentLists = new ArrayList<>();
-        myAdapter = new MyAdapter(getContext(),appoinmentLists);
+        myAdapter = new MyAdapter(getActivity(),appoinmentLists);
         recyclerView.setAdapter(myAdapter);
-        dBresources.database.collection("Appointment").whereEqualTo("Email", User.Emailid)
+        dBresources.database.collection("Appointment").whereEqualTo("Email",User.Emailid)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -52,8 +52,8 @@ public class AppointmentListFragment extends Fragment {
                             {
                                 appoinmentLists.add(documentChange.getDocument().toObject(AppoinmentList.class));
                             }
-                            myAdapter.notifyDataSetChanged();
                         }
+                        myAdapter.notifyDataSetChanged();
                     }
                 });
         return view;

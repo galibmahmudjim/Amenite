@@ -25,7 +25,7 @@ public class AppointmentListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appointment_list);
+        setContentView(R.layout.fragment_appointment_list);
         DBresources dBresources = new DBresources();
         recyclerView = findViewById(R.id.CustomerApoointmentlistRecyclerview);
         recyclerView.setHasFixedSize(true);

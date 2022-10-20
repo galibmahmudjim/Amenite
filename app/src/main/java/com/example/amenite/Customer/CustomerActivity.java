@@ -52,10 +52,11 @@ public class CustomerActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.customerMenuAppointment:
+                       // startActivity(new Intent(CustomerActivity.this,AppointmentListActivity.class));
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.CustomerActivityFragmentContainer,new AppointmentListFragment())
+                                .replace(R.id.CustomerActivityFragmentContainer, new AppointmentListFragment())
                                 .commit();
-                        activityCustomerBinding.CustomerActivityToolbarTextview.setText("Appointments");
+                        break;
                     case R.id.customerMenuProfile:
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.CustomerActivityFragmentContainer, new ProfileFragment())
