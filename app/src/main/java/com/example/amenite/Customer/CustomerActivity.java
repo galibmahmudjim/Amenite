@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.amenite.Customer.Appointmentlist.AppointmentListActivity;
+import com.example.amenite.Customer.Appointmentlist.AppointmentListFragment;
 import com.example.amenite.R;
 import com.example.amenite.Welcome;
 import com.example.amenite.databinding.ActivityCustomerBinding;
@@ -49,6 +51,11 @@ public class CustomerActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
 
+                    case R.id.customerMenuAppointment:
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.CustomerActivityFragmentContainer,new AppointmentListFragment())
+                                .commit();
+                        activityCustomerBinding.CustomerActivityToolbarTextview.setText("Appointments");
                     case R.id.customerMenuProfile:
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.CustomerActivityFragmentContainer, new ProfileFragment())

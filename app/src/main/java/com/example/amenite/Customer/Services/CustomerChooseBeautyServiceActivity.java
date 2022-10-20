@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.amenite.databinding.ActivityCustomerChooseBeautyServiceBinding;
@@ -29,6 +30,7 @@ public class CustomerChooseBeautyServiceActivity extends AppCompatActivity {
         binding.CustomerChooseBeautyserviceHairButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: Hair");
                 Intent intent1 = new Intent(CustomerChooseBeautyServiceActivity.this, CustomerBeautyAppointmentConfirmActivity.class);
                intent1.putExtras(extras);
                 intent1.putExtra("ChooseService","Hair");
@@ -51,7 +53,7 @@ public class CustomerChooseBeautyServiceActivity extends AppCompatActivity {
         super.onBackPressed();
         Intent intent = getIntent();
         Bundle extras = getIntent().getExtras();
-        Intent intent1 = new Intent(CustomerChooseBeautyServiceActivity.this, CustomerBeautyAppointmentConfirmActivity.class);
+        Intent intent1 = new Intent(CustomerChooseBeautyServiceActivity.this, CustomerBeautyServiceActivity.class);
         intent1.putExtras(extras);
         startActivity(intent1);
     }

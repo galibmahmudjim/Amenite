@@ -11,6 +11,10 @@
             android:id="@+id/customerMenuHome"
             android:icon="@drawable/home_icon"
             android:title="Home" />
+        <item
+            android:id="@+id/customerMenuAppointment"
+            android:title="Appointment" />
+
 
         <item
             android:id="@+id/customerMenuLogout"

@@ -68,7 +68,7 @@ public class CustomerBeautyAppointmentConfirmActivity extends AppCompatActivity 
     public void onBackPressed() {
         super.onBackPressed();
         Bundle extras =getIntent().getExtras();
-        Intent intent1 = new Intent(CustomerBeautyAppointmentConfirmActivity.this,CustomerBeautyServiceActivity.class);
+        Intent intent1 = new Intent(CustomerBeautyAppointmentConfirmActivity.this,CustomerChooseBeautyServiceActivity.class);
         intent1.putExtras(extras);
         startActivity(intent1);
     }
