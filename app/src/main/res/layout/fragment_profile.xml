@@ -152,10 +152,7 @@
             android:gravity="left"
             android:orientation="horizontal"
             android:background="@color/ghost_white"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:paddingLeft="15dp"
-            android:paddingEnd="15dp">
+            android:padding="10dp">
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -201,7 +198,7 @@
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:text="Date of Birth: "
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:textColor="#B02A3736"
                 android:background="@color/ghost_white"
                 />
