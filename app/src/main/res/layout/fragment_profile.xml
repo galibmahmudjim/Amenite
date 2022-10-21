@@ -46,7 +46,7 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/CustomerProfileNameImageview"
+                android:id="@+id/CustomerProfileNameTextview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
@@ -126,7 +126,7 @@
                 android:background="@color/ghost_white"
                 />
             <TextView
-                android:id="@+id/CustomerProfileEmailImageview"
+                android:id="@+id/CustomerProfileEmailTextview"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:paddingEnd="5dp"
@@ -148,7 +148,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="left"
             android:orientation="horizontal"
             android:background="@color/ghost_white"
@@ -163,7 +163,7 @@
                 android:background="@color/ghost_white"
                 />
             <TextView
-                android:id="@+id/CustomerProfileAddressImageview"
+                android:id="@+id/CustomerProfileAddressTextview"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
@@ -203,7 +203,7 @@
                 android:background="@color/ghost_white"
                 />
             <TextView
-                android:id="@+id/CustomerProfileDOBImageview"
+                android:id="@+id/CustomerProfileDOBTextview"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
@@ -221,7 +221,6 @@
         android:layout_marginEnd="30dp"
         android:paddingEnd="5dp"
         android:paddingTop="5dp"
-        android:layout_marginBottom="15dp"
         >
 
         <LinearLayout
@@ -244,7 +243,7 @@
                 android:background="@color/ghost_white"
                 />
             <TextView
-                android:id="@+id/CustomerProfileGenderImageview"
+                android:id="@+id/CustomerProfileGenderTextview"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
@@ -255,6 +254,7 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
     <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginTop="25dp"
         android:id="@+id/CustomerProfileEditprofileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

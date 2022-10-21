@@ -55,7 +55,8 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
         binding.CustomerAddressMapSelectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CustomerAddressMapsActivity.this, CustomerBeautyServiceActivity.class);
+                Intent intent1 = getIntent();
+                Intent intent = new Intent(CustomerAddressMapsActivity.this, (Class<?>) intent1.getSerializableExtra("Activity"));
                 intent.putExtra("Address",binding.CustomerAddressMapAddressTextview.getText().toString());
                 intent.putExtra("Latitude",latd);
                 intent.putExtra("Longitude",land);
@@ -222,8 +223,8 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
     public void onBackPressed() {
         super.onBackPressed();
         Bundle extras = getIntent().getExtras();
-        Intent intent = new Intent(CustomerAddressMapsActivity.this,CustomerBeautyServiceActivity.class);
-        intent.putExtras(extras);
+
+        Intent intent = new Intent(CustomerAddressMapsActivity.this, (Class<?>) getIntent().getSerializableExtra("Activity"));  intent.putExtras(extras);
         startActivity(intent);
     }
 
