@@ -4,49 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ghost_white">
+    android:background="@drawable/gradient">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="43dp"
         android:autoSizeTextType="uniform"
+        android:background="@color/pastelPurple"
         android:text="Find Work"
+        android:textColor="@color/ghost_white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button14" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="57dp"
         android:autoSizeTextType="uniform"
+        android:background="@color/pastelPurple"
         android:text="Track Assigned Work"
+        android:textColor="@color/ghost_white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button13" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="236dp"
         android:autoSizeTextType="uniform"
+        android:background="@color/pastelPurple"
         android:text="Work Note"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="76dp"
-        android:autoSizeTextType="uniform"
-        android:text="     Track Work"
+        android:textColor="@color/ghost_white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="132dp"
+        android:layout_height="123dp"
+        android:layout_marginTop="216dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button14"
+        app:srcCompat="@drawable/todolist" />
+
+    <ImageView
+        android:id="@+id/imageView25"
+        android:layout_width="277dp"
+        android:layout_height="271dp"
+        android:layout_marginStart="13dp"
+        app:layout_constraintStart_toEndOf="@+id/button13"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/todo2" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/employeeProfileButton"
+        android:layout_width="97dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="33dp"
+        android:background="@color/pastelPurple"
+        android:text="PROFILE"
+        android:textColor="@color/ghost_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button15" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
