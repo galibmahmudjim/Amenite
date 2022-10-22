@@ -26,6 +26,9 @@ gen/
 out/
 /wrapper
 wrapper/
+.tmp/
+daemon/
+native/
 
 # Gradle files
 .gradle
@@ -142,3 +145,4 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/androidstudio
+.tmp/gradle_download3354521221115840804bin
