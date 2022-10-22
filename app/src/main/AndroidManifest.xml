@@ -63,12 +63,9 @@
         <activity
             android:name=".Admin.AdminProfileActivity"
             android:exported="false" />
-<<<<<<< HEAD
         <activity
             android:name=".Admin.AdminEditProfileActivity"
             android:exported="false" />
-=======
->>>>>>> 9be0ea8b8fcf284a597576439cfe96a052a3be15
         <activity
             android:name=".Customer.CustomerAddressMapsActivity"
             android:exported="false" />
