@@ -57,18 +57,18 @@ public class MainActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 DBresources dBresources = new DBresources();
+
                 if (dBresources.firebaseUser != null) {
                     Task t1 = dBresources.database.collection("User").whereEqualTo("Email", dBresources.firebaseUser.getEmail().toString())
                             .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
                                     QuerySnapshot querySnapshot = task.getResult();
                                     if (task.isSuccessful()) {
                                         if (!querySnapshot.isEmpty()) {
                                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                                Log.d(TAG, "onComplete: Inside");
                                                 User.Fullname = document.get("Name").toString();
                                                 User.Emailid = document.get("Email").toString();
                                                 User.password = document.get("Password").toString();
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                     Tasks.whenAllSuccess(t1).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
                         @Override
                         public void onSuccess(List<Object> objects) {
+                            Log.d(TAG, "onSuccess: Em "+User.Emailid);
                             if (User.Role.equals("Customer")) {
                                 startActivity(new Intent(MainActivity.this, CustomerActivity.class));
                                 finish();
@@ -92,6 +93,10 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity((new Intent(MainActivity.this, AdminHomeActivity.class)));
                                 finish();
                             }else if(User.Role.equals("Employee")) {
+                                startActivity((new Intent(MainActivity.this, EmployeeHomeActivity.class)));
+                                finish();
+                            }
+                            else if (User.Role.equals("Employee")) {
                                 startActivity((new Intent(MainActivity.this, EmployeeHomeActivity.class)));
                                 finish();
                             }

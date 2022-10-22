@@ -43,7 +43,7 @@
                 android:textColor="#A4817B8C" />
 
             <EditText
-                android:id="@+id/AdminEditProfileNameEdittext"
+                android:id="@+id/EmployeeEditProfileNameEdittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#53279F"
@@ -69,11 +69,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Phone Number"
+                android:text="Gmail"
                 android:textColor="#A4817B8C" />
 
             <EditText
-                android:id="@+id/AdminEditProfilePhonenumberEdittext"
+                android:id="@+id/EmployeeEditGmailEdittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#53279F"
@@ -99,11 +99,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Appointment Date"
+                android:text="Phone number"
                 android:textColor="#A4817B8C" />
 
             <EditText
-                android:id="@+id/AdminEditProfileEmailEdittext"
+                android:id="@+id/EmployeeEditProfilePhoneNumberEdittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#53279F"
