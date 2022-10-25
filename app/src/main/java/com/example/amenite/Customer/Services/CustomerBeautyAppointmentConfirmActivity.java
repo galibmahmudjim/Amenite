@@ -27,6 +27,8 @@ public class CustomerBeautyAppointmentConfirmActivity extends AppCompatActivity 
         super.onCreate(savedInstanceState);
         binding = ActivityCustomerBeautyAppointmentConfirmBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Log.d(TAG, "onClick: "+getIntent().getStringExtra("Latitude"));
+
         binding.CustomerBeautyAppointmentConfirmActivityDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,9 +57,10 @@ public class CustomerBeautyAppointmentConfirmActivity extends AppCompatActivity 
                     Intent intent1 = new Intent(CustomerBeautyAppointmentConfirmActivity.this,CustomerAppointmentConfirmActivity.class);
                     intent1.putExtras(extra);
                     intent1.putExtra("Date",binding.CustomerBeautyAppointmentConfirmActivityDateButton.getText().toString());
+                    intent1.putExtra("Date",binding.CustomerBeautyAppointmentConfirmActivityDateButton.getText().toString());
                     intent1.putExtra("Time",binding.CustomerBeautyAppointmentConfirmActivityTimeButton.getText().toString());
                     intent1.putExtra("Additional Service",binding.CustomerBeautyAppointmentConfirmActivityAdditionalserviceExittext.getText().toString());
-                    startActivity(intent1);
+                   startActivity(intent1);
                 }
             }
         });

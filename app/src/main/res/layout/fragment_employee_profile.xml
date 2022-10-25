@@ -1,123 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="68dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:text="Name"
-        android:textColor="@color/Purple"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="86dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="32dp"
-        android:text="Gmail"
-        android:textColor="@color/Purple"
-
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <EditText
-        android:id="@+id/EmployeeProfileName"
-        android:layout_width="190dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/ghost_white"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/EmployeeProfileMail"
-        android:layout_width="189dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="28dp"
-        android:background="@color/ghost_white"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/EmployeeProfileName" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="105dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="28dp"
-        android:text="Phone number"
-        android:textColor="@color/Purple"
-
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/adminButton"
-        android:layout_width="221dp"
-
-        android:layout_height="37dp"
-        android:layout_marginBottom="80dp"
-
-        android:background="@color/ghost_white"
-        android:text="Edit Profile"
-        android:textColor="@color/Purple"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.451"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/EmployeeProfilePhoneNumber"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/ghost_white"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/EmployeeProfileMail" />
-
+    android:orientation="vertical"
+    android:gravity="center">
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="204dp"
-        android:layout_height="171dp"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="54dp"
-        android:src="@drawable/employee_profile1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/EmployeeProfileImageview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/flower2"
-        tools:layout_editor_absoluteX="299dp"
-        tools:layout_editor_absoluteY="549dp"
-        tools:ignore="MissingConstraints" />
+        app:srcCompat="@drawable/profile" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@color/ghost_white"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="15dp"
+        android:paddingEnd="15dp"
+        android:layout_marginBottom="15dp"
+        >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/ghost_white"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Name:"
+                android:textColor="#B02A3736"
+                android:background="@color/ghost_white"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/EmployeeProfileNameTextview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textColor="#B02A3736"
+                android:background="@color/ghost_white"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="5dp"
+        android:layout_marginBottom="15dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:background="@color/ghost_white"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingEnd="15dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/ghost_white"
+                android:text="Phone Number:"
+                android:textColor="#B02A3736"
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/EmployeeProfilePhonenumberTextview"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#B02A3736"
+                android:background="@color/ghost_white"
+                />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="5dp"
+        android:layout_marginBottom="15dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:background="@color/ghost_white"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingEnd="15dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Email:"
+                android:textSize="15dp"
+                android:textColor="#B02A3736"
+                android:background="@color/ghost_white"
+                />
+            <TextView
+                android:id="@+id/EmployeeProfileEmailTextview"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#B02A3736"
+                android:background="@color/ghost_white"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="5dp"
+        android:layout_marginBottom="15dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:background="@color/ghost_white"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Address:"
+                android:textSize="15dp"
+                android:textColor="#B02A3736"
+                android:background="@color/ghost_white"
+                />
+            <TextView
+                android:id="@+id/EmployeeProfileAddressTextview"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#B02A3736"
+                android:background="@color/ghost_white"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="5dp"
+        android:layout_marginBottom="15dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:background="@color/ghost_white"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingEnd="15dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="Date of Birth: "
+                android:textSize="15dp"
+                android:textColor="#B02A3736"
+                android:background="@color/ghost_white"
+                />
+            <TextView
+                android:id="@+id/EmployeeProfileDOBTextview"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#B02A3736"
+                android:background="@color/ghost_white"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/EditProfilecardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="5dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:background="@color/ghost_white"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingEnd="15dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Gender:"
+                android:textSize="15dp"
+                android:textColor="#B02A3736"
+                android:background="@color/ghost_white"
+                />
+            <TextView
+                android:id="@+id/EmployeeProfileGenderTextview"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#B02A3736"
+                android:background="@color/ghost_white"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginTop="25dp"
+        android:id="@+id/EmployeeProfileEditprofileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Profile"
+        />
+
+
+</LinearLayout>

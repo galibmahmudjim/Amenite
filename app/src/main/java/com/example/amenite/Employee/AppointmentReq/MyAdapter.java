@@ -1,4 +1,4 @@
-package com.example.amenite.Customer.Appointmentlist;
+package com.example.amenite.Employee.AppointmentReq;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,24 +16,24 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<AppointmentList> appoinmentArrayLists;
+    ArrayList<AppointmentReqList> appoinmentArrayLists;
 
-    public MyAdapter(Context context, ArrayList<AppointmentList> appoinmentArrayLists) {
+    public MyAdapter(Context context, ArrayList<AppointmentReqList> appoinmentArrayLists) {
         this.context = context;
         this.appoinmentArrayLists = appoinmentArrayLists;
     }
 
     @NonNull
     @Override
-    public MyAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.custome_appoinment_list,parent,false);
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.employee_appoinment_list,parent,false);
         return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        AppointmentList appoinmentList = appoinmentArrayLists.get(position);
+        AppointmentReqList appoinmentList = appoinmentArrayLists.get(position);
         holder.customerAppointmentlistCardviewStatusTextview.setText(appoinmentList.Appointment_Status);
         holder.customerAppointmentlistCardviewTimeTextview.setText(appoinmentList.Request_Date+", "+appoinmentList.Request_Time);
         holder.customerAppointmentlistCardviewServiceTextview.setText(appoinmentList.Service);

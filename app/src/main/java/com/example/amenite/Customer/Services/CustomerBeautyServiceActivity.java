@@ -4,15 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.location.Address;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
 import com.example.amenite.Customer.CustomerAddressMapsActivity;
 import com.example.amenite.PROFILE.User;
-import com.example.amenite.R;
 import com.example.amenite.databinding.ActivityCustomerBeautyServiceBinding;
 
 public class CustomerBeautyServiceActivity extends AppCompatActivity {
@@ -43,11 +40,28 @@ public class CustomerBeautyServiceActivity extends AppCompatActivity {
             }
         });
         Intent intent = getIntent();
+        double Longitude;
+        double Latitude;
+
+        Latitude = Double.parseDouble(User.Latitude);
+        Longitude = Double.parseDouble(User.Longitude);
         if ( intent.getStringExtra("Address") != null)
+        {
             activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentMapAddressTextview.setText(intent.getStringExtra("Address"));
+            Latitude = getIntent().getDoubleExtra("Latitude",0.0);
+            Longitude = getIntent().getDoubleExtra("Longitude",0.0);
+        }
+        else
+        {
+            Latitude = Double.parseDouble(User.Latitude);
+            Longitude = Double.parseDouble(User.Longitude);
+        }
+        double finalLongitude = Longitude;
+        double finalLatitude = Latitude;
         activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onCreate: "+finalLatitude);
                 Intent intent1 = new Intent(CustomerBeautyServiceActivity.this, CustomerChooseBeautyServiceActivity.class);
                 intent1.putExtra("Name", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentNameTextview.getText().toString());
                 intent1.putExtra("PhoneNumber", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentPhonenumberTextview.getText().toString());
@@ -56,8 +70,8 @@ public class CustomerBeautyServiceActivity extends AppCompatActivity {
                 intent1.putExtra("AddressMap", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentMapAddressTextview.getText().toString());
                 intent1.putExtra("AddressDetails", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentAddressEdittext.getText().toString());
                 intent1.putExtra("Service", "Beauty");
-                intent1.putExtra("Latitude", intent.getDoubleExtra("Latitude", 0.000));
-                intent1.putExtra("Longitude", intent.getDoubleExtra("Longitude", 0.00));
+                intent1.putExtra("Latitude", String.valueOf(finalLatitude));
+                intent1.putExtra("Longitude",String.valueOf(finalLongitude));
                 intent1.putExtra("PhoneNumber2", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentPhonenumber1Edittext.getText().toString());
                 if (activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentMapAddressTextview.getText().toString().isEmpty()) {
                     activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentMapAddressButton.setBackgroundColor(Color.parseColor("#A41E2C29"));

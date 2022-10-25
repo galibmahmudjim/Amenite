@@ -13,15 +13,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.example.amenite.Admin.AdminHomeActivity;
 import com.example.amenite.Customer.CustomerActivity;
 import com.example.amenite.DBRes.DBresources;
-import com.example.amenite.Employee.EmployeeHomeActivity;
+import com.example.amenite.Employee.EmployeeActivity;
 import com.example.amenite.PROFILE.User;
-import com.example.amenite.SendNotificationPack.FirebaseNotification;
 import com.example.amenite.SendNotificationPack.NotificationHelper;
 import com.example.amenite.SendNotificationPack.Token;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,9 +31,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -68,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         if (!querySnapshot.isEmpty()) {
                                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                                Log.d(TAG, "onComplete: Inside");
                                                 User.Fullname = document.get("Name").toString();
                                                 User.Emailid = document.get("Email").toString();
                                                 User.password = document.get("Password").toString();
@@ -85,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
                     Tasks.whenAllSuccess(t1).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
                         @Override
                         public void onSuccess(List<Object> objects) {
-                            Log.d(TAG, "onSuccess: Em "+User.Emailid);
                             if (User.Role.equals("Customer")) {
                                 startActivity(new Intent(MainActivity.this, CustomerActivity.class));
                                 finish();
@@ -93,11 +86,7 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity((new Intent(MainActivity.this, AdminHomeActivity.class)));
                                 finish();
                             }else if(User.Role.equals("Employee")) {
-                                startActivity((new Intent(MainActivity.this, EmployeeHomeActivity.class)));
-                                finish();
-                            }
-                            else if (User.Role.equals("Employee")) {
-                                startActivity((new Intent(MainActivity.this, EmployeeHomeActivity.class)));
+                                startActivity((new Intent(MainActivity.this, EmployeeActivity.class)));
                                 finish();
                             }
                         }

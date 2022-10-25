@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +14,7 @@ import android.widget.Toast;
 import com.example.amenite.Admin.AdminHomeActivity;
 import com.example.amenite.Customer.CustomerActivity;
 import com.example.amenite.DBRes.DBresources;
-import com.example.amenite.Employee.EmployeeHomeActivity;
+import com.example.amenite.Employee.EmployeeActivity;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.SendNotificationPack.Token;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -78,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                                                                 }
 
                                                                 else if(User.Role.equals("Employee")) {
-                                                                    startActivity((new Intent(LoginActivity.this, EmployeeHomeActivity.class)));
+                                                                    startActivity((new Intent(LoginActivity.this, EmployeeActivity.class)));
                                                                     finish();
                                                                 }
 

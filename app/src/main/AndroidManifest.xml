@@ -33,10 +33,6 @@
             android:name=".Customer.EditCusomerProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".Customer.Appointmentlist.AppointmentListActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
             android:name=".Customer.Services.CustomerAppointmentConfirmActivity"
             android:exported="false" />
         <activity
@@ -60,6 +56,24 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
+        <activity android:name=".Employee.EmployeeActivity"
+            android:exported="false"/>
+        <activity android:name=".Employee.EditEmployeeProfileActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".Customer.CustomerDonationActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Customer.CustomerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.AdminHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.EmployeeVerificationActivity"
+            android:exported="false" />
         <activity
             android:name=".Admin.AdminProfileActivity"
             android:exported="false" />
@@ -71,29 +85,6 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Customer.CustomerDonationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Employee.EmployeeHomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Employee.EmployeeProfileActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".Employee.EmployeeEditProfileActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".Admin.AdminHomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Admin.EmployeeVerificationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Customer.CustomerActivity"
             android:exported="false" />
         <activity
             android:name=".SignupActivity"

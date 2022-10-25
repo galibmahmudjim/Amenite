@@ -20,7 +20,7 @@ public class User {
     public static String Gender;
     public static String Address;
     public static String Longitude;
-    public static String latitude;
+    public static String Latitude;
     public static String Date_of_Birth;
 
     public User() {
@@ -50,6 +50,14 @@ public class User {
                                     setAddress(documentSnapshot.get("Address").toString());
                             else
                                 setAddress(" ");
+                            if (documentSnapshot.get("Longitude")!=null)
+                                setLongitude(documentSnapshot.get("Longitude").toString());
+                            else
+                                setLongitude(" ");
+                            if (documentSnapshot.get("Latitude")!=null)
+                                setLatitude(documentSnapshot.get("Latitude").toString());
+                            else
+                                setLatitude(" ");
                             if (documentSnapshot.get("Gender")!=null)
                                 setGender(documentSnapshot.get("Gender").toString());
                             else
@@ -162,12 +170,10 @@ public class User {
     }
 
     public static String getLatitude() {
-        return latitude;
+        return Latitude;
     }
 
-    public static void setLatitude(String latitude) {
-        User.latitude = latitude;
-    }
+    public static void setLatitude(String latitude) {Latitude = latitude;}
 
     public static String getDate_of_Birth() {
         return Date_of_Birth;

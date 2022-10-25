@@ -23,7 +23,6 @@ public class Welcome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        Log.d(TAG, "Welcome: "+ User.Role+" "+User.Emailid);
         findViewById(R.id.WelcomeLoginButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
