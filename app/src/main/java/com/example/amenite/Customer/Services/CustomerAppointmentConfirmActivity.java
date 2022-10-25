@@ -108,7 +108,7 @@ public class CustomerAppointmentConfirmActivity extends AppCompatActivity {
                 DBresources dBresources = new DBresources();
                 String key = new String();
                 key = "APPB" + User.Phonenumber.substring(User.Phonenumber.length() - 3, User.Phonenumber.length()) + User.Username.substring(0, 3).toUpperCase();
-                final int[] appoint_no = {1};
+                int[] appoint_no = {1};
                 Task t1 = dBresources.database.collection("Appointment").whereEqualTo("Email",User.Emailid).get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
