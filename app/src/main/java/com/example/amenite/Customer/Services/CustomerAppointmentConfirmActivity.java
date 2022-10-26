@@ -82,10 +82,10 @@ public class CustomerAppointmentConfirmActivity extends AppCompatActivity {
         binding.CustomerAppointmentConfirmTotalTextview.setText(String.valueOf(df.format(total)) + "  ");
         binding.CustomerAppointmentConfirmAddserviceTextview.setText(intent.getStringExtra("Additional Service"));
 
-        binding.CustomerAppointmentConfirmConfirmButton.setOnClickListener(new View.OnClickListener() {
+        binding.CustomerAppointmentConfirmCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(CustomerAppointmentConfirmActivity.this,CustomerActivity.class));
             }
         });
         binding.CustomerAppointmentConfirmConfirmButton.setOnClickListener(new View.OnClickListener() {
