@@ -13,6 +13,7 @@ import android.view.View;
 import com.example.amenite.Customer.CustomerActivity;
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
+import com.example.amenite.SendNotificationPack.FcmNotificationsSender;
 import com.example.amenite.databinding.ActivityCustomerAppointmentConfirmBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,6 +25,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -85,7 +87,7 @@ public class CustomerAppointmentConfirmActivity extends AppCompatActivity {
         binding.CustomerAppointmentConfirmCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CustomerAppointmentConfirmActivity.this,CustomerActivity.class));
+                startActivity(new Intent(CustomerAppointmentConfirmActivity.this, CustomerActivity.class));
             }
         });
         binding.CustomerAppointmentConfirmConfirmButton.setOnClickListener(new View.OnClickListener() {
@@ -163,19 +165,56 @@ public class CustomerAppointmentConfirmActivity extends AppCompatActivity {
                                                             Double.parseDouble(qs.get("Latitude").toString()), Double.parseDouble(qs.get("Longitude").toString()),
                                                             results);
 
-                                                    if (results[0] <= 2000)
-                                                    {
+                                                    if (results[0] <= 2000) {
                                                         n++;
-                                                        HashMap<Integer,String> hm = new HashMap<>();
-                                                        hm.put(n,qs.get("Email").toString());
-                                                       DocumentReference dref= dBresources.database.collection("Appointment")
+                                                        HashMap<Integer, String> hm = new HashMap<>();
+                                                        hm.put(n, qs.get("Email").toString());
+                                                        DocumentReference dref = dBresources.database.collection("Appointment")
                                                                 .document(appointment.get("Appointment_Id").toString());
-                                                       HashMap<String,String> hmap = new HashMap<String, String>();
-                                                       hmap.put(String.valueOf(n),qs.get("Email").toString());
-                                                       dref.collection("Requested_Employee").add(hmap);
+                                                        HashMap<String, String> hmap = new HashMap<String, String>();
+                                                        hmap.put(String.valueOf(n), qs.get("Email").toString());
+                                                        dref.collection("Requested_Employee").add(hmap);
+                                                        dBresources.database.collection("Token").document(qs.get("Email").toString())
+                                                                .get()
+                                                                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                                        if(task.isSuccessful())
+                                                                        {
+                                                                            DocumentSnapshot documentSnapshot = task.getResult();
+                                                                            if(documentSnapshot.exists())
+                                                                            {
+                                                                                FcmNotificationsSender notificationsSender = new FcmNotificationsSender(documentSnapshot.get("Email").toString()
+                                                                                        ,"New Appointment Request","You have a new appointment request\nName: "+User.Fullname+"\nAddress: "
+                                                                                        +appointment.get("Address")+"\nTime and Date: "+appointment.get("Appointment_Date")+", "+appointment.get("Appointment_Time")
+                                                                                        ,getApplicationContext(),CustomerAppointmentConfirmActivity.this);
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                });
+
                                                     }
                                                 }
                                             }
+                                            dBresources.database.collection("Token").document(User.Emailid)
+                                                    .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                            if(task.isSuccessful())
+                                                            {
+                                                                DocumentSnapshot documentSnapshot = task.getResult();
+                                                                if(documentSnapshot.exists())
+                                                                {
+                                                                    Log.d(TAG, "onComplete: "+documentSnapshot.get("Token").toString());
+                                                                    FcmNotificationsSender notificationsSender = new FcmNotificationsSender(documentSnapshot.get("Token").toString()
+                                                                            ,"New Appointment","Your Appointment\nName: "+User.Fullname+"\nAddress: "
+                                                                            +appointment.get("AddressMap")+"\nTime and Date: "+appointment.get("Appointment_Date")+", "+appointment.get("Appointment_Time")
+                                                                            ,getApplicationContext(),CustomerAppointmentConfirmActivity.this);
+                                                                    notificationsSender.SendNotifications();
+                                                                }
+                                                            }
+                                                        }
+                                                    });
                                         }
                                     }
                                 });
@@ -184,7 +223,7 @@ public class CustomerAppointmentConfirmActivity extends AppCompatActivity {
                 Tasks.whenAllSuccess(t3).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
                     @Override
                     public void onSuccess(List<Object> objects) {
-                            startActivity(new Intent(CustomerAppointmentConfirmActivity.this, CustomerActivity.class));
+                        startActivity(new Intent(CustomerAppointmentConfirmActivity.this, CustomerActivity.class));
 
                     }
                 });
