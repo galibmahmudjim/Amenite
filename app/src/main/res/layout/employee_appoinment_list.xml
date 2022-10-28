@@ -44,7 +44,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/CustomerAppointmentlistCardviewTimeTextview"
+                            android:id="@+id/EmployeeAppointmentlistCardviewTimeTextview"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:paddingLeft="10dp"
@@ -61,7 +61,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/CustomerAppointmentlistCardviewStatusTextview"
+                            android:id="@+id/EmployeeAppointmentlistCardviewStatusTextview"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:paddingLeft="10dp"
@@ -75,7 +75,7 @@
 
 
                         <TextView
-                            android:id="@+id/CustomerAppointmentlistCardviewServiceTextview"
+                            android:id="@+id/EmployeeAppointmentlistCardviewServiceTextview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingLeft="10dp"
@@ -120,7 +120,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/CustomerAppointmentlistCardviewAppointmentDateTextview"
+                                android:id="@+id/EmployeeAppointmentlistCardviewAppointmentDateTextview"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:paddingTop="5dp"
@@ -137,7 +137,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/CustomerAppointmentlistCardviewAppointmentTimeTextview"
+                                android:id="@+id/EmployeeAppointmentlistCardviewAppointmentTimeTextview"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:paddingTop="5dp"
@@ -147,6 +147,20 @@
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/EmployeeAppointmentlistCardviewRequestagainButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/upper_line"
+                    android:focusable="true"
+                    android:padding="10dp"
+                    android:text="Request Again"
+                    android:textAlignment='textStart'
+                    android:textColor="#9E160C"
+                    android:textSize="15dp" />
+
+
             </LinearLayout>
 
             <LinearLayout

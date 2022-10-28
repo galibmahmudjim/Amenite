@@ -1,11 +1,14 @@
-package com.example.amenite.Customer.Appointmentlist;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.amenite.Employee.AppointmentReq;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
@@ -13,25 +16,30 @@ import com.example.amenite.R;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class AppointmentListActivity extends AppCompatActivity {
+
+public class AppointmentReqListFragment extends Fragment {
+
     RecyclerView recyclerView;
-    ArrayList<AppoinmentList> appoinmentLists;
+    ArrayList<AppointmentReqList> appoinmentLists;
     MyAdapter myAdapter;
+    public AppointmentReqListFragment() {
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_appointment_list);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view =inflater.inflate(R.layout.fragment_appointment_list, container, false);
         DBresources dBresources = new DBresources();
-        recyclerView = findViewById(R.id.CustomerApoointmentlistRecyclerview);
+        recyclerView = view.findViewById(R.id.EmployeeApoointmentlistRecyclerview);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         appoinmentLists = new ArrayList<>();
-        myAdapter = new MyAdapter(AppointmentListActivity.this,appoinmentLists);
+        myAdapter = new MyAdapter(getActivity(),appoinmentLists);
         recyclerView.setAdapter(myAdapter);
         dBresources.database.collection("Appointment").whereEqualTo("Email",User.Emailid)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -41,11 +49,12 @@ public class AppointmentListActivity extends AppCompatActivity {
                         {
                             if(documentChange.getType()==DocumentChange.Type.ADDED)
                             {
-                                appoinmentLists.add(documentChange.getDocument().toObject(AppoinmentList.class));
+                                appoinmentLists.add(documentChange.getDocument().toObject(AppointmentReqList.class));
                             }
                         }
                         myAdapter.notifyDataSetChanged();
                     }
                 });
+        return view;
     }
 }

@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.amenite.Customer.Appointmentlist.AppointmentListActivity;
 import com.example.amenite.Customer.Appointmentlist.AppointmentListFragment;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;

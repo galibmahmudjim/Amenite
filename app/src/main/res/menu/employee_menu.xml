@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/employeeMenuProfile"
+            android:icon="@drawable/home_icon"
+            android:title="Profile" />
+        <item
+            android:id="@+id/employeeMenuHome"
+            android:icon="@drawable/home_icon"
+            android:title="Home" />
+        <item
+            android:id="@+id/employeeMenuAppointment"
+            android:title="Appointment" />
+        <item
+            android:id="@+id/employeeMenuAppointmentRequest"
+            android:title="Appointment Request" />
+
+
+        <item
+            android:id="@+id/employeeMenuLogout"
+            android:icon="@drawable/logout_icon"
+            android:title="Logout" />
+    </group>
+    <item android:title="Communicate">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/employeeMenuContactus"
+                    android:icon="@drawable/contactus_icon"
+                    android:title="Contact Us" />
+            </group>
+        </menu>
+    </item>
+    <group>
+        <item
+            android:id="@+id/ExitApp"
+            android:title="Exit" />
+    </group>
+
+</menu>

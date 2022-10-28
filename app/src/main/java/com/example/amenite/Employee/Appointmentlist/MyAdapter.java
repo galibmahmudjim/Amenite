@@ -1,4 +1,4 @@
-package com.example.amenite.Customer.Appointmentlist;
+package com.example.amenite.Employee.Appointmentlist;
 
 import android.content.Context;
 import android.view.LayoutInflater;

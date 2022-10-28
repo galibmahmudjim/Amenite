@@ -7,6 +7,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class User {
     private static final String TAG = "Amenite_check";
@@ -20,7 +21,7 @@ public class User {
     public static String Gender;
     public static String Address;
     public static String Longitude;
-    public static String latitude;
+    public static String Latitude;
     public static String Date_of_Birth;
 
     public User() {
@@ -34,36 +35,45 @@ public class User {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
-                            if (documentSnapshot.get("Email")!=null)
+                            if (documentSnapshot.get("Email") != null) {
                                 setEmailid(documentSnapshot.get("Email").toString());
-                            else
+                                FirebaseMessaging.getInstance().subscribeToTopic(getEmailid());
+                            } else
                                 setEmailid(" ");
-                            if (documentSnapshot.get("Name")!=null)
+                            if (documentSnapshot.get("Name") != null)
                                 setFullname(documentSnapshot.get("Name").toString());
                             else
                                 setFullname(" ");
-                            if (documentSnapshot.get("Username")!=null)
+                            if (documentSnapshot.get("Username") != null)
                                 setUsername((documentSnapshot.get("Username").toString()));
                             else
                                 setUsername(" ");
-                            if (documentSnapshot.get("Address")!=null)
-                                    setAddress(documentSnapshot.get("Address").toString());
+                            if (documentSnapshot.get("Address") != null)
+                                setAddress(documentSnapshot.get("Address").toString());
                             else
                                 setAddress(" ");
-                            if (documentSnapshot.get("Gender")!=null)
+                            if (documentSnapshot.get("Longitude") != null)
+                                setLongitude(documentSnapshot.get("Longitude").toString());
+                            else
+                                setLongitude(" ");
+                            if (documentSnapshot.get("Latitude") != null)
+                                setLatitude(documentSnapshot.get("Latitude").toString());
+                            else
+                                setLatitude(" ");
+                            if (documentSnapshot.get("Gender") != null)
                                 setGender(documentSnapshot.get("Gender").toString());
                             else
                                 setGender(" ");
-                            if (documentSnapshot.get("Date_of_Birth")!=null)
+                            if (documentSnapshot.get("Date_of_Birth") != null)
                                 setDate_of_Birth(documentSnapshot.get("Date_of_Birth").toString());
                             else
                                 setDate_of_Birth(" ");
-                            if (documentSnapshot.get("Password")!=null)
+                            if (documentSnapshot.get("Password") != null)
                                 setPassword(documentSnapshot.get("Password").toString());
-                            if (documentSnapshot.get("Role")!=null)
+                            if (documentSnapshot.get("Role") != null)
                                 setRole(documentSnapshot.get("Role").toString());
                             setUserID(documentSnapshot.getId().toString());
-                            if (documentSnapshot.get("Phone_Number")!=null)
+                            if (documentSnapshot.get("Phone_Number") != null)
                                 setPhonenumber(documentSnapshot.get("Phone_Number").toString());
                             else
                                 setPhonenumber(" ");
@@ -162,11 +172,11 @@ public class User {
     }
 
     public static String getLatitude() {
-        return latitude;
+        return Latitude;
     }
 
     public static void setLatitude(String latitude) {
-        User.latitude = latitude;
+        Latitude = latitude;
     }
 
     public static String getDate_of_Birth() {

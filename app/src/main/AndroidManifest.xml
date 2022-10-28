@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <queries>
@@ -33,10 +34,6 @@
             android:name=".Customer.EditCusomerProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".Customer.Appointmentlist.AppointmentListActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
             android:name=".Customer.Services.CustomerAppointmentConfirmActivity"
             android:exported="false" />
         <activity
@@ -60,6 +57,24 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
+        <activity android:name=".Employee.EmployeeActivity"
+            android:exported="false"/>
+        <activity android:name=".Employee.EditEmployeeProfileActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".Customer.CustomerDonationActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Customer.CustomerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.AdminHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.EmployeeVerificationActivity"
+            android:exported="false" />
         <activity
             android:name=".Admin.AdminProfileActivity"
             android:exported="false" />
@@ -71,29 +86,6 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Customer.CustomerDonationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Employee.EmployeeHomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Employee.EmployeeProfileActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".Employee.EmployeeEditProfileActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".Admin.AdminHomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Admin.EmployeeVerificationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Customer.CustomerActivity"
             android:exported="false" />
         <activity
             android:name=".SignupActivity"
@@ -111,15 +103,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <service
-            android:name=".SendNotificationPack.FirebaseNotification"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+        android:name=".SendNotificationPack.FirebaseMessagingService"
+        android:permission="TODO"
+        tools:ignore="ExportedService"
+            android:exported="false">
+        <intent-filter>
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        </intent-filter>
+    </service>
+
+
     </application>
 
 </manifest>

@@ -1,36 +1,36 @@
 package com.example.amenite.Customer.Services;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.icu.text.DateFormatSymbols;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.amenite.Customer.CustomerActivity;
-import com.example.amenite.Customer.CustomerHomeFragment;
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
-import com.example.amenite.R;
+import com.example.amenite.SendNotificationPack.FcmNotificationsSender;
 import com.example.amenite.databinding.ActivityCustomerAppointmentConfirmBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
-import com.google.android.material.timepicker.TimeFormat;
-import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.text.DecimalFormat;
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +45,7 @@ public class CustomerAppointmentConfirmActivity extends AppCompatActivity {
         binding = ActivityCustomerAppointmentConfirmBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Intent intent = getIntent();
+        User.RetriveData();
         binding.CustomerAppointmentConfirmNameTextview
                 .setText(intent.getStringExtra("Name"));
         binding.CustomerAppointmentConfirmPhoneNumberTextview.setText(intent.getStringExtra("PhoneNumber"));
@@ -54,6 +55,9 @@ public class CustomerAppointmentConfirmActivity extends AppCompatActivity {
         binding.CustomerAppointmentConfirmEmailTextview.setText(intent.getStringExtra("Email"));
 
         String address = intent.getStringExtra("AddressMap");
+        String Latitude = String.valueOf(intent.getStringExtra("Latitude"));
+        String Longitude = String.valueOf(intent.getStringExtra("Longitude"));
+
         if (!intent.getStringExtra("AddressDetails").isEmpty() && intent.getStringExtra("AddressDetails") != null) {
             address = address + ",\n" + intent.getStringExtra("AddressDetails") + ".";
         }
@@ -80,10 +84,10 @@ public class CustomerAppointmentConfirmActivity extends AppCompatActivity {
         binding.CustomerAppointmentConfirmTotalTextview.setText(String.valueOf(df.format(total)) + "  ");
         binding.CustomerAppointmentConfirmAddserviceTextview.setText(intent.getStringExtra("Additional Service"));
 
-        binding.CustomerAppointmentConfirmConfirmButton.setOnClickListener(new View.OnClickListener() {
+        binding.CustomerAppointmentConfirmCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(CustomerAppointmentConfirmActivity.this, CustomerActivity.class));
             }
         });
         binding.CustomerAppointmentConfirmConfirmButton.setOnClickListener(new View.OnClickListener() {
@@ -99,49 +103,126 @@ public class CustomerAppointmentConfirmActivity extends AppCompatActivity {
                 appointment.put("Additional_Service", intent.getStringExtra("Additional Service"));
                 appointment.put("Email", intent.getStringExtra("Email"));
                 appointment.put("AddressMap", intent.getStringExtra("AddressMap"));
-                appointment.put("Longitude", String.valueOf(intent.getDoubleExtra("Longitude", 0.00)));
-                appointment.put("Latitude", String.valueOf(intent.getDoubleExtra("Latitude", 0.00)));
+                appointment.put("Longitude", Longitude);
+                appointment.put("Latitude", Latitude);
                 appointment.put("Address_Details", intent.getStringExtra("AddressDetails"));
                 appointment.put("Appointment_Date", intent.getStringExtra("Date"));
                 appointment.put("Appointment_Time", intent.getStringExtra("Time"));
 
+                Log.d(TAG, "onSuccess: " + Latitude);
+
                 DBresources dBresources = new DBresources();
                 String key = new String();
                 key = "APPB" + User.Phonenumber.substring(User.Phonenumber.length() - 3, User.Phonenumber.length()) + User.Username.substring(0, 3).toUpperCase();
-                final int[] appoint_no = {1};
-                Task t1 = dBresources.database.collection("Appointment").whereEqualTo("Email",User.Emailid).get()
+                int[] appoint_no = {1};
+                Task t1 = dBresources.database.collection("Appointment").whereEqualTo("Email", User.Emailid).get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if(task.isSuccessful())
-                                {
-                                    for (QueryDocumentSnapshot documentSnapshot : task.getResult())
-                                    {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                         appoint_no[0]++;
                                     }
                                 }
                             }
                         });
                 String finalKey = key;
-                Tasks.whenAllSuccess(t1).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
+                Task t2 = Tasks.whenAllSuccess(t1).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
                     @Override
                     public void onSuccess(List<Object> objects) {
                         LocalDateTime now = LocalDateTime.now();
-                        String appointment_ID = finalKey+String.valueOf(appoint_no[0]);
-                        Log.d(TAG, "onSuccess: "+appointment_ID);
+                        String appointment_ID = finalKey + String.valueOf(appoint_no[0]);
                         appointment.put("Appointment_Id", appointment_ID);
                         appointment.put("Appointment_Status", "Pending");
                         appointment.put("Request_Date", now.getDayOfMonth() + "-" + now.getMonth().toString().substring(0, 3) + "-" + now.getYear());
                         SimpleDateFormat sample = new SimpleDateFormat("hh:mm aa");
                         appointment.put("Request_Time", sample.format(new Date()));
                         dBresources.database.collection("Appointment").document(appointment_ID).set(appointment)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
 
+                                    }
+                                });
+
+                    }
+                });
+                HashMap<String, List<String>> appReqSend = new HashMap<>();
+                List<String> str = new ArrayList<>();
+                Task t3 = Tasks.whenAllSuccess(t2).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
+                    @Override
+                    public void onSuccess(List<Object> objects) {
+                        dBresources.database.collection("User").whereEqualTo("Role", "Employee")
+                                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            int n = 0;
+                                            for (QueryDocumentSnapshot qs : task.getResult()) {
+                                                if (qs.contains("Latitude") && qs.contains("Longitude")) {
+                                                    float[] results = new float[1];
+                                                    Location.distanceBetween(Double.parseDouble(appointment.get("Latitude")), Double.parseDouble(appointment.get("Longitude")),
+                                                            Double.parseDouble(qs.get("Latitude").toString()), Double.parseDouble(qs.get("Longitude").toString()),
+                                                            results);
+
+                                                    if (results[0] <= 2000) {
+                                                        n++;
+                                                        HashMap<Integer, String> hm = new HashMap<>();
+                                                        hm.put(n, qs.get("Email").toString());
+                                                        DocumentReference dref = dBresources.database.collection("Appointment")
+                                                                .document(appointment.get("Appointment_Id").toString());
+                                                        HashMap<String, String> hmap = new HashMap<String, String>();
+                                                        hmap.put(String.valueOf(n), qs.get("Email").toString());
+                                                        dref.collection("Requested_Employee").add(hmap);
+                                                        dBresources.database.collection("Token").document(qs.get("Email").toString())
+                                                                .get()
+                                                                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                                        if(task.isSuccessful())
+                                                                        {
+                                                                            DocumentSnapshot documentSnapshot = task.getResult();
+                                                                            if(documentSnapshot.exists())
+                                                                            {
+                                                                                FcmNotificationsSender notificationsSender = new FcmNotificationsSender(documentSnapshot.get("Email").toString()
+                                                                                        ,"New Appointment Request","You have a new appointment request\nName: "+User.Fullname+"\nAddress: "
+                                                                                        +appointment.get("Address")+"\nTime and Date: "+appointment.get("Appointment_Date")+", "+appointment.get("Appointment_Time")
+                                                                                        ,getApplicationContext(),CustomerAppointmentConfirmActivity.this);
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                });
+
+                                                    }
+                                                }
                                             }
-                                        });
-
+                                            dBresources.database.collection("Token").document(User.Emailid)
+                                                    .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                            if(task.isSuccessful())
+                                                            {
+                                                                DocumentSnapshot documentSnapshot = task.getResult();
+                                                                if(documentSnapshot.exists())
+                                                                {
+                                                                    Log.d(TAG, "onComplete: "+documentSnapshot.get("Token").toString());
+                                                                    FcmNotificationsSender notificationsSender = new FcmNotificationsSender(documentSnapshot.get("Token").toString()
+                                                                            ,"New Appointment","Your Appointment\nName: "+User.Fullname+"\nAddress: "
+                                                                            +appointment.get("AddressMap")+"\nTime and Date: "+appointment.get("Appointment_Date")+", "+appointment.get("Appointment_Time")
+                                                                            ,getApplicationContext(),CustomerAppointmentConfirmActivity.this);
+                                                                    notificationsSender.SendNotifications();
+                                                                }
+                                                            }
+                                                        }
+                                                    });
+                                        }
+                                    }
+                                });
+                    }
+                });
+                Tasks.whenAllSuccess(t3).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
+                    @Override
+                    public void onSuccess(List<Object> objects) {
                         startActivity(new Intent(CustomerAppointmentConfirmActivity.this, CustomerActivity.class));
 
                     }

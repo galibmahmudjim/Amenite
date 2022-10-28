@@ -193,7 +193,6 @@ public class SignupActivity extends AppCompatActivity {
             public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(s, forceResendingToken);
                 VerificationID = s;
-                Log.d(TAG, "onCodeSent: "+VerificationID);
                 token = forceResendingToken;
                 signupActivityOtpEdittext.setVisibility(View.VISIBLE);
                 signupActivityLoadingProgressBar.setVisibility(View.GONE);
@@ -205,7 +204,6 @@ public class SignupActivity extends AppCompatActivity {
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                 final String code = phoneAuthCredential.getSmsCode();
 
-                Log.d(TAG, "onVerificationCompleted: "+code);
 
             }
 
@@ -228,7 +226,6 @@ public class SignupActivity extends AppCompatActivity {
          Task t1 = mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.d(TAG, "onComplete: Com");
                 if(task.isSuccessful())
                 {
                     Toast.makeText(SignupActivity.this,"Authentication is successful", Toast.LENGTH_SHORT).show();

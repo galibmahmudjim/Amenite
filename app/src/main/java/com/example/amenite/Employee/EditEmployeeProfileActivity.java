@@ -1,35 +1,36 @@
-package com.example.amenite.Customer;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.amenite.Employee;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.amenite.Customer.CustomerActivity;
+import com.example.amenite.Customer.CustomerAddressMapsActivity;
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.databinding.ActivityEditCusomerProfileBinding;
+import com.example.amenite.databinding.ActivityEditEmployeeProfileBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 
 import java.time.Month;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 
-public class EditCusomerProfileActivity extends AppCompatActivity {
+public class EditEmployeeProfileActivity extends AppCompatActivity {
     private static final String TAG = "Amenite_check";
-    private ActivityEditCusomerProfileBinding binding;
+    private ActivityEditEmployeeProfileBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityEditCusomerProfileBinding.inflate(getLayoutInflater());
+        binding = ActivityEditEmployeeProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.EditProfileEmailTextview.setText(User.Emailid);
         binding.EditProfileUsernameTextview.setText(User.getUsername());
@@ -61,8 +62,8 @@ public class EditCusomerProfileActivity extends AppCompatActivity {
         binding.EditprofileMylocationiconButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EditCusomerProfileActivity.this, CustomerAddressMapsActivity.class);
-                intent.putExtra("Activity", EditCusomerProfileActivity.class);
+                Intent intent = new Intent(EditEmployeeProfileActivity.this, CustomerAddressMapsActivity.class);
+                intent.putExtra("Activity", EditEmployeeProfileActivity.class);
                 intent.putExtra("Name", binding.EditProfileNameEdittext.getText().toString());
                 intent.putExtra("Date_of_Birth", binding.EditProfileDOBTextview.getText().toString());
                 startActivity(intent);
@@ -74,9 +75,9 @@ public class EditCusomerProfileActivity extends AppCompatActivity {
                 String Address = " ";
                 double Latitude = 0;
                 double Longitude = 0;
-                Intent intent = new Intent(EditCusomerProfileActivity.this, CustomerActivity.class);
+                Intent intent = new Intent(EditEmployeeProfileActivity.this, CustomerActivity.class);
                 intent.putExtra("currentFragment", "25");
-                int radio = binding.EditCustomerRadioGroup.getCheckedRadioButtonId();
+                int radio = binding.EditEmployeeRadioGroup.getCheckedRadioButtonId();
                 RadioButton red = findViewById(radio);
                 String Gender = " ";
                 if (getIntent().getStringExtra("Address") != null) {
