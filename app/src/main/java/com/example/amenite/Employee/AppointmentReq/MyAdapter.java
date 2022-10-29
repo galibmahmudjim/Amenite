@@ -26,7 +26,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.employee_appoinment_list,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.employee_appoinment_list, parent, false);
         return new MyViewHolder(v);
     }
 
@@ -34,11 +34,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         AppointmentReqList appoinmentList = appoinmentArrayLists.get(position);
-        holder.customerAppointmentlistCardviewStatusTextview.setText(appoinmentList.Appointment_Status);
-        holder.customerAppointmentlistCardviewTimeTextview.setText(appoinmentList.Request_Date+", "+appoinmentList.Request_Time);
-        holder.customerAppointmentlistCardviewServiceTextview.setText(appoinmentList.Service);
-        holder.customerAppointmentlistCardviewAppointmentTimeTextview.setText(appoinmentList.Appointment_Time);
-        holder.customerAppointmentlistCardviewAppointmentDateTextview.setText(appoinmentList.Appointment_Date);
+        holder.employeeAppointmentReqlistCardviewStatusTextview.setText(appoinmentList.Appointment_Status);
+        holder.employeeAppointmentReqlistCardviewTimeTextview.setText(appoinmentList.Request_Date + ", " + appoinmentList.Request_Time);
+        holder.employeeAppointmentReqlistCardviewServiceTextview.setText(appoinmentList.Service);
+        holder.employeeAppointmentReqlistCardviewAppointmentTimeTextview.setText(appoinmentList.Appointment_Time);
+        holder.employeeAppointmentReqlistCardviewAppointmentDateTextview.setText(appoinmentList.Appointment_Date);
+        holder.employeeAppointmentReqlistCardviewAppointmentIdTextview.setText(appoinmentList.Appointment_Id);
 
     }
 
@@ -48,20 +49,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return appoinmentArrayLists.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView customerAppointmentlistCardviewStatusTextview;
-        TextView customerAppointmentlistCardviewTimeTextview;
-        TextView customerAppointmentlistCardviewServiceTextview;
-        TextView customerAppointmentlistCardviewAppointmentDateTextview;
-        TextView customerAppointmentlistCardviewAppointmentTimeTextview;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView employeeAppointmentReqlistCardviewStatusTextview;
+        TextView employeeAppointmentReqlistCardviewTimeTextview;
+        TextView employeeAppointmentReqlistCardviewServiceTextview;
+        TextView employeeAppointmentReqlistCardviewAppointmentDateTextview;
+        TextView employeeAppointmentReqlistCardviewAppointmentTimeTextview;
+        TextView employeeAppointmentReqlistCardviewAppointmentIdTextview;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            customerAppointmentlistCardviewTimeTextview = itemView.findViewById(R.id.CustomerAppointmentlistCardviewTimeTextview);
-            customerAppointmentlistCardviewServiceTextview = itemView.findViewById(R.id.CustomerAppointmentlistCardviewServiceTextview);
-            customerAppointmentlistCardviewAppointmentDateTextview = itemView.findViewById(R.id.CustomerAppointmentlistCardviewAppointmentDateTextview);
-            customerAppointmentlistCardviewAppointmentTimeTextview = itemView.findViewById(R.id.CustomerAppointmentlistCardviewAppointmentTimeTextview);
-            customerAppointmentlistCardviewStatusTextview = itemView.findViewById(R.id.CustomerAppointmentlistCardviewStatusTextview);
+            employeeAppointmentReqlistCardviewTimeTextview = itemView.findViewById(R.id.EmployeeAppointmentReqlistCardviewTimeTextview);
+            employeeAppointmentReqlistCardviewServiceTextview = itemView.findViewById(R.id.EmployeeAppointmentReqlistCardviewServiceTextview);
+            employeeAppointmentReqlistCardviewAppointmentDateTextview = itemView.findViewById(R.id.EmployeeAppointmentReqlistCardviewAppointmentDateTextview);
+            employeeAppointmentReqlistCardviewAppointmentTimeTextview = itemView.findViewById(R.id.EmployeeAppointmentReqlistCardviewAppointmentTimeTextview);
+            employeeAppointmentReqlistCardviewStatusTextview = itemView.findViewById(R.id.EmployeeAppointmentReqlistCardviewStatusTextview);
+            employeeAppointmentReqlistCardviewAppointmentIdTextview = itemView.findViewById(R.id.EmployeeAppointmentReqlistCardviewIdTextview);
+
         }
     }
 }

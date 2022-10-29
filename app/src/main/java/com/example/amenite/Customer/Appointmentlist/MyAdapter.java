@@ -1,6 +1,7 @@
 package com.example.amenite.Customer.Appointmentlist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.amenite.Customer.EmployeeAppointmentDetailsActivity;
 import com.example.amenite.R;
 
 import java.util.ArrayList;
@@ -39,6 +41,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.customerAppointmentlistCardviewServiceTextview.setText(appoinmentList.Service);
         holder.customerAppointmentlistCardviewAppointmentTimeTextview.setText(appoinmentList.Appointment_Time);
         holder.customerAppointmentlistCardviewAppointmentDateTextview.setText(appoinmentList.Appointment_Date);
+        holder.customerAppointmentlistCardviewIdTextview.setText(appoinmentList.Appointment_Id);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), EmployeeAppointmentDetailsActivity.class);
+                intent.putExtra("Appointment_Id",holder.customerAppointmentlistCardviewIdTextview.getText().toString());
+                view.getContext().startActivity(intent);
+            }
+        });
 
     }
 
@@ -54,6 +66,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         TextView customerAppointmentlistCardviewServiceTextview;
         TextView customerAppointmentlistCardviewAppointmentDateTextview;
         TextView customerAppointmentlistCardviewAppointmentTimeTextview;
+        TextView customerAppointmentlistCardviewIdTextview;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +75,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             customerAppointmentlistCardviewAppointmentDateTextview = itemView.findViewById(R.id.CustomerAppointmentlistCardviewAppointmentDateTextview);
             customerAppointmentlistCardviewAppointmentTimeTextview = itemView.findViewById(R.id.CustomerAppointmentlistCardviewAppointmentTimeTextview);
             customerAppointmentlistCardviewStatusTextview = itemView.findViewById(R.id.CustomerAppointmentlistCardviewStatusTextview);
+            customerAppointmentlistCardviewIdTextview = itemView.findViewById(R.id.CustomerAppointmentlistCardviewIdTextview);
         }
     }
 }

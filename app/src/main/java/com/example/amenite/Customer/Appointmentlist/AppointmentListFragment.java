@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
+import com.example.amenite.databinding.FragmentAppointmentListBinding;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -27,6 +28,7 @@ public class AppointmentListFragment extends Fragment {
     RecyclerView recyclerView;
     ArrayList<AppointmentList> appoinmentLists;
     MyAdapter myAdapter;
+    private FragmentAppointmentListBinding binding;
     public AppointmentListFragment() {
     }
 
@@ -34,7 +36,8 @@ public class AppointmentListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment_appointment_list, container, false);
+        binding = FragmentAppointmentListBinding.inflate(inflater,container,false);
+        View view = binding.getRoot();
         DBresources dBresources = new DBresources();
         recyclerView = view.findViewById(R.id.CustomerApoointmentlistRecyclerview);
         recyclerView.setHasFixedSize(true);
@@ -56,6 +59,7 @@ public class AppointmentListFragment extends Fragment {
                         myAdapter.notifyDataSetChanged();
                     }
                 });
+
         return view;
     }
 }

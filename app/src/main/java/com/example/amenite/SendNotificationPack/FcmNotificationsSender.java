@@ -23,6 +23,7 @@ public class FcmNotificationsSender  {
     String userFcmToken;
     String title;
     String body;
+    String channelId;
     Context mContext;
     Activity mActivity;
 
@@ -30,10 +31,11 @@ public class FcmNotificationsSender  {
     private RequestQueue requestQueue;
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
     private final String fcmServerKey ="AAAAH0XDVbQ:APA91bEl-fichWHDfNx4IWgc706dVIegx8vxewZWqnXyRFJxixclpRBxL3X5MH5208ZAc1ELiIS5w1kpDTGnG27BfP0t4Wvj67vcPSnfy4eA2eB1XZcGFtJvbKMY-oYeT7--_dRPtb93";
-    public FcmNotificationsSender(String userFcmToken, String title, String body, Context mContext, Activity mActivity) {
+    public FcmNotificationsSender(String userFcmToken, String channelid, String title, String body, Context mContext, Activity mActivity) {
         this.userFcmToken = userFcmToken;
         this.title = title;
         this.body = body;
+        this.channelId = channelid;
         this.mContext = mContext;
         this.mActivity = mActivity;
     }
@@ -48,7 +50,6 @@ public class FcmNotificationsSender  {
             notiObject.put("title", title);
             notiObject.put("body", body);
             notiObject.put("icon", R.drawable.amenite_logo); // enter icon that exists in drawable only
-
 
 
             mainObj.put("notification", notiObject);

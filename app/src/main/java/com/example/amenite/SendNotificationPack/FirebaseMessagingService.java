@@ -30,7 +30,8 @@ import com.google.firebase.messaging.RemoteMessage;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 
-     NotificationManager mNotificationManager;
+    private static final String TAG = "Amenite_check";
+    NotificationManager mNotificationManager;
 
 
     @Override
@@ -38,10 +39,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         super.onMessageReceived(remoteMessage);
 
 
-
-
+        Log.d(TAG, "onMessageReceived: "+remoteMessage.getNotification().getBody()+"\n"+remoteMessage.getNotification().getChannelId());
         int resourceImage = getResources().getIdentifier(remoteMessage.getNotification().getIcon(), "drawable", getPackageName());
-
         // playing audio and vibration when user se reques
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
@@ -52,7 +51,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         // vibration
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        long[] pattern = {100, 300, 300, 300};
         v.vibrate(VibrationEffect.createOneShot(1000,150));
 
 
