@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.amenite">
+    package="com.example.amenite" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -28,7 +28,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Amenite"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".Employee.RequestedEmployeeAppointmentDetailsActivity"
+            android:exported="false" />
         <activity
             android:name=".Customer.EditCusomerProfileActivity"
             android:exported="false" />
@@ -68,8 +71,9 @@
         <activity
             android:name=".Customer.CustomerActivity"
             android:exported="false" />
-        <activity android:name=".Customer.EmployeeAppointmentDetailsActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".Customer.CustomerAppointmentDetailsActivity"
+            android:exported="false" />
         <activity
             android:name=".Admin.AdminHomeActivity"
             android:exported="false" />
@@ -97,7 +101,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -109,7 +113,7 @@
             android:name=".SendNotificationPack.FirebaseMessagingService"
             android:exported="false"
             android:permission="TODO"
-            tools:ignore="ExportedService">
+            tools:ignore="ExportedService" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

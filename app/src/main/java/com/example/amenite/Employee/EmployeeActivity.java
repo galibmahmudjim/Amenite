@@ -15,7 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 
-import com.example.amenite.Employee.AppointmentReq.AppointmentReqListFragment;
+import com.example.amenite.Employee.AppointmentReq.EmployeeAppointmentReqListFragment;
 import com.example.amenite.Employee.Appointmentlist.EmployeeAppointmentListFragment;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
@@ -99,7 +99,7 @@ public class EmployeeActivity extends AppCompatActivity {
                     case R.id.employeeMenuAppointmentRequest:
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.EmployeeActivityFragmentContainer, new AppointmentReqListFragment())
+                                .replace(R.id.EmployeeActivityFragmentContainer, new EmployeeAppointmentReqListFragment())
                                 .commit();
                         binding.EmployeeActivityToolbarTextview.setText("Appointment Request");
                         break;

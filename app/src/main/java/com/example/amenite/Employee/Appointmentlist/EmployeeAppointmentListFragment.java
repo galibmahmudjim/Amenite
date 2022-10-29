@@ -8,12 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
-import com.example.amenite.R;
-import com.example.amenite.databinding.FragmentAppointmentListBinding;
 import com.example.amenite.databinding.FragmentEmployeeAppointmentListBinding;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;

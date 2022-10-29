@@ -9,7 +9,7 @@
     android:paddingStart="15dp"
     android:paddingTop="30dp"
     android:paddingBottom="20dp"
-    tools:context=".Customer.EmployeeAppointmentDetailsActivity">
+    tools:context=".Customer.CustomerAppointmentDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

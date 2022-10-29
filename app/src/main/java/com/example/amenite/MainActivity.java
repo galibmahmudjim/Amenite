@@ -14,7 +14,6 @@ import com.example.amenite.Customer.CustomerActivity;
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.Employee.EmployeeActivity;
 import com.example.amenite.PROFILE.User;
-import com.example.amenite.SendNotificationPack.FcmNotificationsSender;
 import com.example.amenite.SendNotificationPack.Token;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -22,7 +21,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.List;
 

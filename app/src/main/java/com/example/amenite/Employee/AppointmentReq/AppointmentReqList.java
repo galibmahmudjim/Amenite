@@ -1,9 +1,12 @@
 package com.example.amenite.Employee.AppointmentReq;
 
-public class
-AppointmentReqList {
-        String Request_Time, Request_Date, Appointment_Id, Appointment_Status, Service,Choose_Service, Appointment_Time, Appointment_Date;
+public class AppointmentReqList {
+    String Request_Time, Request_Date, Appointment_Id, Appointment_Status, Service,Choose_Service, Appointment_Time, Appointment_Date;
 
+    public AppointmentReqList()
+    {
+
+    }
     public AppointmentReqList(String request_Time, String request_Date, String appointment_Id, String appointment_Status, String service, String choose_Service, String appointment_Time, String appointment_Date) {
         Request_Time = request_Time;
         Request_Date = request_Date;

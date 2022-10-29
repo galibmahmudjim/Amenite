@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.amenite.Customer.EmployeeAppointmentDetailsActivity;
+import com.example.amenite.Customer.CustomerAppointmentDetailsActivity;
 import com.example.amenite.R;
 
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), EmployeeAppointmentDetailsActivity.class);
+                Intent intent = new Intent(view.getContext(), CustomerAppointmentDetailsActivity.class);
                 intent.putExtra("Appointment_Id",holder.employeeAppointmentlistCardviewAppointmentIdTextview.getText().toString());
                 view.getContext().startActivity(intent);
             }

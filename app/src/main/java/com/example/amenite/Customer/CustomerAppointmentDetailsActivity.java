@@ -14,7 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-public class EmployeeAppointmentDetailsActivity extends AppCompatActivity {
+public class CustomerAppointmentDetailsActivity extends AppCompatActivity {
     private ActivityAppointmentDetailsBinding binding;
 
     @Override
