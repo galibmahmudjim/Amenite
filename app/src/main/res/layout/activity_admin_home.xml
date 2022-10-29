@@ -7,7 +7,7 @@
     android:background="@drawable/gradient">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button10"
+        android:id="@+id/AdminCustomer"
         android:layout_width="172dp"
         android:layout_height="53dp"
         android:layout_marginStart="112dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button11"
+        android:id="@+id/AdminEmployee"
         android:layout_width="157dp"
         android:layout_height="51dp"
 
@@ -31,7 +31,7 @@
         android:text="Employee Info"
         android:textColor="@color/ghost_white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button10" />
+        app:layout_constraintTop_toBottomOf="@+id/AdminCustomer" />
 
     <androidx.appcompat.widget.AppCompatButton
 
@@ -45,7 +45,7 @@
         android:text="Foundation Info"
         android:textColor="@color/ghost_white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button11" />
+        app:layout_constraintTop_toBottomOf="@+id/AdminEmployee" />
 
     <TextView
         android:id="@+id/textView4"
