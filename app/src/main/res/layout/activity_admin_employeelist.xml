@@ -14,7 +14,8 @@
     android:layout_gravity="center">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/AdminCustomerListRecyclerView"
+        android:id="@+id/AdminEmployeeListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </LinearLayout>

@@ -42,6 +42,14 @@ public class AdminHomeActivity extends AppCompatActivity {
 
             }
         });
+        findViewById(R.id.AdminEmployee).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(AdminHomeActivity.this, EmployeeListActivity.class));
+
+            }
+        });
 
     }
 }

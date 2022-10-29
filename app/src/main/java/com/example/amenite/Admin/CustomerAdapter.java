@@ -29,7 +29,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyView
     @NonNull
     @Override
     public CustomerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.activity_admin_customerlist,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.activity_admin_customerlistsample,parent,false);
         return new CustomerAdapter.MyViewHolder(v);
     }
 
@@ -39,7 +39,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyView
         CustomerList customerList = CustomerArrayLists.get(position);
 
         holder.customerNameTextview.setText(customerList.getName());
-        holder.customerPhoneNumberTextview.setText(customerList.getPhone());
+        holder.customerPhoneNumberTextview.setText(customerList.getPhone_Number());
         holder.customerAddressTextview.setText(customerList.getAddress());
 
     }

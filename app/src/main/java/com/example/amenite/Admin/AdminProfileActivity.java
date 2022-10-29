@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.amenite.PROFILE.User;
@@ -18,6 +19,8 @@ public class AdminProfileActivity extends AppCompatActivity {
     private TextView Name;
     private TextView PhoneNumber;
     private TextView Email;
+    //ImageView profileImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

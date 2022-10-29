@@ -43,7 +43,7 @@
                 android:textColor="#A4817B8C" />
 
             <EditText
-                android:id="@+id/EmployeeEditProfileNameEdittext"
+                android:id="@+id/AdminEditProfileNameEdittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#53279F"
@@ -69,11 +69,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gmail"
+                android:text="Email"
                 android:textColor="#A4817B8C" />
 
             <EditText
-                android:id="@+id/EmployeeEditGmailEdittext"
+                android:id="@+id/AdminEditEmailEdittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#53279F"
@@ -97,13 +97,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/EmployeeEditPhoneNumberEdittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Phone number"
                 android:textColor="#A4817B8C" />
 
             <EditText
-                android:id="@+id/EmployeeEditProfilePhoneNumberEdittext"
+                android:id="@+id/AdminEditProfilePhoneNumberEdittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#53279F"
@@ -161,7 +162,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/AdminEditProfilUpdateButton"
+        android:id="@+id/AdminEditProfileUpdateButton"
         android:layout_width="130dp"
         android:layout_height="49dp"
         android:background="@color/pastelPurple"

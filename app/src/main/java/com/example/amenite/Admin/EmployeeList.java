@@ -1,14 +1,14 @@
 package com.example.amenite.Admin;
 
-public class CustomerList {
+public class EmployeeList {
     String Name,Phone_Number,Address ;
 
-    CustomerList()
+    EmployeeList()
     {
 
     }
 
-    CustomerList(String Name,String Phone_Number,String Address)
+    EmployeeList(String Name,String Phone_Number,String Address)
     {
         this.Name=Name;
         this.Phone_Number=Phone_Number;
