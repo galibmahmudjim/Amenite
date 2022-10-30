@@ -12,9 +12,28 @@
     android:paddingLeft="10dp"
     android:padding="10dp"
     android:layout_gravity="center">
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:id="@+id/EmployeeAppointmentListShimmer"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <include layout="@layout/appointment_list_shimmer"/>
+            <include layout="@layout/appointment_list_shimmer"/>
+            <include layout="@layout/appointment_list_shimmer"/>
+            <include layout="@layout/appointment_list_shimmer"/>
+            <include layout="@layout/appointment_list_shimmer"/>
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:id="@+id/EmployeeApoointmentlistRecyclerview"
         />
 

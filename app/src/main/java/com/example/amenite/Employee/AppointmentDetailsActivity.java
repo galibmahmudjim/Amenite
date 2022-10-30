@@ -32,7 +32,7 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
                             if (documentSnapshot.exists()) {
                                 binding.EmployeeAppointmentDetailsNameTextview.setText(documentSnapshot.get("Name").toString());
                                 binding.EmployeeAppointmentDetailsAppointmentidTextview.setText(documentSnapshot.get("Appointment_Id").toString());
-                                binding.EmployeeAppointmentDetailsAppointmentstatusTextview.setText(documentSnapshot.get("Appointment_Status").toString());
+                                binding.EmployeeAppointmentDetailsAppointmentstatusTextview.setText(documentSnapshot.get("Status").toString());
                                 binding.EmployeeAppointmentDetailsEmailTextview.setText(documentSnapshot.get("Email").toString());
                                 binding.EmployeeAppointmentPhone1Textview.setText(documentSnapshot.get("Phone_Number").toString());
                                 if (!documentSnapshot.get("Phone_Number 2").toString().isEmpty() && documentSnapshot.get("Phone_Number 2").toString() != null)

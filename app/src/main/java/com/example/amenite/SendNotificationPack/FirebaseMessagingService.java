@@ -39,7 +39,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         super.onMessageReceived(remoteMessage);
 
 
-        Log.d(TAG, "onMessageReceived: "+remoteMessage.getNotification().getBody()+"\n"+remoteMessage.getNotification().getChannelId());
         int resourceImage = getResources().getIdentifier(remoteMessage.getNotification().getIcon(), "drawable", getPackageName());
         // playing audio and vibration when user se reques
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);

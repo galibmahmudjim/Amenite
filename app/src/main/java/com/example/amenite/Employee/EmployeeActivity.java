@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 
+import com.example.amenite.Customer.Appointmentlist.AppointmentListFragment;
 import com.example.amenite.Employee.AppointmentReq.EmployeeAppointmentReqListFragment;
 import com.example.amenite.Employee.Appointmentlist.EmployeeAppointmentListFragment;
 import com.example.amenite.PROFILE.User;
@@ -46,7 +47,7 @@ public class EmployeeActivity extends AppCompatActivity {
         int intentFragment = 0;
         if (getIntent().getStringExtra("currentFragment") != null)
             intentFragment = Integer.parseInt(getIntent().getStringExtra("currentFragment"));
-        if (savedInstanceState == null && intentFragment != 25) {
+        if (savedInstanceState == null && getIntent().getStringExtra("currentFragment")==null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.EmployeeActivityFragmentContainer, new EmployeeHomeFragment())
                     .commit();
@@ -58,7 +59,18 @@ public class EmployeeActivity extends AppCompatActivity {
                     .commit();
             binding.EmployeeActivityToolbarTextview.setText("Profile");
             binding.EmployeeNavigationDrawerNavigationview.setCheckedItem(R.id.employeeMenuProfile);
-
+        }else if (intentFragment == 26) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.EmployeeActivityFragmentContainer, new EmployeeAppointmentListFragment())
+                    .commit();
+            binding.EmployeeActivityToolbarTextview.setText("Appointment");
+            binding.EmployeeNavigationDrawerNavigationview.setCheckedItem(R.id.employeeMenuAppointment);
+        }else if (intentFragment == 27) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.EmployeeActivityFragmentContainer, new EmployeeAppointmentReqListFragment())
+                    .commit();
+            binding.EmployeeActivityToolbarTextview.setText("Appointment Request");
+            binding.EmployeeNavigationDrawerNavigationview.setCheckedItem(R.id.employeeMenuAppointmentRequest);
         }
 
         binding.EmployeeNavigationDrawerNavigationview.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

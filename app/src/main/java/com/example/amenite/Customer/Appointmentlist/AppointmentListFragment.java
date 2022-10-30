@@ -2,6 +2,7 @@ package com.example.amenite.Customer.Appointmentlist;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,9 +16,12 @@ import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
 import com.example.amenite.databinding.FragmentAppointmentListBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -45,17 +49,18 @@ public class AppointmentListFragment extends Fragment {
         appoinmentLists = new ArrayList<>();
         myAdapter = new MyAdapter(getActivity(),appoinmentLists);
         recyclerView.setAdapter(myAdapter);
+        binding.AppointmentListShimmer.startShimmer();
         dBresources.database.collection("Appointment").whereEqualTo("Email",User.Emailid)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         for(DocumentChange documentChange : value.getDocumentChanges())
                         {
-                            if(documentChange.getType()==DocumentChange.Type.ADDED)
-                            {
-                                appoinmentLists.add(documentChange.getDocument().toObject(AppointmentList.class));
-                            }
+                            appoinmentLists.add(documentChange.getDocument().toObject(AppointmentList.class));
                         }
+                        binding.AppointmentListShimmer.stopShimmer();
+                        binding.AppointmentListShimmer.setVisibility(View.GONE);
+                        binding.CustomerApoointmentlistRecyclerview.setVisibility(View.VISIBLE);
                         myAdapter.notifyDataSetChanged();
                     }
                 });

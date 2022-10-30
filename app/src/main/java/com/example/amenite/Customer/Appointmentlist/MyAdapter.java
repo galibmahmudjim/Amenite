@@ -36,7 +36,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
 
         AppointmentList appoinmentList = appoinmentArrayLists.get(position);
-        holder.customerAppointmentlistCardviewStatusTextview.setText(appoinmentList.Appointment_Status);
+        holder.customerAppointmentlistCardviewStatusTextview.setText(appoinmentList.Status);
         holder.customerAppointmentlistCardviewTimeTextview.setText(appoinmentList.Request_Date+", "+appoinmentList.Request_Time);
         holder.customerAppointmentlistCardviewServiceTextview.setText(appoinmentList.Service);
         holder.customerAppointmentlistCardviewAppointmentTimeTextview.setText(appoinmentList.Appointment_Time);

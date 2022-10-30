@@ -1,31 +1,46 @@
 package com.example.amenite.Employee.Appointmentlist;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
+import com.example.amenite.R;
+import com.example.amenite.TAG;
+import com.example.amenite.databinding.FragmentAppointmentListBinding;
 import com.example.amenite.databinding.FragmentEmployeeAppointmentListBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class EmployeeAppointmentListFragment extends Fragment {
 
-   // RecyclerView recyclerView;
-    ArrayList<AppointmentList> appoinmentLists;
+    RecyclerView recyclerView;
+    ArrayList<AppointmentList> appointmentLists;
     MyAdapter myAdapter;
     private FragmentEmployeeAppointmentListBinding binding;
+
     public EmployeeAppointmentListFragment() {
     }
 
@@ -34,15 +49,17 @@ public class EmployeeAppointmentListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentEmployeeAppointmentListBinding.inflate(inflater, container, false);
-        View view =binding.getRoot();
+        View view = binding.getRoot();
         DBresources dBresources = new DBresources();
-        binding.EmployeeApoointmentlistRecyclerview.setHasFixedSize(true);
-        binding.EmployeeApoointmentlistRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView = view.findViewById(R.id.EmployeeApoointmentlistRecyclerview);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        appointmentLists = new ArrayList<>();
+        myAdapter = new MyAdapter(getActivity(), appointmentLists);
+        recyclerView.setAdapter(myAdapter);
+        binding.EmployeeAppointmentListShimmer.startShimmer();
 
-        appoinmentLists = new ArrayList<>();
-        myAdapter = new MyAdapter(getActivity(),appoinmentLists);
-        binding.EmployeeApoointmentlistRecyclerview.setAdapter(myAdapter);
-        dBresources.database.collection("Appointment").whereEqualTo("Employee_Email",User.Emailid)
+        dBresources.database.collection("Appointment").whereEqualTo("Employee",User.Emailid)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -50,12 +67,16 @@ public class EmployeeAppointmentListFragment extends Fragment {
                         {
                             if(documentChange.getType()==DocumentChange.Type.ADDED)
                             {
-                                appoinmentLists.add(documentChange.getDocument().toObject(AppointmentList.class));
+                                appointmentLists.add(documentChange.getDocument().toObject(AppointmentList.class));
                             }
                         }
+                        binding.EmployeeAppointmentListShimmer.stopShimmer();
+                        binding.EmployeeAppointmentListShimmer.setVisibility(View.GONE);
+                        binding.EmployeeApoointmentlistRecyclerview.setVisibility(View.VISIBLE);
                         myAdapter.notifyDataSetChanged();
                     }
                 });
+
         return view;
     }
 }

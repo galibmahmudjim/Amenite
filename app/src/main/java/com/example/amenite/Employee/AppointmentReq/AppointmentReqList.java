@@ -1,17 +1,17 @@
 package com.example.amenite.Employee.AppointmentReq;
 
 public class AppointmentReqList {
-    String Request_Time, Request_Date, Appointment_Id, Appointment_Status, Service,Choose_Service, Appointment_Time, Appointment_Date;
+    String Request_Time, Request_Date, Appointment_Id, Status, Service,Choose_Service, Appointment_Time, Appointment_Date;
 
     public AppointmentReqList()
     {
 
     }
-    public AppointmentReqList(String request_Time, String request_Date, String appointment_Id, String appointment_Status, String service, String choose_Service, String appointment_Time, String appointment_Date) {
+    public AppointmentReqList(String request_Time, String request_Date, String appointment_Id, String status, String service, String choose_Service, String appointment_Time, String appointment_Date) {
         Request_Time = request_Time;
         Request_Date = request_Date;
         Appointment_Id = appointment_Id;
-        Appointment_Status = appointment_Status;
+        Status = status;
         Service = service;
         Choose_Service = choose_Service;
         Appointment_Time = appointment_Time;
@@ -42,12 +42,12 @@ public class AppointmentReqList {
         Appointment_Id = appointment_Id;
     }
 
-    public String getAppointment_Status() {
-        return Appointment_Status;
+    public String getStatus() {
+        return Status;
     }
 
-    public void setAppointment_Status(String appointment_Status) {
-        Appointment_Status = appointment_Status;
+    public void setStatus(String status) {
+        Status = status;
     }
 
     public String getService() {

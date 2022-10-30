@@ -18,6 +18,7 @@ import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
 import com.example.amenite.TAG;
 import com.example.amenite.databinding.FragmentAppointmentListBinding;
+import com.example.amenite.databinding.FragmentEmployeeAppointmentReqListBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
@@ -27,7 +28,10 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class EmployeeAppointmentReqListFragment extends Fragment {
@@ -35,7 +39,7 @@ public class EmployeeAppointmentReqListFragment extends Fragment {
     RecyclerView recyclerView;
     ArrayList<AppointmentReqList> appointmentReqLists;
     MyAdapter myAdapter;
-    private FragmentAppointmentListBinding binding;
+    private FragmentEmployeeAppointmentReqListBinding binding;
 
     public EmployeeAppointmentReqListFragment() {
     }
@@ -44,15 +48,17 @@ public class EmployeeAppointmentReqListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentAppointmentListBinding.inflate(inflater, container, false);
+        binding = FragmentEmployeeAppointmentReqListBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         DBresources dBresources = new DBresources();
-        recyclerView = view.findViewById(R.id.CustomerApoointmentlistRecyclerview);
+        binding.EmployeeAppointmentReqListShmimmer.startShimmer();
+        recyclerView = view.findViewById(R.id.EmployeeApoointmentReqlistRecyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         appointmentReqLists = new ArrayList<>();
         myAdapter = new MyAdapter(getActivity(), appointmentReqLists);
         recyclerView.setAdapter(myAdapter);
+
         dBresources.database.collection("Appointment").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -65,12 +71,14 @@ public class EmployeeAppointmentReqListFragment extends Fragment {
                                     for (QueryDocumentSnapshot queryDocumentSnapshot1 : task.getResult()) {
                                         if (queryDocumentSnapshot1.contains("Email")) {
                                             if (queryDocumentSnapshot1.get("Email").toString().equals(User.Emailid)) {
-                                                Log.d(TAG.TAG, "onComplete: " + queryDocumentSnapshot.getData());
                                                 appointmentReqLists.add(queryDocumentSnapshot.toObject(AppointmentReqList.class));
-                                                myAdapter.notifyDataSetChanged();
                                             }
                                         }
                                     }
+                                    binding.EmployeeAppointmentReqListShmimmer.stopShimmer();
+                                    binding.EmployeeAppointmentReqListShmimmer.setVisibility(View.GONE);
+                                    binding.EmployeeApoointmentReqlistRecyclerview.setVisibility(View.VISIBLE);
+                                    myAdapter.notifyDataSetChanged();
                                 }
                             });
                 }
