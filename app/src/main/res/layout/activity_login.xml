@@ -1,39 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
-    android:gravity="center"
     android:background="@color/ghost_white"
+    android:gravity="center"
+    android:orientation="vertical"
     android:theme="@style/Theme.Material3.Light.NoActionBar"
-    android:orientation="vertical">
+    tools:context=".LoginActivity">
+
     <TextView
         android:id="@+id/LoginActivityLoginTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:text="Login"
-        android:textSize="30dp"/>
-    <EditText
-        android:id="@+id/LoginActivityEmailEdittext"
-        android:layout_width="250dp"
+        android:textSize="30dp" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Email"/>
-    <EditText
-    android:id="@+id/LoginActivityPasswordEdittext"
-    android:layout_width="250dp"
-    android:layout_height="wrap_content"
-    android:hint="Password"
-        android:inputType="textPassword"/>
+        android:hint="Email"
+        app:startIconDrawable="@drawable/email"
+        android:layout_marginBottom="25dp"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/LoginActivityEmailEdittext"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:inputType="textEmailAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/LoginPasswordLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_marginBottom="25dp"
+        app:errorEnabled="true"
+        app:boxStrokeErrorColor="@color/ghost_white"
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/lock">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/LoginActivityPasswordEdittext"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:ems="15"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/LoginActivityLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"/>
+        android:text="Login" />
+
     <ProgressBar
         android:id="@+id/LoginActivityLoadingProgressBar"
         style="?android:attr/progressBarStyleLarge"

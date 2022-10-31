@@ -18,61 +18,93 @@
         android:textSize="25dp"
         android:layout_marginBottom="20dp"
         />
-    <EditText
-        android:id="@+id/SignupActivityFullnameEditText"
-        android:layout_width="250dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Full Name"
-        android:layout_marginBottom="0dp"
-        />
-    <EditText
-        android:id="@+id/SignupActivityUsernameEdittext"
-        android:layout_width="250dp"
+        app:startIconDrawable="@drawable/ic_baseline_drive_file_rename_outline_24"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/SignupActivityFullnameEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="10dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Username"
-        android:layout_marginBottom="0dp"
-        />
-
-    <EditText
-        android:id="@+id/SignupActivityEmailEdittext"
-        android:layout_width="250dp"
+        app:startIconDrawable="@drawable/base_person"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/SignupActivityUsernameEdittext"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Email"
-        android:layout_marginBottom="5dp"
-        />
-    <EditText
-        android:id="@+id/SignupActivityPhonenumberEdittext"
-        android:layout_width="250dp"
+        app:startIconDrawable="@drawable/email"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/SignupActivityEmailEdittext"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="10dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Phone Number"
-        android:layout_marginBottom="5dp"
-        />
-
-    <EditText
-        android:id="@+id/SignupActivityPasswordEdittext"
-        android:layout_width="250dp"
+        app:startIconDrawable="@drawable/phone_call"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/SignupActivityPhonenumberEdittext"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:layout_marginBottom="10dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_marginBottom="5dp"/>
-
-    <EditText
-        android:id="@+id/SignupActivityConfirmPasswordEdittext"
-        android:layout_width="250dp"
+        app:errorTextAppearance="@style/error_appearance"
+        app:startIconDrawable="@drawable/lock"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/SignupActivityPasswordEdittext"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_marginBottom="10dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="Confirm Password"
-        android:layout_marginBottom="5dp"
-        />
-    <EditText
+        android:hint="Password"
+        app:startIconDrawable="@drawable/lock"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/SignupActivityConfirmPasswordEdittext"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_marginBottom="10dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+   <EditText
         android:id="@+id/SignupActivityOtpEdittext"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:hint="Enter OTP"
-        android:visibility="invisible"
-        android:layout_marginBottom="5dp"
-        />
+       android:visibility="gone"
+        android:hint="OTP"
+        android:layout_marginBottom="10dp"/>
+
     <Button
         android:id="@+id/SignupActivitySubmitButton"
         android:layout_width="wrap_content"

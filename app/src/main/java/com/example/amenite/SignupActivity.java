@@ -169,6 +169,8 @@ public class SignupActivity extends AppCompatActivity {
                     userDetails.put("Date_of_Birth","");
                     userDetails.put("Phone_Number",phonenumber);
                     userDetails.put("Password",Password.getText().toString());
+                    userDetails.put("Latitude","0.00");
+                    userDetails.put("Longitude","0.00");
                     requestOTP(phonenumber);
                 }
                 else

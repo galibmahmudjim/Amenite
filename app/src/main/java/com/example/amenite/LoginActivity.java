@@ -19,6 +19,8 @@ import com.example.amenite.PROFILE.User;
 import com.example.amenite.SendNotificationPack.Token;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -26,8 +28,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class LoginActivity extends AppCompatActivity {
     private final String TAG = "Amenite_check";
     private EditText loginActivityEmailEditText;
-    private EditText loginActivityPasswordEditText;
+    private TextInputEditText loginActivityPasswordEditText;
     private Button loginActivityLoginButton;
+    private TextInputLayout loginPasswordLayout;
     private ProgressBar loginActivityloadingProgressbar;
     DBresources dBresources = new DBresources();
 
@@ -54,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                                         User.Username = (String) document.get("Username");
                                         if(!User.password.equals(loginActivityPasswordEditText.getText().toString()))
                                         {
-                                            loginActivityPasswordEditText.setError("Incorrect Password");
+                                            loginPasswordLayout.setError("Incorrect Password");
                                             loginActivityloadingProgressbar.setVisibility(View.GONE);
                                         }
                                         else
@@ -97,6 +100,11 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                     }
                                 }
+                                else
+                                {
+                                    loginActivityEmailEditText.setError("Email not found");
+                                    loginActivityloadingProgressbar.setVisibility(View.GONE);
+                                }
                             }
                         }
                     });
@@ -107,11 +115,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+         loginPasswordLayout = findViewById(R.id.LoginPasswordLayout);
         loginActivityEmailEditText = findViewById(R.id.LoginActivityEmailEdittext);
         loginActivityPasswordEditText = findViewById(R.id.LoginActivityPasswordEdittext);
         loginActivityLoginButton = findViewById(R.id.LoginActivityLoginButton);
         loginActivityloadingProgressbar = findViewById(R.id.LoginActivityLoadingProgressBar);
         loginActivityloadingProgressbar.setVisibility(View.GONE);
+        loginPasswordLayout.setErrorIconDrawable(null);
         loginActivityLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else
                     {
-                        loginActivityPasswordEditText.setError("Incorrect Password");
+                        loginPasswordLayout.setError("Incorrect Password");
                     }
                 }
             }

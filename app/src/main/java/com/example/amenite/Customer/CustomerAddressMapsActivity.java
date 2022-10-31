@@ -81,7 +81,7 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
                     }
                     Address address = addressList.get(0);
                     LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
                 }
                 return false;
             }
@@ -105,6 +105,8 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
                     locationPermission();
                     return;
                 }
+                LatLng latLng1 = new LatLng(23.8103,90.4125);
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng1, 10));
                 googleMap.setMyLocationEnabled(true);
                 googleMap.getUiSettings().setZoomControlsEnabled(true);
                 View zoomButton = ((View) mapFragment.getView().findViewById(Integer.parseInt("2")).
@@ -227,33 +229,5 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
         Intent intent = new Intent(CustomerAddressMapsActivity.this, (Class<?>) getIntent().getSerializableExtra("Activity"));  intent.putExtras(extras);
         startActivity(intent);
     }
-
-    /*private void PlaceAutoComplete()
-    {
-        String apiKey = getString(R.string.ApiKey);
-        if(!Places.isInitialized())
-        {
-            Places.initialize(getApplicationContext(),apiKey);
-        }
-        Log.d(TAG, "onCreate: "+Place.Field.NAME);
-        AutocompleteSupportFragment autocompleteSupportFragment = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
-        autocompleteSupportFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
-        autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(@NonNull Place place) {
-                // mapFragment.getMapAsync(CustomerAddressMapsActivity.this);
-                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
-            }
-
-
-            @Override
-            public void onError(@NonNull Status status) {
-                // TODO: Handle the error.
-                Log.i(TAG, "An error occurred: " + status);
-            }
-        });
-    }
-    */
-
 
 }

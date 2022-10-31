@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.amenite.Customer.Services.CustomerBeautyServiceActivity;
+import com.example.amenite.Customer.Services.CustomerElectricServiceActivity;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
 import com.example.amenite.databinding.FragmentCustomerHomeBinding;
@@ -40,6 +41,21 @@ public class CustomerHomeFragment extends Fragment {
                     @Override
                     public void onSuccess(List<Object> objects) {
                         startActivity(new Intent(getActivity(), CustomerBeautyServiceActivity.class));
+
+                    }
+                });
+
+
+            }
+        });
+        fragmentCustomerHomeBinding.CustomerHomeFragmentElectronicandappliancesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Task t1 = User.RetriveData();
+                Tasks.whenAllSuccess(t1).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
+                    @Override
+                    public void onSuccess(List<Object> objects) {
+                        startActivity(new Intent(getActivity(), CustomerElectricServiceActivity.class));
 
                     }
                 });
