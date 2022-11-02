@@ -8,12 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import com.bumptech.glide.Glide;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.databinding.FragmentEmployeeProfileBinding;
 import com.example.amenite.databinding.FragmentProfileBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
+;
 
 public class EmployeeProfileFragment extends Fragment {
-
 
 
     public EmployeeProfileFragment() {
@@ -29,9 +32,21 @@ public class EmployeeProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding =  FragmentEmployeeProfileBinding.inflate(inflater,container,false);
+        binding = FragmentEmployeeProfileBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        binding.employeeprofileload.startShimmer();
+        User.RetriveData().addOnSuccessListener(new OnSuccessListener() {
+            @Override
+            public void onSuccess(Object o) {
+                Glide.with(getContext())
+                        .load(User.Profile_Pic)
+                        .into(binding.EmployeeProfileImageview);
+                binding.employeeprofileload.stopShimmer();
+                binding.employeeprofileload.setVisibility(View.GONE);
+                binding.emloyeeprofile.setVisibility(View.VISIBLE);
 
+            }
+        });
         binding.EmployeeProfileAddressTextview.setText(User.Address);
         binding.EmployeeProfileDOBTextview.setText(User.Date_of_Birth);
         binding.EmployeeProfileEmailTextview.setText(User.Emailid);

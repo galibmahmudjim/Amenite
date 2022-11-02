@@ -1,265 +1,290 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
-    android:orientation="vertical"
-    android:gravity="center">
-    <ImageView
-        android:id="@+id/CustomerProfileImageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/profile" />
-    <androidx.cardview.widget.CardView
+    android:orientation="vertical">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/customerprofileload"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:background="@color/ghost_white"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:paddingLeft="15dp"
-        android:paddingEnd="15dp"
-        android:layout_marginBottom="15dp"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/ghost_white"
-            android:gravity="left"
-            android:orientation="horizontal"
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Name:"
-                android:textColor="#B02A3736"
-                android:background="@color/ghost_white"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/CustomerProfileNameTextview"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:textColor="#B02A3736"
-                android:background="@color/ghost_white"
-                android:textSize="15dp" />
+            <include layout="@layout/loading" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/customerprofile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:paddingEnd="5dp"
-        android:paddingTop="5dp"
-        android:layout_marginBottom="15dp"
-        >
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="left"
-            android:orientation="horizontal"
-            android:background="@color/ghost_white"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:paddingLeft="15dp"
-            android:paddingEnd="15dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/CustomerProfileImageview"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/profile" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:background="@color/ghost_white"
-                android:text="Phone Number:"
-                android:textColor="#B02A3736"
-                android:textSize="15dp" />
-            <TextView
-                android:id="@+id/CustomerProfilePhonenumberTextview"
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:textColor="#B02A3736"
-                android:background="@color/ghost_white"
-                />
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:paddingEnd="5dp"
-        android:paddingTop="5dp"
-        android:layout_marginBottom="15dp"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="left"
-            android:orientation="horizontal"
-            android:background="@color/ghost_white"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:paddingLeft="15dp"
-            android:paddingEnd="15dp">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Email:"
-                android:textSize="15dp"
-                android:textColor="#B02A3736"
-                android:background="@color/ghost_white"
-                />
-            <TextView
-                android:id="@+id/CustomerProfileEmailTextview"
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:textColor="#B02A3736"
-                android:background="@color/ghost_white"
-                />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:paddingEnd="5dp"
-        android:paddingTop="5dp"
-        android:layout_marginBottom="15dp"
-        >
-
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:orientation="horizontal"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="15dp"
             android:background="@color/ghost_white"
-            android:padding="10dp">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Address:"
-                android:textSize="15dp"
-                android:textColor="#B02A3736"
-                android:background="@color/ghost_white"
-                />
-            <TextView
-                android:id="@+id/CustomerProfileAddressTextview"
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:textColor="#B02A3736"
-                android:background="@color/ghost_white"
-                />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:paddingEnd="5dp"
-        android:paddingTop="5dp"
-        android:layout_marginBottom="15dp"
-        >
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="15dp">
 
-        <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/ghost_white"
+                android:gravity="left"
+                android:orientation="horizontal"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ghost_white"
+                    android:text="Name:"
+                    android:textColor="#B02A3736"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/CustomerProfileNameTextview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@color/ghost_white"
+                    android:textColor="#B02A3736"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:orientation="horizontal"
-            android:background="@color/ghost_white"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:paddingLeft="15dp"
-            android:paddingEnd="15dp">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:text="Date of Birth: "
-                android:textSize="15dp"
-                android:textColor="#B02A3736"
-                android:background="@color/ghost_white"
-                />
-            <TextView
-                android:id="@+id/CustomerProfileDOBTextview"
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:textColor="#B02A3736"
-                android:background="@color/ghost_white"
-                />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:id="@+id/EditProfilecardView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:paddingEnd="5dp"
-        android:paddingTop="5dp"
-        >
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="15dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp">
 
-        <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/ghost_white"
+                android:gravity="left"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="15dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@color/ghost_white"
+                    android:text="Phone Number:"
+                    android:textColor="#B02A3736"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/CustomerProfilePhonenumberTextview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@color/ghost_white"
+                    android:textColor="#B02A3736"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="left"
-            android:orientation="horizontal"
-            android:background="@color/ghost_white"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:paddingLeft="15dp"
-            android:paddingEnd="15dp">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Gender:"
-                android:textSize="15dp"
-                android:textColor="#B02A3736"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="15dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@color/ghost_white"
-                />
-            <TextView
-                android:id="@+id/CustomerProfileGenderTextview"
-                android:layout_width="0dp"
-                android:layout_weight="3"
+                android:gravity="left"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="15dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ghost_white"
+                    android:text="Email:"
+                    android:textColor="#B02A3736"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/CustomerProfileEmailTextview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@color/ghost_white"
+                    android:textColor="#B02A3736"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="15dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:textColor="#B02A3736"
                 android:background="@color/ghost_white"
-                />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_marginTop="25dp"
-        android:id="@+id/CustomerProfileEditprofileButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit Profile"
-        />
+                android:gravity="left"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ghost_white"
+                    android:text="Address:"
+                    android:textColor="#B02A3736"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/CustomerProfileAddressTextview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@color/ghost_white"
+                    android:textColor="#B02A3736"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="15dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ghost_white"
+                android:gravity="left"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="15dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@color/ghost_white"
+                    android:text="Date of Birth: "
+                    android:textColor="#B02A3736"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/CustomerProfileDOBTextview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@color/ghost_white"
+                    android:textColor="#B02A3736"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/EditProfilecardView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/ghost_white"
+                android:gravity="left"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="15dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ghost_white"
+                    android:text="Gender:"
+                    android:textColor="#B02A3736"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/CustomerProfileGenderTextview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@color/ghost_white"
+                    android:textColor="#B02A3736"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/CustomerProfileEditprofileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Edit Profile" />
+    </LinearLayout>
 
 
 </LinearLayout>

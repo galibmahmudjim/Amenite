@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
 import com.example.amenite.databinding.FragmentProfileBinding;
@@ -41,7 +42,19 @@ public class ProfileFragment extends Fragment {
 
         binding =  FragmentProfileBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
+        binding.customerprofileload.startShimmer();
+        User.RetriveData().addOnSuccessListener(new OnSuccessListener() {
+            @Override
+            public void onSuccess(Object o) {
+                Glide.with(getContext())
+                        .load(User.Profile_Pic)
+                        .into(binding.CustomerProfileImageview);
+                binding.customerprofileload.stopShimmer();
+                binding.customerprofileload.setVisibility(View.GONE);
+                binding.customerprofile.setVisibility(View.VISIBLE);
 
+            }
+        });
         binding.CustomerProfileAddressTextview.setText(User.Address);
         binding.CustomerProfileDOBTextview.setText(User.Date_of_Birth);
         binding.CustomerProfileEmailTextview.setText(User.Emailid);

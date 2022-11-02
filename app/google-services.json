@@ -37,10 +37,6 @@
             "package_name": "com.example.amenite",
             "certificate_hash": "f77ada5dbb04570383a2209c1d1062347f724d12"
           }
-        },
-        {
-          "client_id": "134314415540-v7pg6atkk63be5advck2omeinn9onlps.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
@@ -50,12 +46,7 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "134314415540-v7pg6atkk63be5advck2omeinn9onlps.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

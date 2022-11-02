@@ -23,6 +23,7 @@ public class User {
     public static String Longitude;
     public static String Latitude;
     public static String Date_of_Birth;
+    public static String Profile_Pic;
 
     public User() {
         RetriveData();
@@ -77,6 +78,10 @@ public class User {
                                 setPhonenumber(documentSnapshot.get("Phone_Number").toString());
                             else
                                 setPhonenumber(" ");
+                            if (documentSnapshot.contains("Profile_Pic"))
+                                setProfile_Pic(documentSnapshot.get("Profile_Pic").toString());
+                            else
+                                setProfile_Pic(" ");
                         }
                     }
                 });
@@ -185,5 +190,13 @@ public class User {
 
     public static void setDate_of_Birth(String date_of_Birth) {
         Date_of_Birth = date_of_Birth;
+    }
+
+    public static String getProfile_Pic() {
+        return Profile_Pic;
+    }
+
+    public static void setProfile_Pic(String profile_Pic) {
+        Profile_Pic = profile_Pic;
     }
 }

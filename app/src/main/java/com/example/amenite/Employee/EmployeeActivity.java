@@ -14,8 +14,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
-
-import com.example.amenite.Customer.Appointmentlist.AppointmentListFragment;
 import com.example.amenite.Employee.AppointmentReq.EmployeeAppointmentReqListFragment;
 import com.example.amenite.Employee.Appointmentlist.EmployeeAppointmentListFragment;
 import com.example.amenite.PROFILE.User;

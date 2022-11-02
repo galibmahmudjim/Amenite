@@ -1,23 +1,34 @@
 package com.example.amenite.Employee;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.amenite.Customer.CustomerActivity;
+import com.bumptech.glide.Glide;
 import com.example.amenite.Customer.CustomerAddressMapsActivity;
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
-import com.example.amenite.databinding.ActivityEditCusomerProfileBinding;
 import com.example.amenite.databinding.ActivityEditEmployeeProfileBinding;
+import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.UploadTask;
 
 import java.time.Month;
 import java.util.Calendar;
@@ -26,12 +37,14 @@ import java.util.List;
 public class EditEmployeeProfileActivity extends AppCompatActivity {
     private static final String TAG = "Amenite_check";
     private ActivityEditEmployeeProfileBinding binding;
+    Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityEditEmployeeProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        imageUri = null;
         binding.toolbar.appbartitle.setText("Edit Profile");
         binding.toolbar.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,11 +52,26 @@ public class EditEmployeeProfileActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        //Image pick
+        binding.employeeeditprofilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ImagePicker.with(EditEmployeeProfileActivity.this)
+                        .crop()
+                        .maxResultSize(1024, 1024)
+                        .start();
+            }
+        });
+        //end
         binding.EditProfileEmailTextview.setText(User.Emailid);
         binding.EditProfileUsernameTextview.setText(User.getUsername());
         binding.EditProfilePhonenumberTextview.setText(User.Phonenumber);
         binding.EditProfileNameEdittext.setText(User.Fullname);
         binding.EditProfileAddresstextview.setText(getIntent().getStringExtra("Address"));
+        Glide.with(EditEmployeeProfileActivity.this)
+                .load(User.Profile_Pic)
+                .into(binding.employeeeditprofilePic);
         if (getIntent().getStringExtra("Name") != null) {
             binding.EditProfileNameEdittext.setText(getIntent().getStringExtra("Name"));
         } else {
@@ -82,21 +110,18 @@ public class EditEmployeeProfileActivity extends AppCompatActivity {
                 String Address = " ";
                 double Latitude = 0;
                 double Longitude = 0;
-                Intent intent = new Intent(EditEmployeeProfileActivity.this, CustomerActivity.class);
+                Intent intent = new Intent(EditEmployeeProfileActivity.this, EmployeeActivity.class);
                 intent.putExtra("currentFragment", "25");
                 int radio = binding.EditEmployeeRadioGroup.getCheckedRadioButtonId();
                 RadioButton red = findViewById(radio);
                 String Gender = " ";
                 if (getIntent().getStringExtra("Address") != null) {
                     Address = getIntent().getStringExtra("Address");
-                    Latitude = getIntent().getDoubleExtra("Latitude",0.0);
-                    Longitude = getIntent().getDoubleExtra("Longitude",0.0);
-                }
-                else
-                {
-                    if(User.Address!=null)
-                    {
-                        Address=User.Address;
+                    Latitude = getIntent().getDoubleExtra("Latitude", 0.0);
+                    Longitude = getIntent().getDoubleExtra("Longitude", 0.0);
+                } else {
+                    if (User.Address != null) {
+                        Address = User.Address;
                         Latitude = Double.parseDouble(User.Latitude);
                         Longitude = Double.parseDouble(User.Longitude);
 
@@ -129,10 +154,67 @@ public class EditEmployeeProfileActivity extends AppCompatActivity {
                                 "Name", name,
                                 "Address", Address,
                                 "Gender", Gender,
-                                "Latitude",Latitude,
-                                "Longitude",Longitude,
+                                "Latitude", Latitude,
+                                "Longitude", Longitude,
                                 "Date_of_Birth", binding.EditProfileDOBTextview.getText().toString()
                         );
+                //Uploading image
+                if (imageUri != null) {
+                    ProgressDialog progressDialog = new ProgressDialog(EditEmployeeProfileActivity.this);
+                    progressDialog.setTitle("Uploading...");
+                    progressDialog.show();
+
+                    dBresources.firebaseStorage.getReference().child(User.Emailid + ".jpg")
+                            .putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    binding.employeeeditprofilePic.setImageURI(null);
+                                    dBresources.firebaseStorage.getReference().child(User.Emailid+".jpg")
+                                            .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri uri) {
+                                                    dBresources.database.collection("User")
+                                                            .document(User.UserID).update("Profile_Pic",uri)
+                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void unused) {
+                                                                    progressDialog.dismiss();
+                                                                }
+                                                            });
+                                                }
+                                            });
+
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                    // Error, Image not uploaded
+                                    progressDialog.dismiss();
+                                    Toast
+                                            .makeText(EditEmployeeProfileActivity.this,
+                                                    "Failed " + e.getMessage(),
+                                                    Toast.LENGTH_SHORT)
+                                            .show();
+                                }
+                            })
+                            .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+
+                                @Override
+                                public void onProgress(
+                                        UploadTask.TaskSnapshot taskSnapshot) {
+                                    double progress
+                                            = (100.0
+                                            * taskSnapshot.getBytesTransferred()
+                                            / taskSnapshot.getTotalByteCount());
+                                    progressDialog.setMessage(
+                                            "Uploaded "
+                                                    + (int) progress + "%");
+                                }
+                            });
+                }
+                //end
                 Task t1 = User.RetriveData();
                 Tasks.whenAllSuccess(t1).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
                     @Override
@@ -160,4 +242,13 @@ public class EditEmployeeProfileActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == RESULT_OK) {
+
+            binding.employeeeditprofilePic.setImageURI(data.getData());
+            imageUri = data.getData();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

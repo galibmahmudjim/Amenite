@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,6 +38,7 @@ public class DBresources {
     public FirebaseFirestore database = FirebaseFirestore.getInstance();
     public FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     public FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    public FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
 
 
 }
