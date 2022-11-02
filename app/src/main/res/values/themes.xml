@@ -35,6 +35,18 @@
         <item name="android:textColor">@color/quantum_googred</item>
         <item name="android:textSize">12sp</item>
     </style>
+    
+    <style name="toolbartex" parent="TextAppearance.MaterialComponents.Button">
+    <item name="android:textSize"> 20dp</item>
+    </style>
+    <style name="foxandtoolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@drawable/dark_gradiant</item>
+        <item name="theme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 
 
 </resources>

@@ -3,18 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:clickable="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
+
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient"
+        android:clickable="true">
 
 
         <LinearLayout
@@ -30,7 +33,6 @@
                 android:id="@+id/imageView4"
                 android:layout_width="132dp"
                 android:layout_height="84dp"
-                android:layout_marginTop="30dp"
                 android:src="@drawable/appointment" />
 
             <androidx.cardview.widget.CardView
@@ -52,7 +54,7 @@
                     android:paddingBottom="10dp">
 
                     <TextView
-                        android:id="@+id/CutomerBeautyAppointmentIntroNameTextview"
+                        android:id="@+id/CutomerCarrentalAppointmentIntroNameTextview"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -60,7 +62,7 @@
                         android:textColor="#A4817B8C" />
 
                     <TextView
-                        android:id="@+id/CutomerBeautyAppointmentNameTextview"
+                        android:id="@+id/CutomerCarrentalAppointmentNameTextview"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -95,7 +97,7 @@
                         android:textColor="#A4817B8C" />
 
                     <TextView
-                        android:id="@+id/CutomerBeautyAppointmentPhonenumberTextview"
+                        android:id="@+id/CutomerCarrentalAppointmentPhonenumberTextview"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -130,7 +132,7 @@
                         android:textColor="#A4817B8C" />
 
                     <EditText
-                        android:id="@+id/CutomerBeautyAppointmentPhonenumber1Edittext"
+                        android:id="@+id/CutomerCarrentalAppointmentPhonenumber1Edittext"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="4"
@@ -169,7 +171,7 @@
                         android:textColor="#A4817B8C" />
 
                     <TextView
-                        android:id="@+id/CutomerBeautyAppointmentEmailTextview"
+                        android:id="@+id/CutomerCarrentalAppointmentEmailTextview"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
@@ -217,7 +219,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/CutomerBeautyAppointmentMapAddressTextview"
+                            android:id="@+id/CutomerCarrentalAppointmentMapAddressTextview"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
@@ -232,7 +234,7 @@
                             android:textSize="15dp" />
 
                         <ImageButton
-                            android:id="@+id/CutomerBeautyAppointmentMapAddressButton"
+                            android:id="@+id/CutomerCarrentalAppointmentMapAddressButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -249,7 +251,7 @@
                     </LinearLayout>
 
                     <EditText
-                        android:id="@+id/CutomerBeautyAppointmentAddressEdittext"
+                        android:id="@+id/CutomerCarrentalAppointmentAddressEdittext"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
@@ -267,7 +269,7 @@
 
 
             <Button
-                android:id="@+id/CutomerBeautyAppointmentNextButton"
+                android:id="@+id/CutomerCarrentalAppointmentNextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="100dp"
@@ -280,5 +282,4 @@
                 android:textColor="@color/ghost_white" />
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

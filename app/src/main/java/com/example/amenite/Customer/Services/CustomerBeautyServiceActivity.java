@@ -1,16 +1,22 @@
 package com.example.amenite.Customer.Services;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.amenite.Customer.CustomerAddressMapsActivity;
 import com.example.amenite.PROFILE.User;
+import com.example.amenite.R;
 import com.example.amenite.databinding.ActivityCustomerBeautyServiceBinding;
+import com.example.amenite.databinding.ToolbarBinding;
 
 public class CustomerBeautyServiceActivity extends AppCompatActivity {
     private static final String TAG = "Amenite_check";
@@ -21,6 +27,13 @@ public class CustomerBeautyServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activityCustomerBeautyServiceBinding = ActivityCustomerBeautyServiceBinding.inflate(getLayoutInflater());
         setContentView(activityCustomerBeautyServiceBinding.getRoot());
+        activityCustomerBeautyServiceBinding.toolbar.appbartitle.setText("Beauty and Salon");
+        activityCustomerBeautyServiceBinding.toolbar.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentNameTextview.setText(User.Fullname);
         activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentMapAddressTextview.setText(User.getAddress().toString());
         Log.d(TAG, "onCreate:fd " + activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentMapAddressTextview.getText());
@@ -82,5 +95,12 @@ public class CustomerBeautyServiceActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 }

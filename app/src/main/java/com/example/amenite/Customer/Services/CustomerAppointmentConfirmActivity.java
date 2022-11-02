@@ -40,6 +40,13 @@ public class CustomerAppointmentConfirmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityCustomerAppointmentConfirmBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.toolbar.appbartitle.setText("Appointment");
+        binding.toolbar.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         Intent intent = getIntent();
         User.RetriveData();
         binding.CustomerAppointmentConfirmNameTextview
@@ -59,7 +66,7 @@ public class CustomerAppointmentConfirmActivity extends AppCompatActivity {
         }
         binding.CustomerAppointmentConfirmAddressTextview.setText(address);
 
-        binding.CustomerAppointmentConfirmServiceTextview.setText("Beauty, " + intent.getStringExtra("ChooseService"));
+        binding.CustomerAppointmentConfirmServiceTextview.setText(getIntent().getStringExtra("Service"));
 
         binding.CustomerAppointmentConfirmAddserviceTextview.setText(intent.getStringExtra("AddService"));
 

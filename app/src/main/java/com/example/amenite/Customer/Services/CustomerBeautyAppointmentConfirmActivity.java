@@ -27,6 +27,13 @@ public class CustomerBeautyAppointmentConfirmActivity extends AppCompatActivity 
         super.onCreate(savedInstanceState);
         binding = ActivityCustomerBeautyAppointmentConfirmBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.toolbar.appbartitle.setText("Time and Date");
+        binding.toolbar.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         Log.d(TAG, "onClick: "+getIntent().getStringExtra("Latitude"));
 
         binding.CustomerBeautyAppointmentConfirmActivityDateButton.setOnClickListener(new View.OnClickListener() {

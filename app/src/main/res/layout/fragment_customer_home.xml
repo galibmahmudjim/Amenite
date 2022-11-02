@@ -48,7 +48,7 @@
             android:layout_marginBottom="64dp"
             android:layout_weight="1"
             android:background="@color/purple_200"
-            android:text="Beauty " />
+            android:text="Beauty &amp;\nSalon " />
     </LinearLayout>
 
     <LinearLayout
@@ -76,7 +76,7 @@
             android:layout_marginBottom="64dp"
             android:layout_weight="1"
             android:background="@color/purple_200"
-            android:text="ELELCTRONIC AND APPLIANCES" />
+            android:text="Electronic &amp;\n Appliances" />
     </LinearLayout>
 
     <LinearLayout
@@ -104,7 +104,7 @@
             android:layout_marginBottom="64dp"
             android:layout_weight="1"
             android:background="@color/purple_200"
-            android:text="TRAVEL" />
+            android:text="Car Rental" />
     </LinearLayout>
 
     <LinearLayout

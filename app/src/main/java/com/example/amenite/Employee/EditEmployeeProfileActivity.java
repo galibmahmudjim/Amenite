@@ -32,6 +32,13 @@ public class EditEmployeeProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityEditEmployeeProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.toolbar.appbartitle.setText("Edit Profile");
+        binding.toolbar.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         binding.EditProfileEmailTextview.setText(User.Emailid);
         binding.EditProfileUsernameTextview.setText(User.getUsername());
         binding.EditProfilePhonenumberTextview.setText(User.Phonenumber);

@@ -17,4 +17,16 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
+    <style name="toolbartex" parent="TextAppearance.MaterialComponents.Button">
+        <item name="color">@color/ghost_white</item>
+    </style>
+    <style name="foxandtoolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@drawable/toolbar</item>
+        <item name="theme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
+        <item name="titleTextAppearance">@style/Widget.AppCompat.Toolbar</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
 </resources>

@@ -21,6 +21,13 @@ public class CustomerElectricServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityCustomerElectricServiceBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.toolbar.appbartitle.setText("Electronic and Appliance Repair");
+        binding.toolbar.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         binding.CutomerElectricAppointmentNameTextview.setText(User.Fullname);
         binding.CutomerElectricAppointmentMapAddressTextview.setText(User.getAddress().toString());
         Log.d(TAG, "onCreate:fd " + binding.CutomerElectricAppointmentMapAddressTextview.getText());
@@ -69,7 +76,7 @@ public class CustomerElectricServiceActivity extends AppCompatActivity {
                 intent1.putExtra("Email", binding.CutomerElectricAppointmentEmailTextview.getText().toString());
                 intent1.putExtra("AddressMap", binding.CutomerElectricAppointmentMapAddressTextview.getText().toString());
                 intent1.putExtra("AddressDetails", binding.CutomerElectricAppointmentAddressEdittext.getText().toString());
-                intent1.putExtra("Service", "Electric");
+                intent1.putExtra("Service", "Electronic and Appliances");
                 intent1.putExtra("Latitude", String.valueOf(finalLatitude));
                 intent1.putExtra("Longitude",String.valueOf(finalLongitude));
                 intent1.putExtra("PhoneNumber2", binding.CutomerElectricAppointmentPhonenumber1Edittext.getText().toString());

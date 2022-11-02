@@ -2,6 +2,7 @@ package com.example.amenite.Employee;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,13 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityEmployeeAppointmentDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.toolbar.appbartitle.setText("Appointment Details");
+        binding.toolbar.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         Intent intent = getIntent();
         DBresources dBresources = new DBresources();
         dBresources.database.collection("Appointment").document(intent.getStringExtra("Appointment_Id"))

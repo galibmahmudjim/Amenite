@@ -17,6 +17,13 @@ public class CustomerChooseBeautyServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityCustomerChooseBeautyServiceBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.toolbar.appbartitle.setText("Choose a service");
+        binding.toolbar.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         Bundle extras = getIntent().getExtras();
         binding.CustomerChooseBeautyserviceBeautycareButton.setOnClickListener(new View.OnClickListener() {
             @Override

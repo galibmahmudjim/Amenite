@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.amenite.Customer.Services.CustomerBeautyServiceActivity;
+import com.example.amenite.Customer.Services.CustomerCarrentalServiceActivity;
 import com.example.amenite.Customer.Services.CustomerElectricServiceActivity;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
@@ -59,8 +60,19 @@ public class CustomerHomeFragment extends Fragment {
 
                     }
                 });
+            }
+        });
+        fragmentCustomerHomeBinding.CustomerHomeFragmentTravelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Task t1 = User.RetriveData();
+                Tasks.whenAllSuccess(t1).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
+                    @Override
+                    public void onSuccess(List<Object> objects) {
+                        startActivity(new Intent(getActivity(), CustomerCarrentalServiceActivity.class));
 
-
+                    }
+                });
             }
         });
         return view;

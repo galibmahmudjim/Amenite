@@ -22,6 +22,13 @@ public class CustomerAppointmentDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAppointmentDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.toolbar.appbartitle.setText("Appointment Details");
+        binding.toolbar.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         Intent intent = getIntent();
         DBresources dBresources = new DBresources();
         dBresources.database.collection("Appointment").document(intent.getStringExtra("Appointment_Id"))
@@ -47,8 +54,10 @@ public class CustomerAppointmentDetailsActivity extends AppCompatActivity {
                                 }
                                 binding.CustomerAppointmentDetailsAddressTextview.setText(Address);
                                 String Service = documentSnapshot.get("Service").toString();
-                                if (!documentSnapshot.get("Choose_Service").toString().isEmpty() && documentSnapshot.get("Choose_Service").toString() != null) {
-                                    Service += ", " + documentSnapshot.get("Choose_Service");
+                                if (documentSnapshot.contains("Choose_Service")) {
+                                    if ( documentSnapshot.get("Choose_Service") != null) {
+                                        Service += ", " + documentSnapshot.get("Choose_Service");
+                                    }
                                 }
                                 if (!documentSnapshot.get("Additional_Service").toString().isEmpty() && documentSnapshot.get("Additional_Service").toString() != null) {
                                     Service += ",\n" + documentSnapshot.get("Additional_Service");

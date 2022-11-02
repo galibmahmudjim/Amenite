@@ -1,122 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:clickable="true"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/ghost_white"
-    android:theme="@style/Theme.Material3.Light.NoActionBar"
-    tools:context=".SignupActivity">
-    <TextView
-        android:id="@+id/SignupActivitySignupTextview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:textSize="25dp"
-        android:layout_marginBottom="20dp"
-        />
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Full Name"
-        app:startIconDrawable="@drawable/ic_baseline_drive_file_rename_outline_24"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/SignupActivityFullnameEditText"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:ems="15"
-            android:inputType="textPersonName"
-            android:layout_marginBottom="10dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Username"
-        app:startIconDrawable="@drawable/base_person"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/SignupActivityUsernameEdittext"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        app:startIconDrawable="@drawable/email"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/SignupActivityEmailEdittext"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:layout_marginBottom="10dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Phone Number"
-        app:startIconDrawable="@drawable/phone_call"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/SignupActivityPhonenumberEdittext"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:layout_marginBottom="10dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        app:errorTextAppearance="@style/error_appearance"
-        app:startIconDrawable="@drawable/lock"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/SignupActivityPasswordEdittext"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:layout_marginBottom="10dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        app:startIconDrawable="@drawable/lock"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/SignupActivityConfirmPasswordEdittext"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:layout_marginBottom="10dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
-   <EditText
-        android:id="@+id/SignupActivityOtpEdittext"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-       android:visibility="gone"
-        android:hint="OTP"
-        android:layout_marginBottom="10dp"/>
+    android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
 
-    <Button
-        android:id="@+id/SignupActivitySubmitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Submit" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
-    <ProgressBar
-        android:id="@+id/SignupActivityLoadingProgressBar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:max="3" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ghost_white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:theme="@style/Theme.Material3.Light.NoActionBar"
+        tools:context=".SignupActivity">
+
+        <TextView
+            android:id="@+id/SignupActivitySignupTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Sign Up"
+            android:textSize="25dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Full Name"
+            app:startIconDrawable="@drawable/ic_baseline_drive_file_rename_outline_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/SignupActivityFullnameEditText"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:ems="15"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            app:startIconDrawable="@drawable/base_person">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/SignupActivityUsernameEdittext"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            app:startIconDrawable="@drawable/email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/SignupActivityEmailEdittext"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            app:startIconDrawable="@drawable/phone_call">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/SignupActivityPhonenumberEdittext"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:inputType="phone" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            app:errorTextAppearance="@style/error_appearance"
+            app:startIconDrawable="@drawable/lock">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/SignupActivityPasswordEdittext"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            app:startIconDrawable="@drawable/lock">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/SignupActivityConfirmPasswordEdittext"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText
+            android:id="@+id/SignupActivityOtpEdittext"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="OTP"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/SignupActivitySubmitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Submit" />
+
+        <ProgressBar
+            android:id="@+id/SignupActivityLoadingProgressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:max="3" />
+    </LinearLayout>
 </LinearLayout>

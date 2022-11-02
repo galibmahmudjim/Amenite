@@ -26,7 +26,13 @@ public class CustomerElectricAppointmentConfirmActivity extends AppCompatActivit
         super.onCreate(savedInstanceState);
         binding = ActivityCustomerElectricAppointmentConfirmBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Log.d(TAG, "onClick: "+getIntent().getStringExtra("Latitude"));
+        binding.toolbar.appbartitle.setText("Electronic and Appliance Repair");
+        binding.toolbar.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         binding.CustomerElectricAppointmentConfirmActivityDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
