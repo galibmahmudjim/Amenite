@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.Employee.EditEmployeeProfileActivity;
 import com.example.amenite.PROFILE.User;
+import com.example.amenite.R;
 import com.example.amenite.databinding.ActivityEditCusomerProfileBinding;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -63,14 +64,27 @@ public class EditCusomerProfileActivity extends AppCompatActivity {
             }
         });
         //end
+        if(User.Profile_Pic==" ")
+        {
+            Glide.with(EditCusomerProfileActivity.this)
+                    .load("android.resource://"+getPackageName()+"/drawable/profile")
+                    .into(binding.customereeditprofilePic);
 
-        Glide.with(EditCusomerProfileActivity.this)
-                .load(User.Profile_Pic)
-                .into(binding.customereeditprofilePic);
-        binding.EditProfileEmailTextview.setText(User.Emailid);
-        binding.EditProfileUsernameTextview.setText(User.getUsername());
-        binding.EditProfilePhonenumberTextview.setText(User.Phonenumber);
-        binding.EditProfileNameEdittext.setText(User.Fullname);
+            binding.EditProfileEmailTextview.setText(User.Emailid);
+            binding.EditProfileUsernameTextview.setText(User.getUsername());
+            binding.EditProfilePhonenumberTextview.setText(User.Phonenumber);
+            binding.EditProfileNameEdittext.setText(User.Fullname);
+        }
+        else
+        {
+            Glide.with(EditCusomerProfileActivity.this)
+                    .load(User.Profile_Pic)
+                    .into(binding.customereeditprofilePic);
+            binding.EditProfileEmailTextview.setText(User.Emailid);
+            binding.EditProfileUsernameTextview.setText(User.getUsername());
+            binding.EditProfilePhonenumberTextview.setText(User.Phonenumber);
+            binding.EditProfileNameEdittext.setText(User.Fullname);
+        }
         binding.EditProfileAddresstextview.setText(getIntent().getStringExtra("Address"));
         if (getIntent().getStringExtra("Name") != null) {
             binding.EditProfileNameEdittext.setText(getIntent().getStringExtra("Name"));
@@ -117,14 +131,11 @@ public class EditCusomerProfileActivity extends AppCompatActivity {
                 String Gender = " ";
                 if (getIntent().getStringExtra("Address") != null) {
                     Address = getIntent().getStringExtra("Address");
-                    Latitude = getIntent().getDoubleExtra("Latitude",0.0);
-                    Longitude = getIntent().getDoubleExtra("Longitude",0.0);
-                }
-                else
-                {
-                    if(User.Address!=null)
-                    {
-                        Address=User.Address;
+                    Latitude = getIntent().getDoubleExtra("Latitude", 0.0);
+                    Longitude = getIntent().getDoubleExtra("Longitude", 0.0);
+                } else {
+                    if (User.Address != null) {
+                        Address = User.Address;
                         Latitude = Double.parseDouble(User.Latitude);
                         Longitude = Double.parseDouble(User.Longitude);
 
@@ -157,11 +168,12 @@ public class EditCusomerProfileActivity extends AppCompatActivity {
                                 "Name", name,
                                 "Address", Address,
                                 "Gender", Gender,
-                                "Latitude",Latitude,
-                                "Longitude",Longitude,
+                                "Latitude", Latitude,
+                                "Longitude", Longitude,
                                 "Date_of_Birth", binding.EditProfileDOBTextview.getText().toString()
                         );
                 //Uploading image
+                Log.d(TAG, "onClick: " + imageUri);
                 if (imageUri != null) {
                     ProgressDialog progressDialog = new ProgressDialog(EditCusomerProfileActivity.this);
                     progressDialog.setTitle("Uploading...");
@@ -172,12 +184,12 @@ public class EditCusomerProfileActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                     binding.customereeditprofilePic.setImageURI(null);
-                                    dBresources.firebaseStorage.getReference().child(User.Emailid+".jpg")
+                                    dBresources.firebaseStorage.getReference().child(User.Emailid + ".jpg")
                                             .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                                 @Override
                                                 public void onSuccess(Uri uri) {
                                                     dBresources.database.collection("User")
-                                                            .document(User.UserID).update("Profile_Pic",uri)
+                                                            .document(User.UserID).update("Profile_Pic", uri)
                                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                 @Override
                                                                 public void onSuccess(Void unused) {
@@ -244,6 +256,7 @@ public class EditCusomerProfileActivity extends AppCompatActivity {
         datePickerDialog.show();
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == RESULT_OK) {
