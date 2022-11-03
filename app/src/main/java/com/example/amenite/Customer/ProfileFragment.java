@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
 import com.example.amenite.databinding.FragmentProfileBinding;
@@ -43,28 +42,16 @@ public class ProfileFragment extends Fragment {
 
         binding =  FragmentProfileBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
-        DBresources dBresources = new DBresources();
         binding.customerprofileload.startShimmer();
         User.RetriveData().addOnSuccessListener(new OnSuccessListener() {
             @Override
             public void onSuccess(Object o) {
-                if(User.Profile_Pic!=" ") {
-                    Glide.with(getContext())
-                            .load(User.Profile_Pic)
-                            .into(binding.CustomerProfileImageview);
-                    binding.customerprofileload.stopShimmer();
-                    binding.customerprofileload.setVisibility(View.GONE);
-                    binding.customerprofile.setVisibility(View.VISIBLE);
-                }
-                else
-                {
-                    Glide.with(getContext())
-                            .load("android.resource://"+getContext().getPackageName()+"/drawable/profile")
-                            .into(binding.CustomerProfileImageview);
-                    binding.customerprofileload.stopShimmer();
-                    binding.customerprofileload.setVisibility(View.GONE);
-                    binding.customerprofile.setVisibility(View.VISIBLE);
-                }
+                Glide.with(getContext())
+                        .load(User.Profile_Pic)
+                        .into(binding.CustomerProfileImageview);
+                binding.customerprofileload.stopShimmer();
+                binding.customerprofileload.setVisibility(View.GONE);
+                binding.customerprofile.setVisibility(View.VISIBLE);
 
             }
         });

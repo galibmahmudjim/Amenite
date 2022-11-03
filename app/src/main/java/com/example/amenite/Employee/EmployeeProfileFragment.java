@@ -13,7 +13,8 @@ import com.bumptech.glide.Glide;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.databinding.FragmentEmployeeProfileBinding;
 import com.example.amenite.databinding.FragmentProfileBinding;
-import com.google.android.gms.tasks.OnSuccessListener;;
+import com.google.android.gms.tasks.OnSuccessListener;
+;
 
 public class EmployeeProfileFragment extends Fragment {
 
@@ -37,23 +38,12 @@ public class EmployeeProfileFragment extends Fragment {
         User.RetriveData().addOnSuccessListener(new OnSuccessListener() {
             @Override
             public void onSuccess(Object o) {
-                if(User.Profile_Pic!=" ") {
-                    Glide.with(getContext())
-                            .load(User.Profile_Pic)
-                            .into(binding.EmployeeProfileImageview);
-                    binding.employeeprofileload.stopShimmer();
-                    binding.employeeprofileload.setVisibility(View.GONE);
-                    binding.emloyeeprofile.setVisibility(View.VISIBLE);
-                }
-                else
-                {
-                    Glide.with(getContext())
-                            .load("android.resource://"+getContext().getPackageName()+"/drawable/profile")
-                            .into(binding.EmployeeProfileImageview);
-                    binding.employeeprofileload.stopShimmer();
-                    binding.employeeprofileload.setVisibility(View.GONE);
-                    binding.emloyeeprofile.setVisibility(View.VISIBLE);
-                }
+                Glide.with(getContext())
+                        .load(User.Profile_Pic)
+                        .into(binding.EmployeeProfileImageview);
+                binding.employeeprofileload.stopShimmer();
+                binding.employeeprofileload.setVisibility(View.GONE);
+                binding.emloyeeprofile.setVisibility(View.VISIBLE);
 
             }
         });

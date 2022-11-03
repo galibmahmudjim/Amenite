@@ -18,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.amenite.Customer.CustomerAddressMapsActivity;
-import com.example.amenite.Customer.EditCusomerProfileActivity;
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.databinding.ActivityEditEmployeeProfileBinding;
@@ -46,40 +45,7 @@ public class EditEmployeeProfileActivity extends AppCompatActivity {
         binding = ActivityEditEmployeeProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         imageUri = null;
-        binding.employeeeditprofileload.startShimmer();
         binding.toolbar.appbartitle.setText("Edit Profile");
-        User.RetriveData().addOnSuccessListener(new OnSuccessListener() {
-            @Override
-            public void onSuccess(Object o) {
-
-                binding.employeeeditprofileload.stopShimmer();
-                binding.employeeeditprofileload.setVisibility(View.GONE);
-                binding.employeeedit.setVisibility(View.VISIBLE);
-                Log.d(TAG, "onSuccess: "+User.Profile_Pic);
-                if(User.Profile_Pic==" ")
-                {
-                    Glide.with(EditEmployeeProfileActivity.this)
-                            .load("android.resource://"+getPackageName()+"/drawable/profile")
-                            .into(binding.employeeeditprofilePic);
-
-                    binding.EditProfileEmailTextview.setText(User.Emailid);
-                    binding.EditProfileUsernameTextview.setText(User.getUsername());
-                    binding.EditProfilePhonenumberTextview.setText(User.Phonenumber);
-                    binding.EditProfileNameEdittext.setText(User.Fullname);
-                }
-                else
-                {
-                    Glide.with(EditEmployeeProfileActivity.this)
-                            .load(User.Profile_Pic)
-                            .into(binding.employeeeditprofilePic);
-                    binding.EditProfileEmailTextview.setText(User.Emailid);
-                    binding.EditProfileUsernameTextview.setText(User.getUsername());
-                    binding.EditProfilePhonenumberTextview.setText(User.Phonenumber);
-                    binding.EditProfileNameEdittext.setText(User.Fullname);
-                }
-            }
-        });
-
         binding.toolbar.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,7 +64,6 @@ public class EditEmployeeProfileActivity extends AppCompatActivity {
             }
         });
         //end
-
         binding.EditProfileEmailTextview.setText(User.Emailid);
         binding.EditProfileUsernameTextview.setText(User.getUsername());
         binding.EditProfilePhonenumberTextview.setText(User.Phonenumber);
