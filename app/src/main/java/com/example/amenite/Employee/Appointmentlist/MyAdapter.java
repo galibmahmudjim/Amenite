@@ -1,18 +1,30 @@
 package com.example.amenite.Employee.Appointmentlist;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.amenite.Customer.CustomerAppointmentDetailsActivity;
+import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.Employee.AppointmentDetailsActivity;
 import com.example.amenite.Employee.RequestedEmployeeAppointmentDetailsActivity;
+import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
+import com.example.amenite.TAG;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -43,6 +55,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.employeeAppointmentlistCardviewAppointmentTimeTextview.setText(appointmentList.Appointment_Time);
         holder.employeeAppointmentlistCardviewAppointmentDateTextview.setText(appointmentList.Appointment_Date);
         holder.employeeAppointmentlistCardviewIdTextview.setText(appointmentList.Appointment_Id);
+        DBresources dBresources = new DBresources();
+        User.RetriveData().addOnSuccessListener(new OnSuccessListener() {
+            @Override
+            public void onSuccess(Object o) {
+                dBresources.database.collection("User").whereEqualTo("Email",appointmentList.Email)
+                        .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                for(QueryDocumentSnapshot queryDocumentSnapshot : task.getResult())
+                                {
+                                    if(queryDocumentSnapshot.contains("Profile_Pic"))
+                                    {
+                                        Glide.with(context)
+                                                .load(queryDocumentSnapshot.get("Profile_Pic"))
+                                                .into(holder.employeeAppointmentlistImage);
+                                    }
+                                }
+                            }
+                        });
+            }
+        });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +101,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         TextView employeeAppointmentlistCardviewAppointmentDateTextview;
         TextView employeeAppointmentlistCardviewAppointmentTimeTextview;
         TextView employeeAppointmentlistCardviewIdTextview;
+        ImageView employeeAppointmentlistImage;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,6 +111,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             employeeAppointmentlistCardviewAppointmentTimeTextview = itemView.findViewById(R.id.EmployeeAppointmentlistCardviewAppointmentTimeTextview);
             employeeAppointmentlistCardviewStatusTextview = itemView.findViewById(R.id.EmployeeAppointmentlistCardviewStatusTextview);
             employeeAppointmentlistCardviewIdTextview = itemView.findViewById(R.id.EmployeeAppointmentlistCardviewIdTextview);
+            employeeAppointmentlistImage = itemView.findViewById(R.id.EmployeeAppointmentlistImage);
         }
     }
 }

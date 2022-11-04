@@ -1,22 +1,35 @@
 package com.example.amenite.Employee.Appointmentlist;
 
+import android.widget.ImageView;
+
 public class AppointmentList {
     String Request_Time, Request_Date, Appointment_Id, Status, Service,Choose_Service, Appointment_Time, Appointment_Date;
+    String Email;
 
     public AppointmentList()
     {
 
     }
-    public AppointmentList(String request_Time, String request_Date, String appointment_Id, String status, String service, String choose_Service, String appointment_Time, String appointment_Date) {
+    public AppointmentList(String request_Time, String email, String request_Date, String appointment_Id, String status, String service ,String choose_Service, String appointment_Time, String appointment_Date) {
         Request_Time = request_Time;
         Request_Date = request_Date;
         Appointment_Id = appointment_Id;
+        Email = email;
         Status = status;
         Service = service;
         Choose_Service = choose_Service;
         Appointment_Time = appointment_Time;
         Appointment_Date = appointment_Date;
     }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
 
     public String getRequest_Time() {
         return Request_Time;
