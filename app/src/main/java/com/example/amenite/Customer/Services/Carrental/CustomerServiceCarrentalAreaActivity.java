@@ -54,22 +54,27 @@ public class CustomerServiceCarrentalAreaActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         intent.putExtras(bundle);
         String pickaddress = null, destaddres=null;
-        if(intent.getStringExtra("pickup")!=null) {
+        if(intent.getStringExtra("Pickup")!=null) {
 
-            pickaddress = intent.getStringExtra("pickup");
+            pickaddress = intent.getStringExtra("Pickup");
+            intent.putExtra("Pickup_Latitude",getIntent().getStringExtra("Pickup_Latitude"));
+            intent.putExtra("Pickup_Longitude",getIntent().getStringExtra("Pickup_Longitude"));
         }
         else{
 
             pickaddress = intent.getStringExtra("AddressMap");
+            intent.putExtra("Pickup_Latitude",getIntent().getStringExtra("Latitude"));
+            intent.putExtra("Pickup_Longitude",intent.getStringExtra("Longitude"));
+
         }
         binding.picuplocation.setText(pickaddress);
-        intent.putExtra("pickup",pickaddress);
+        intent.putExtra("Pickup",pickaddress);
 
-        if(intent.getStringExtra("destination")!=null)
+        if(intent.getStringExtra("Destination")!=null)
         {
-            destaddres = intent.getStringExtra("destination");
+            destaddres = intent.getStringExtra("Destination");
         }
-        Log.d(TAG.TAG, "onCreate: "+intent.getStringExtra("target"));
+        Log.d(TAG.TAG, "onCreate: "+intent.getStringExtra("Destination_Latitude"));
         binding.destinationlocation.setText(destaddres);
         intent.putExtra("destination",destaddres);
 
@@ -142,8 +147,11 @@ public class CustomerServiceCarrentalAreaActivity extends AppCompatActivity {
                 {
                     intent.removeExtra("target");
                 }
-                intent.removeExtra("pickup");
-                intent2.putExtra("target","pickup");
+                intent.removeExtra("Pickup_Latitude");
+                intent.removeExtra("Pickup_Longitude");
+                intent.removeExtra("Pickup");
+                intent.removeExtra("target");
+                intent2.putExtra("target","Pickup");
                 intent2.putExtras(intent.getExtras());
                 startActivity(intent2);
             }
@@ -158,8 +166,11 @@ public class CustomerServiceCarrentalAreaActivity extends AppCompatActivity {
                     intent.removeExtra("target");
                 }
 
-                intent.removeExtra("destination");
-                intent2.putExtra("target","destination");
+                intent.removeExtra("Destination_Latitude");
+                intent.removeExtra("Destination_Longitude");
+                intent.removeExtra("Destination");
+                intent.removeExtra("target");
+                intent2.putExtra("target","Destination");
                 intent2.putExtras(intent.getExtras());
                 startActivity(intent2);
             }
@@ -175,6 +186,10 @@ public class CustomerServiceCarrentalAreaActivity extends AppCompatActivity {
         binding.procedbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG.TAG, "onClick: "+intent.getStringExtra("Pickup_Latitude"));
+
+                intent.putExtra("Pickup_Date",binding.picuplocationdate.getText());
+                intent.putExtra("Pickup_Time",binding.picuplocationtime.getText());
                 if(intent.getStringExtra("Service_Area").equals("Inside City(Dhaka)"))
                 {
                     boolean inc =true;
