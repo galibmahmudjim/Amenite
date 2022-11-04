@@ -13,10 +13,12 @@
             android:title="Home" />
         <item
             android:id="@+id/employeeMenuAppointment"
-            android:title="Appointment" />
+            android:title="Appointment"
+            android:icon="@drawable/appoint"/>
         <item
             android:id="@+id/employeeMenuAppointmentRequest"
-            android:title="Appointment Request" />
+            android:title="Appointment Request"
+            android:icon="@drawable/pending"/>
 
 
         <item

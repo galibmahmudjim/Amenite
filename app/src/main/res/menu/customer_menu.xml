@@ -13,7 +13,8 @@
             android:title="Home" />
         <item
             android:id="@+id/customerMenuAppointment"
-            android:title="Appointment" />
+            android:title="Appointment"
+            android:icon="@drawable/appoint"/>
 
 
         <item

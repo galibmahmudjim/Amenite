@@ -177,10 +177,30 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="left"
+                android:gravity="center"
                 android:orientation="vertical">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="70dp"
+                    android:id="@+id/EmployeeAppointmentReqlistImage"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"/>
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:numStars="5"
+                    style="?attr/ratingBarStyleSmall"
+                    android:layout_weight="1"
+                    android:scaleX="1"
+                    android:layout_marginTop="15dp"
+                    android:scaleY="1"
+                    android:transformPivotX="0dp"
+                    android:transformPivotY="0dp"
+                    android:isIndicator="true"
+                    android:max="5"/>
 
             </LinearLayout>
+
+
         </LinearLayout>
     </LinearLayout>
 
