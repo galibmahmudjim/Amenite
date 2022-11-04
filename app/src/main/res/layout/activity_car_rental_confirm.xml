@@ -1,47 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
-    <include layout="@layout/toolbar"
-        android:id="@+id/carconfirmtoolbar"/>
+
+    <include
+        android:id="@+id/carconfirmtoolbar"
+        layout="@layout/toolbar" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
             android:orientation="vertical">
+
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginTop="30dp"
                 android:background="@color/Shimmer_color"
                 android:fontFamily="sans-serif-medium"
-                android:text="Price Details"
-                android:paddingTop="7dp"
                 android:paddingStart="40dp"
-                android:layout_marginTop="30dp"
+                android:paddingTop="7dp"
+                android:text="Pricing Details"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="25sp" />
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/carconfirmtextview"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/Shimmer_color"
-                android:fontFamily="sans-serif-medium"
-                android:paddingTop="7dp"
-                android:layout_marginTop="30dp"
-                android:textAlignment="center"
-                android:textColor="#F44336"
-                android:textSize="15sp" />
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/budgetcardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ghost_white"
+                android:layout_margin="20dp"
+                android:layout_marginTop="30dp"
+                android:elevation="15dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/carconfirmtextview"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingTop="7dp"
+                    android:textAlignment="center"
+                    android:textColor="#F44336"
+                    android:textSize="15sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -56,25 +69,29 @@
                     android:background="#00000000"
                     android:orientation="horizontal">
 
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="70dp"
+                        android:layout_weight="0.7"
+                        android:id="@+id/carpic"/>
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:paddingStart="20dp"
                         android:orientation="vertical"
                         android:padding="5dp">
 
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
+                            android:id="@+id/carcatcon"
                             android:layout_weight="1"
-                            android:id="@+id/carconfirmarea"
                             android:textColor="@color/black"
-                            android:textSize="20dp"
-                            android:textStyle="bold"/>
+                            android:textSize="17dp" />
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/carconfirmtimelimit"
+                            android:id="@+id/carconcapacity"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
@@ -89,43 +106,66 @@
                         android:orientation="vertical">
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/carfee"
+                            android:id="@+id/carfeecon"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.8"
+                            android:layout_weight="1"
                             android:textAlignment="center"
                             android:textColor="@color/black"
-                            android:textSize="20dp"
+                            android:textSize="30dp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/budgetcardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:checkable="true"
-                android:clickable="true"
-                android:focusable="true"
                 android:padding="20dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="textStart"
-                    android:id="@+id/carconfirmdistance"
-                    android:textSize="20dp"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="textStart"
-                    android:id="@+id/carconfirmhour"
-                    android:textSize="20dp"
-                    android:textStyle="bold"/>
-            </com.google.android.material.card.MaterialCardView>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/carconfirmdistance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textStart"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/carconfirmhour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textStart"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="30dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/carconfirmproceed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="67dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@color/ghost_white"
+                    android:padding="15dp"
+                    android:focusable="true"
+                    android:textAlignment="center"
+                    android:text="Proceed to Checkout" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
