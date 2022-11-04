@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RatingBar;
 
 import com.bumptech.glide.Glide;
@@ -54,6 +55,13 @@ public class TaskCompleteActivity extends AppCompatActivity {
                                 }
                             }
                         });
+            }
+        });
+        binding.taskcompletebuttonok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TaskCompleteActivity.this,EmployeeActivity.class));
+                finish();
             }
         });
 

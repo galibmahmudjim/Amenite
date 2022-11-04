@@ -64,6 +64,9 @@ public class EmployeeHomeFragment extends Fragment {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {
                                 intent.putExtra("Email",documentSnapshot.get("Email").toString());
+                                dBresources.database.collection("Appointment")
+                                                .document(appointmentLists.get(0).getAppointment_Id())
+                                                        .update("Status","Completed");
                                 startActivity(intent);
                             }
                         });
