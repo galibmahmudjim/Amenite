@@ -15,6 +15,7 @@
 
 
     <ImageView
+        android:id="@+id/AdminEditProfilePhoto"
         android:layout_width="203dp"
         android:layout_height="127dp"
         android:layout_marginBottom="30dp"
@@ -162,7 +163,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/AdminEditProfileUpdateButton"
+        android:id="@+id/AdminEditProfileChangePhotoButton"
         android:layout_width="130dp"
         android:layout_height="49dp"
         android:background="@color/pastelPurple"

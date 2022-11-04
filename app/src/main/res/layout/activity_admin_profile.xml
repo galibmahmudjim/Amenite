@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/AdminProfiletextView1" />
 
     <ImageView
-        android:id="@+id/imageView17"
+        android:id="@+id/AdminPhoto"
         android:layout_width="196dp"
         android:layout_height="162dp"
         android:layout_marginStart="107dp"
@@ -54,7 +54,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView17" />
+        app:layout_constraintTop_toBottomOf="@+id/AdminPhoto" />
 
     <EditText
         android:id="@+id/AdminProfileeditText1"
@@ -67,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toEndOf="@+id/AdminProfiletextView1"
-        app:layout_constraintTop_toBottomOf="@+id/imageView17"
+        app:layout_constraintTop_toBottomOf="@+id/AdminPhoto"
         tools:ignore="MissingConstraints" />
 
     <EditText
