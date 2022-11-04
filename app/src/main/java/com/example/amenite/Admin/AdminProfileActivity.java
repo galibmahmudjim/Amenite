@@ -19,7 +19,9 @@ public class AdminProfileActivity extends AppCompatActivity {
     private TextView Name;
     private TextView PhoneNumber;
     private TextView Email;
-    //ImageView profileImage;
+    private ImageView ProfileImage;
+
+
 
 
     @Override
@@ -35,6 +37,8 @@ public class AdminProfileActivity extends AppCompatActivity {
 
         Email=findViewById(R.id.adminProfileeditText3);
         Email.setText(User.Emailid);
+
+        ProfileImage=findViewById(R.id.AdminPhoto);
 
         button = findViewById(R.id.adminButton);
         button.setOnClickListener(new View.OnClickListener() {
