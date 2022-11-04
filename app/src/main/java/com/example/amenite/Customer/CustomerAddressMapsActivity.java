@@ -22,6 +22,7 @@ import android.widget.SearchView;
 
 import com.example.amenite.Customer.Services.CustomerBeautyServiceActivity;
 import com.example.amenite.R;
+import com.example.amenite.TAG;
 import com.example.amenite.databinding.ActivityCustomerAddressMapsBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -57,13 +58,21 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
             public void onClick(View view) {
                 Intent intent1 = getIntent();
                 Intent intent = new Intent(CustomerAddressMapsActivity.this, (Class<?>) intent1.getSerializableExtra("Activity"));
-                intent.putExtra("Address",binding.CustomerAddressMapAddressTextview.getText().toString());
-                intent.putExtra("Latitude",latd);
-                intent.putExtra("Longitude",land);
-                if(intent1.getStringExtra("target")!=null)
-                {
-                    intent.putExtra(intent1.getStringExtra("target"),intent.getStringExtra("Address"));
-                    Log.d(TAG, "onClick: "+intent.getStringExtra("target"));
+                intent.putExtra("Address", binding.CustomerAddressMapAddressTextview.getText().toString());
+                intent.putExtra("Latitude", latd);
+                intent.putExtra("Longitude", land);
+                if (intent1.getStringExtra("target") != null) {
+                    if(intent1.getStringExtra("target").equals("Pickup")){
+                    intent.putExtra( "Pickup_Longitude", land);
+                    intent.putExtra("Pickup_Latitude", latd);
+                        Log.d(com.example.amenite.TAG.TAG, "onClick:pick "+intent1.getStringExtra("target"));
+                    }
+                    else {
+
+                        intent.putExtra( "Destination_Longitude", land);
+                        intent.putExtra("Destination_Latitude", latd);
+                    }
+                    intent.putExtra(intent1.getStringExtra("target"), intent.getStringExtra("Address"));
                 }
                 Bundle extra = getIntent().getExtras();
                 intent.putExtras(extra);
@@ -110,7 +119,7 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
                     locationPermission();
                     return;
                 }
-                LatLng latLng1 = new LatLng(23.8103,90.4125);
+                LatLng latLng1 = new LatLng(23.8103, 90.4125);
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng1, 10));
                 googleMap.setMyLocationEnabled(true);
                 googleMap.getUiSettings().setZoomControlsEnabled(true);
@@ -228,7 +237,8 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
         super.onBackPressed();
         Bundle extras = getIntent().getExtras();
 
-        Intent intent = new Intent(CustomerAddressMapsActivity.this, (Class<?>) getIntent().getSerializableExtra("Activity"));  intent.putExtras(extras);
+        Intent intent = new Intent(CustomerAddressMapsActivity.this, (Class<?>) getIntent().getSerializableExtra("Activity"));
+        intent.putExtras(extras);
         startActivity(intent);
     }
 
