@@ -1,4 +1,4 @@
-package com.example.amenite.Customer.Services;
+package com.example.amenite.Customer.Services.Carrental;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -89,5 +89,6 @@ public class CustomerCarrentalServiceActivity extends AppCompatActivity {
 
             }
         });
+
     }
 }

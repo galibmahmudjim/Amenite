@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.amenite.Customer.Services.CustomerBeautyServiceActivity;
-import com.example.amenite.Customer.Services.CustomerCarrentalServiceActivity;
+import com.example.amenite.Customer.Services.Carrental.CustomerCarrentalServiceActivity;
 import com.example.amenite.Customer.Services.CustomerElectricServiceActivity;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;

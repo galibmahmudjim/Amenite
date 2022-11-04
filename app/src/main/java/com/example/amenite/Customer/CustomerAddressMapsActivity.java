@@ -60,6 +60,11 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
                 intent.putExtra("Address",binding.CustomerAddressMapAddressTextview.getText().toString());
                 intent.putExtra("Latitude",latd);
                 intent.putExtra("Longitude",land);
+                if(intent1.getStringExtra("target")!=null)
+                {
+                    intent.putExtra(intent1.getStringExtra("target"),intent.getStringExtra("Address"));
+                    Log.d(TAG, "onClick: "+intent.getStringExtra("target"));
+                }
                 Bundle extra = getIntent().getExtras();
                 intent.putExtras(extra);
                 startActivity(intent);
@@ -158,7 +163,6 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
             if (addresses.size() > 0) {
-                System.out.println("size====" + addresses.size());
                 Address address = addresses.get(0);
 
                 for (int i = 0; i <= addresses.get(0).getMaxAddressLineIndex(); i++) {
@@ -168,8 +172,6 @@ public class CustomerAddressMapsActivity extends FragmentActivity implements OnM
                         result.append(addresses.get(0).getAddressLine(i) + ",");
                     }
                 }
-                System.out.println("ad==" + address);
-                System.out.println("result---" + result.toString());
             }
         } catch (IOException e) {
         }

@@ -1,6 +1,7 @@
 package com.example.amenite.Customer;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -88,104 +89,105 @@ public class CustomerActivity extends AppCompatActivity {
 
                     case R.id.customerMenuHome:
 
-                                                         getSupportFragmentManager().
+                        getSupportFragmentManager().
 
-                                                         beginTransaction()
-                                .
+                                beginTransaction()
+                                        .
 
-                                                         replace(R.id.CustomerActivityFragmentContainer, new CustomerHomeFragment())
-                                                                 .
+                                replace(R.id.CustomerActivityFragmentContainer, new CustomerHomeFragment())
+                                        .
 
-                                                         commit();
+                                commit();
                         activityCustomerBinding.CustomerActivityToolbarTextview.setText("Home");
                         break;
+
                     case R.id.customerMenuContactus:
 
-                                                         getSupportFragmentManager().
+                        getSupportFragmentManager().
 
-                                                         beginTransaction()
-                                .
+                                beginTransaction()
+                                        .
 
-                                                         replace(R.id.CustomerActivityFragmentContainer, new ContactUsFragment())
-                                                                 .
+                                replace(R.id.CustomerActivityFragmentContainer, new ContactUsFragment())
+                                        .
 
-                                                         commit();
+                                commit();
                         activityCustomerBinding.CustomerActivityToolbarTextview.setText("Contact Us");
                         break;
                     case R.id.ExitApp:
-                                                         AlertDialog.Builder exitapp = new AlertDialog.Builder(CustomerActivity.this);
+                        AlertDialog.Builder exitapp = new AlertDialog.Builder(CustomerActivity.this);
                         exitapp.setMessage("Do you want to Exit?");
                         exitapp.setTitle("Exit");
                         exitapp.setCancelable(false);
-                        exitapp.setPositiveButton("Yes",(DialogInterface.OnClickListener)(dialog,which)->
+                        exitapp.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) ->
 
-                                                         {
-                                                             moveTaskToBack(true);
-                                                             android.os.Process.killProcess(android.os.Process.myPid());
-                                                             System.exit(1);
-                                                         });
-                        exitapp.setNegativeButton("No",(DialogInterface.OnClickListener)(dialog,which)->
+                        {
+                            moveTaskToBack(true);
+                            android.os.Process.killProcess(android.os.Process.myPid());
+                            System.exit(1);
+                        });
+                        exitapp.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) ->
 
-                                                         {
-                                                             dialog.cancel();
-                                                         });
-                                                         AlertDialog exitalert = exitapp.create();
+                        {
+                            dialog.cancel();
+                        });
+                        AlertDialog exitalert = exitapp.create();
                         exitalert.show();
                         break;
 
                     case R.id.customerMenuLogout:
-                                                         AlertDialog.Builder confirmlogout = new AlertDialog.Builder(CustomerActivity.this);
+                        AlertDialog.Builder confirmlogout = new AlertDialog.Builder(CustomerActivity.this);
                         confirmlogout.setMessage("Do you want to Logout?");
                         confirmlogout.setTitle("Logout");
                         confirmlogout.setCancelable(false);
-                        confirmlogout.setPositiveButton("Yes",(DialogInterface.OnClickListener)(dialog,which)->
+                        confirmlogout.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) ->
 
-                                                         {
-                                                             FirebaseAuth.getInstance().signOut();
-                                                             startActivity(new Intent(CustomerActivity.this, Welcome.class));
-                                                             finish();
-                                                         });
-                        confirmlogout.setNegativeButton("No",(DialogInterface.OnClickListener)(dialog,which)->
+                        {
+                            FirebaseAuth.getInstance().signOut();
+                            startActivity(new Intent(CustomerActivity.this, Welcome.class));
+                            finish();
+                        });
+                        confirmlogout.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) ->
 
-                                                         {
-                                                             dialog.cancel();
-                                                         });
-                                                         AlertDialog alertDialog = confirmlogout.create();
+                        {
+                            dialog.cancel();
+                        });
+                        AlertDialog alertDialog = confirmlogout.create();
                         alertDialog.show();
                         break;
-                                                     }
-                                        activityCustomerBinding.CustomerNavigationDrawerDrawerLayout.closeDrawer(GravityCompat.START);
-                        return true;
                 }
-            });
-
-        }
-
-        boolean doubleBackToExitPressedOnce = false;
-
-
-        @Override
-        public void onBackPressed () {
-            if (activityCustomerBinding.CustomerNavigationDrawerDrawerLayout.isDrawerOpen(GravityCompat.START)) {
                 activityCustomerBinding.CustomerNavigationDrawerDrawerLayout.closeDrawer(GravityCompat.START);
-            } else {
-                if (doubleBackToExitPressedOnce) {
-                    moveTaskToBack(true);
-                    android.os.Process.killProcess(android.os.Process.myPid());
-                    System.exit(1);
-                }
+                return true;
+            }
+        });
 
-                this.doubleBackToExitPressedOnce = true;
-                Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+    }
 
-                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+    boolean doubleBackToExitPressedOnce = false;
 
-                    @Override
-                    public void run() {
-                        doubleBackToExitPressedOnce = false;
-                    }
-                }, 2000);
+
+    @Override
+    public void onBackPressed() {
+        if (activityCustomerBinding.CustomerNavigationDrawerDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            activityCustomerBinding.CustomerNavigationDrawerDrawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            if (doubleBackToExitPressedOnce) {
+                moveTaskToBack(true);
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
             }
 
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 2000);
         }
+
     }
+}

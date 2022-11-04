@@ -1,4 +1,4 @@
-package com.example.amenite.Customer.Services;
+package com.example.amenite.Customer.Services.Carrental;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.amenite.R;
+import com.example.amenite.Customer.Services.CustomerAppointmentConfirmActivity;
 import com.example.amenite.databinding.ActivityCustomerServicesCarrentalInoutCityBinding;
 
 public class CustomerServicesCarrentalInoutCityActivity extends AppCompatActivity {
@@ -24,13 +24,13 @@ public class CustomerServicesCarrentalInoutCityActivity extends AppCompatActivit
             }
         });
         Bundle bundle = getIntent().getExtras();
-        Intent intent = new Intent(CustomerServicesCarrentalInoutCityActivity.this,CustomerAppointmentConfirmActivity.class);
+        Intent intent = new Intent(CustomerServicesCarrentalInoutCityActivity.this, CustomerServiceCarrentalAreaActivity.class);
         intent.putExtras(bundle);
         binding.CustomerServiceCarrentalInsideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                intent.putExtra("Service_Area","Inside");
+                intent.putExtra("Service_Area","Inside City(Dhaka)");
                 startActivity(intent);
             }
         });
@@ -38,7 +38,7 @@ public class CustomerServicesCarrentalInoutCityActivity extends AppCompatActivit
             @Override
             public void onClick(View view) {
 
-                intent.putExtra("Service_Area","Outside");
+                intent.putExtra("Service_Area","Outside City");
                 startActivity(intent);
             }
         });
