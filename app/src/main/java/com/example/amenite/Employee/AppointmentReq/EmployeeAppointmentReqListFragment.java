@@ -63,17 +63,18 @@ public class EmployeeAppointmentReqListFragment extends Fragment {
         t1.addOnSuccessListener(new OnSuccessListener() {
             @Override
             public void onSuccess(Object o) {
-                dBresources.database.collection("Appointment").whereEqualTo("Service", User.Service).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                dBresources.database.collection("Appointment").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
                         for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                             dBresources.database.collection("Appointment").document(queryDocumentSnapshot.getId())
                                     .collection("Requested_Employee").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                         @Override
                                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                             for (QueryDocumentSnapshot queryDocumentSnapshot1 : task.getResult()) {
-                                                if (queryDocumentSnapshot1.contains("Email") && queryDocumentSnapshot.contains("Status")) {
-                                                    if (queryDocumentSnapshot1.get("Email").toString().equals(User.Emailid)&&queryDocumentSnapshot.get("Status").equals("Pending")) {
+                                                if (queryDocumentSnapshot1.contains("Email") && queryDocumentSnapshot.contains("Appointment_Status")) {
+                                                    if (queryDocumentSnapshot1.get("Email").toString().equals(User.Emailid) && queryDocumentSnapshot.get("Appointment_Status").equals("Pending")) {
                                                         appointmentReqLists.add(queryDocumentSnapshot.toObject(AppointmentReqList.class));
                                                     }
                                                 }
