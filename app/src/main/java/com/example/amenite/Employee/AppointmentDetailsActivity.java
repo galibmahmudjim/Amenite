@@ -1,6 +1,7 @@
 package com.example.amenite.Employee;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -8,13 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.amenite.DBRes.DBresources;
+import com.example.amenite.R;
 import com.example.amenite.databinding.ActivityAppointmentDetailsBinding;
 import com.example.amenite.databinding.ActivityEmployeeAppointmentDetailsBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-public class AppointmentDetailsActivity extends AppCompatActivity {
+public class  AppointmentDetailsActivity extends AppCompatActivity {
     private  ActivityEmployeeAppointmentDetailsBinding binding;
 
     @Override
@@ -22,6 +25,13 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityEmployeeAppointmentDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.toolbar.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        binding.toolbar.appbartitle.setText("Order Details");
         binding.toolbar.appbartitle.setText("Appointment Details");
         binding.toolbar.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,7 +40,33 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
             }
         });
         Intent intent = getIntent();
+        Home();
         DBresources dBresources = new DBresources();
+        FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.CustomerAppointmentCancelButton);
+         myFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", binding.EmployeeAppointmentPhone1Textview.getText().toString(), null));
+                startActivity(intent);
+            }
+        });
+        FloatingActionButton myFab1 = (FloatingActionButton) findViewById(R.id.CustomerAppointmentCallButton);
+        myFab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dBresources.database.collection("Appointment").document(binding.EmployeeAppointmentDetailsAppointmentidTextview.getText().toString())
+                        .update("Appointment_Status","Cancelled");
+                Home();
+
+            }
+        });
+
+    }
+    public void Home()
+    {
+
+        DBresources dBresources = new DBresources();
+        Intent intent = getIntent();
         dBresources.database.collection("Appointment").document(intent.getStringExtra("Appointment_Id"))
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override

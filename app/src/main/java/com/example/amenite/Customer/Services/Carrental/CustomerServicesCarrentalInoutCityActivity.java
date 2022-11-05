@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.amenite.Customer.Services.CustomerAppointmentConfirmActivity;
+import com.example.amenite.TAG;
 import com.example.amenite.databinding.ActivityCustomerServicesCarrentalInoutCityBinding;
 
 public class CustomerServicesCarrentalInoutCityActivity extends AppCompatActivity {
@@ -26,6 +28,7 @@ public class CustomerServicesCarrentalInoutCityActivity extends AppCompatActivit
         Bundle bundle = getIntent().getExtras();
         Intent intent = new Intent(CustomerServicesCarrentalInoutCityActivity.this, CustomerServiceCarrentalAreaActivity.class);
         intent.putExtras(bundle);
+        Log.d(TAG.TAG, "onCreate:dsffgg "+intent.getStringExtra("Service"));
         binding.CustomerServiceCarrentalInsideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

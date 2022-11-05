@@ -32,7 +32,7 @@ public class EmployeSignupFragment extends Fragment {
                 .load(User.Profile_Pic)
                 .into(binding.cussignpic);
         binding.cussignNameEdittext.setText(User.getFullname());
-        String[] job = {"Beauty and Salon","Electric","Car Rental", "Home Service"};
+        String[] job = {"Beauty and Salon","Electronic and Appliances","Car Rental", "Home Service"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item, job);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);

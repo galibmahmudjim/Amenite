@@ -123,7 +123,6 @@
                                 android:id="@+id/employeehomecurrentappointmentcompletebutton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Complete"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
@@ -196,11 +195,11 @@
                                 android:textStyle="bold" />
 
                             <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/employeehomenextappointmentstartbutton"
+                                android:id="@+id/employeehomenextappointmentCallbutton"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Start"
+                                android:text="Call"
                                 android:textStyle="bold" />
 
                         </LinearLayout>

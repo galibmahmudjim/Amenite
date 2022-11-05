@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.Preference;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,7 +64,8 @@ public class EmployeeAppointmentReqListFragment extends Fragment {
         Task t2 = t1.addOnSuccessListener(new OnSuccessListener() {
             @Override
             public void onSuccess(Object o) {
-                dBresources.database.collection("Appointment").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                Log.d(TAG.TAG, "onSuccess: "+User.getService());
+                dBresources.database.collection("Appointment").whereEqualTo("Service",User.getService()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
 

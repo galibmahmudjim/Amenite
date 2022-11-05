@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.amenite.Customer.CustomerAppointmentDetailsActivity;
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.Employee.AppointmentDetailsActivity;
+import com.example.amenite.Employee.CarrentalDetailsActivity;
 import com.example.amenite.Employee.RequestedEmployeeAppointmentDetailsActivity;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
@@ -49,13 +50,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
 
         AppointmentList appointmentList = appointmentLists.get(position);
-        holder.employeeAppointmentlistCardviewStatusTextview.setText(appointmentList.Status);
+        holder.employeeAppointmentlistCardviewStatusTextview.setText(appointmentList.Appointment_Status);
         holder.employeeAppointmentlistCardviewTimeTextview.setText(appointmentList.Request_Date+", "+appointmentList.Request_Time);
         holder.employeeAppointmentlistCardviewServiceTextview.setText(appointmentList.Service);
         holder.employeeAppointmentlistCardviewAppointmentTimeTextview.setText(appointmentList.Appointment_Time);
         holder.employeeAppointmentlistCardviewAppointmentDateTextview.setText(appointmentList.Appointment_Date);
         holder.employeeAppointmentlistCardviewIdTextview.setText(appointmentList.Appointment_Id);
-        if(User.Service=="Carrental")
+        if(User.Service=="Car Rental")
         {
             holder.apptext.setText("Pickup Time");
         }
@@ -84,9 +85,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AppointmentDetailsActivity.class);
+                if(holder.employeeAppointmentlistCardviewServiceTextview.getText().toString().equals("Car Rental"))
+                {
+                Intent intent = new Intent(view.getContext(), CarrentalDetailsActivity.class);
                 intent.putExtra("Appointment_Id",holder.employeeAppointmentlistCardviewIdTextview.getText().toString());
-                view.getContext().startActivity(intent);
+                view.getContext().startActivity(intent);}
+                else{
+                    Intent intent = new Intent(view.getContext(), AppointmentDetailsActivity.class);
+                    intent.putExtra("Appointment_Id",holder.employeeAppointmentlistCardviewIdTextview.getText().toString());
+                    view.getContext().startActivity(intent);}
+
             }
         });
 

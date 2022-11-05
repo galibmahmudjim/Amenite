@@ -3,19 +3,19 @@ package com.example.amenite.Employee.Appointmentlist;
 import android.widget.ImageView;
 
 public class AppointmentList {
-    String Request_Time, Request_Date, Appointment_Id, Status, Service,Choose_Service, Appointment_Time, Appointment_Date;
+    String Request_Time, Request_Date, Appointment_Id, Appointment_Status, Service,Choose_Service, Appointment_Time, Appointment_Date;
     String Email;
 
     public AppointmentList()
     {
 
     }
-    public AppointmentList(String request_Time, String email, String request_Date, String appointment_Id, String status, String service ,String choose_Service, String appointment_Time, String appointment_Date) {
+    public AppointmentList(String request_Time, String email, String request_Date, String appointment_Id, String appointment_status, String service ,String choose_Service, String appointment_Time, String appointment_Date) {
         Request_Time = request_Time;
         Request_Date = request_Date;
         Appointment_Id = appointment_Id;
         Email = email;
-        Status = status;
+        Appointment_Status = appointment_status;
         Service = service;
         Choose_Service = choose_Service;
         Appointment_Time = appointment_Time;
@@ -55,12 +55,12 @@ public class AppointmentList {
         Appointment_Id = appointment_Id;
     }
 
-    public String getStatus() {
-        return Status;
+    public String getAppointment_Status() {
+        return Appointment_Status;
     }
 
-    public void setStatus(String status) {
-        Status = status;
+    public void setAppointment_Status(String appointment_status) {
+        Appointment_Status = appointment_status;
     }
 
     public String getService() {

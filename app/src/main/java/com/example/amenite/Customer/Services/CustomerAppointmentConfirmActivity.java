@@ -111,7 +111,7 @@ public class CustomerAppointmentConfirmActivity extends AppCompatActivity {
                 appointment.put("Address_Details", intent.getStringExtra("AddressDetails"));
                 appointment.put("Appointment_Date", intent.getStringExtra("Date"));
                 appointment.put("Appointment_Time", intent.getStringExtra("Time"));
-                appointment.put("Base_Fare",  binding.CustomerAppointmentConfirmBasefareTextview.getText().toString());
+                appointment.put("Base_Fare", binding.CustomerAppointmentConfirmBasefareTextview.getText().toString());
                 appointment.put("Additional_Charge", binding.CustomerAppointmentConfirmAddchargeTextview.getText().toString());
                 appointment.put("Vat", binding.CustomerAppointmentConfirmVatTextview.getText().toString());
                 appointment.put("Total_Fare", binding.CustomerAppointmentConfirmTotalTextview.getText().toString());
@@ -172,49 +172,42 @@ public class CustomerAppointmentConfirmActivity extends AppCompatActivity {
                                                             Double.parseDouble(qs.get("Latitude").toString()), Double.parseDouble(qs.get("Longitude").toString()),
                                                             results);
 
-                                                    if (results[0] <= 2000) {
-                                                        n++;
-                                                        DocumentReference dref = dBresources.database.collection("Appointment")
-                                                                .document(appointment.get("Appointment_Id").toString());
-                                                        HashMap<String, String> hmap = new HashMap<String, String>();
-                                                        hmap.put("Email", qs.get("Email").toString());
-                                                        dref.collection("Requested_Employee").document(qs.getId()).set(hmap);
-                                                        dBresources.database.collection("Token").document(qs.get("Email").toString())
-                                                                .get()
-                                                                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                                                    @Override
-                                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                                        if(task.isSuccessful())
-                                                                        {
-                                                                            DocumentSnapshot documentSnapshot = task.getResult();
-                                                                            if(documentSnapshot.exists())
-                                                                            {
-                                                                                FcmNotificationsSender notificationsSender = new FcmNotificationsSender(documentSnapshot.get("Email").toString()
-                                                                                        ,"channel1","New Appointment Request","You have a new appointment request\nName: "+User.Fullname+"\nAddress: "
-                                                                                        +appointment.get("Address")+"\nTime and Date: "+appointment.get("Appointment_Date")+", "+appointment.get("Appointment_Time")
-                                                                                        ,getApplicationContext(),CustomerAppointmentConfirmActivity.this);
-                                                                            }
+                                                    n++;
+                                                    DocumentReference dref = dBresources.database.collection("Appointment")
+                                                            .document(appointment.get("Appointment_Id").toString());
+                                                    HashMap<String, String> hmap = new HashMap<String, String>();
+                                                    hmap.put("Email", qs.get("Email").toString());
+                                                    dref.collection("Requested_Employee").document(qs.getId()).set(hmap);
+                                                    dBresources.database.collection("Token").document(qs.get("Email").toString())
+                                                            .get()
+                                                            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                                    if (task.isSuccessful()) {
+                                                                        DocumentSnapshot documentSnapshot = task.getResult();
+                                                                        if (documentSnapshot.exists()) {
+                                                                            FcmNotificationsSender notificationsSender = new FcmNotificationsSender(documentSnapshot.get("Email").toString()
+                                                                                    , "channel1", "New Appointment Request", "You have a new appointment request\nName: " + User.Fullname + "\nAddress: "
+                                                                                    + appointment.get("Address") + "\nTime and Date: " + appointment.get("Appointment_Date") + ", " + appointment.get("Appointment_Time")
+                                                                                    , getApplicationContext(), CustomerAppointmentConfirmActivity.this);
                                                                         }
                                                                     }
-                                                                });
-
-                                                    }
+                                                                }
+                                                            });
                                                 }
                                             }
                                             dBresources.database.collection("Token").document(User.Emailid)
                                                     .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                            if(task.isSuccessful())
-                                                            {
+                                                            if (task.isSuccessful()) {
                                                                 DocumentSnapshot documentSnapshot = task.getResult();
-                                                                if(documentSnapshot.exists())
-                                                                {
-                                                                    Log.d(TAG, "onComplete: "+documentSnapshot.get("Token").toString());
+                                                                if (documentSnapshot.exists()) {
+                                                                    Log.d(TAG, "onComplete: " + documentSnapshot.get("Token").toString());
                                                                     FcmNotificationsSender notificationsSender = new FcmNotificationsSender(documentSnapshot.get("Token").toString()
-                                                                            ,"Channel1","New Appointment","Your Appointment\nName: "+User.Fullname+"\nAddress: "
-                                                                            +appointment.get("AddressMap")+"\nTime and Date: "+appointment.get("Appointment_Date")+", "+appointment.get("Appointment_Time")
-                                                                            ,getApplicationContext(),CustomerAppointmentConfirmActivity.this);
+                                                                            , "Channel1", "New Appointment", "Your Appointment\nName: " + User.Fullname + "\nAddress: "
+                                                                            + appointment.get("AddressMap") + "\nTime and Date: " + appointment.get("Appointment_Date") + ", " + appointment.get("Appointment_Time")
+                                                                            , getApplicationContext(), CustomerAppointmentConfirmActivity.this);
                                                                     notificationsSender.SendNotifications();
                                                                 }
                                                             }

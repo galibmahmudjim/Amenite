@@ -2,16 +2,28 @@ package com.example.amenite.Customer.Appointmentlist;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.amenite.Customer.CustomerAppointmentDetailsActivity;
+import com.example.amenite.Customer.Services.Carrental.DetailsCarRentalActivity;
+import com.example.amenite.DBRes.DBresources;
+import com.example.amenite.Employee.CarrentalDetailsActivity;
 import com.example.amenite.R;
+import com.example.amenite.TAG;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -36,21 +48,50 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
 
         AppointmentList appoinmentList = appoinmentArrayLists.get(position);
-        holder.customerAppointmentlistCardviewStatusTextview.setText(appoinmentList.Status);
+        holder.customerAppointmentlistCardviewStatusTextview.setText(appoinmentList.Appointment_Status);
         holder.customerAppointmentlistCardviewTimeTextview.setText(appoinmentList.Request_Date+", "+appoinmentList.Request_Time);
         holder.customerAppointmentlistCardviewServiceTextview.setText(appoinmentList.Service);
         holder.customerAppointmentlistCardviewAppointmentTimeTextview.setText(appoinmentList.Appointment_Time);
         holder.customerAppointmentlistCardviewAppointmentDateTextview.setText(appoinmentList.Appointment_Date);
         holder.customerAppointmentlistCardviewIdTextview.setText(appoinmentList.Appointment_Id);
+        DBresources dBresources = new DBresources();
+        dBresources.database.collection("Appointment").document(appoinmentList.getAppointment_Id())
+                        .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        dBresources.database.collection("User").whereEqualTo("Email",documentSnapshot.get("Employee".toString()))
+                                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                        for (QueryDocumentSnapshot queryDocumentSnapshot: queryDocumentSnapshots)
+                                        {
+                                            if(queryDocumentSnapshot.contains("Profile_Pic"))
+                                            Glide.with(context)
+                                                    .load(queryDocumentSnapshot.get("Profle_Pic"))
+                                                    .into(holder.customerAppointmentlistImage);
+                                            if(queryDocumentSnapshot.contains("Rating"))
+                                                holder.customerAppointmentlistRating.setRating(Float.parseFloat(queryDocumentSnapshot.get("Rating").toString()));
+                                        }
+                                    }
+                                });
+                    }
+                });
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), CustomerAppointmentDetailsActivity.class);
-                intent.putExtra("Appointment_Id",holder.customerAppointmentlistCardviewIdTextview.getText().toString());
-                view.getContext().startActivity(intent);
-            }
-        });
+                 if(holder.customerAppointmentlistCardviewServiceTextview.getText().equals("Car Rental")){
+                   Intent intent = new Intent(view.getContext(), DetailsCarRentalActivity.class);
+                   intent.putExtra("Appointment_Id",holder.customerAppointmentlistCardviewIdTextview.getText());
+                     view.getContext().startActivity(intent);}
+                 else
+                 {
+                     Intent intent = new Intent(view.getContext(), CustomerAppointmentDetailsActivity.class);
+                     intent.putExtra("Appointment_Id",holder.customerAppointmentlistCardviewIdTextview.getText());
+                     view.getContext().startActivity(intent);}
+                 }
+            });
 
     }
 
@@ -66,6 +107,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         TextView customerAppointmentlistCardviewAppointmentDateTextview;
         TextView customerAppointmentlistCardviewAppointmentTimeTextview;
         TextView customerAppointmentlistCardviewIdTextview;
+        ImageView customerAppointmentlistImage;
+        RatingBar customerAppointmentlistRating;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,6 +118,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             customerAppointmentlistCardviewAppointmentTimeTextview = itemView.findViewById(R.id.CustomerAppointmentlistCardviewAppointmentTimeTextview);
             customerAppointmentlistCardviewStatusTextview = itemView.findViewById(R.id.CustomerAppointmentlistCardviewStatusTextview);
             customerAppointmentlistCardviewIdTextview = itemView.findViewById(R.id.CustomerAppointmentlistCardviewIdTextview);
+            customerAppointmentlistImage = itemView.findViewById(R.id.CustomerAppointmentlistImage);
+            customerAppointmentlistRating = itemView.findViewById(R.id.CustomerAppointmentlistRating);
         }
     }
 }

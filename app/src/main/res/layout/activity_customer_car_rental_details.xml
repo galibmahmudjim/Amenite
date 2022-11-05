@@ -10,12 +10,10 @@
     android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
 
     <include
-        android:id="@+id/toolbarcarrent"
+        android:id="@+id/custoolbarcuscarrent"
         layout="@layout/toolbar" />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -28,8 +26,7 @@
             android:padding="15dp"
             android:paddingStart="15dp"
             android:paddingTop="30dp"
-            android:paddingBottom="90dp"
-            tools:context=".Employee.carrentDetailsActivity">
+            android:paddingBottom="90dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,7 +68,7 @@
                             android:textSize="15dp" />
 
                         <TextView
-                            android:id="@+id/RcarrentNameTextview"
+                            android:id="@+id/cuscuscarrentNameTextview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
@@ -106,7 +103,7 @@
                             android:textSize="15dp" />
 
                         <TextView
-                            android:id="@+id/carrentEmailTextview"
+                            android:id="@+id/cuscarrentEmailTextview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
@@ -165,7 +162,7 @@
                                     android:orientation="horizontal">
 
                                     <TextView
-                                        android:id="@+id/carrentDetailsPhone1Textview"
+                                        android:id="@+id/cuscarrentDetailsPhone1Textview"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:paddingLeft="20dp"
@@ -181,7 +178,7 @@
                                     android:orientation="horizontal">
 
                                     <androidx.appcompat.widget.AppCompatImageButton
-                                        android:id="@+id/carrentDetailsPhone1Imagebutton"
+                                        android:id="@+id/cuscarrentDetailsPhone1Imagebutton"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:adjustViewBounds="false"
@@ -193,7 +190,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/carrentDetailsPhone2Linearlayout"
+                            android:id="@+id/cuscarrentDetailsPhone2Linearlayout"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:layout_marginBottom="10dp"
@@ -227,7 +224,7 @@
                             android:textSize="15dp" />
 
                         <TextView
-                            android:id="@+id/carrentareaTextview"
+                            android:id="@+id/cuscarrentareaTextview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
@@ -261,7 +258,7 @@
                             android:textSize="15dp" />
 
                         <TextView
-                            android:id="@+id/carrentAddressTextview"
+                            android:id="@+id/cuscarrentAddressTextview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
@@ -275,7 +272,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="25dp"
-                    android:id="@+id/destinationcarrentcard"
+                    android:id="@+id/destinationcuscarrentcard"
                     android:background="@color/ghost_white"
                     android:elevation="5dp"
                     app:cardCornerRadius="17dp">
@@ -283,7 +280,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/destemp"
                         android:background="@color/ghost_white"
                         android:orientation="vertical">
 
@@ -297,7 +293,7 @@
                             android:textSize="15dp" />
 
                         <TextView
-                            android:id="@+id/carrentDestinationTextview"
+                            android:id="@+id/cuscarrentDestinationTextview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
@@ -335,7 +331,7 @@
                             android:textSize="15dp" />
 
                         <TextView
-                            android:id="@+id/carrentDateandtimeTextview"
+                            android:id="@+id/cuscarrentDateandtimeTextview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
@@ -364,11 +360,12 @@
                 android:padding="25dp">
 
                 <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                    android:id="@+id/carrentDetailsRejectButton"
+                    android:id="@+id/cuscarrentDetailsCancelButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:elevation="25dp"
+                    android:text="Cancel"
                     android:textAlignment="center" />
             </LinearLayout>
 
@@ -380,13 +377,14 @@
                 android:padding="25dp">
 
                 <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                    android:id="@+id/carrentDetailsAcceptButton"
+                    android:id="@+id/cuscarrentDetailsCallButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="36dp"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:layout_margin="16dp"
                     android:elevation="25dp"
+                    android:text="Call"
                     android:textAlignment="center" />
             </LinearLayout>
         </LinearLayout>

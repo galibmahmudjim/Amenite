@@ -80,6 +80,7 @@ public class CustomerHomeServiceActivity extends AppCompatActivity {
                 intent1.putExtra("AddressMap", binding.hsMapAddressTextview.getText().toString());
                 intent1.putExtra("AddressDetails", binding.hsAddressEdittext.getText().toString());
                 intent1.putExtra("Service", "Home Service");
+                intent1.putExtra("Choose_Service", "Home Service");
                 intent1.putExtra("Latitude", String.valueOf(finalLatitude));
                 intent1.putExtra("Longitude",String.valueOf(finalLongitude));
                 intent1.putExtra("PhoneNumber2", binding.hsPhonenumber1Edittext.getText().toString());

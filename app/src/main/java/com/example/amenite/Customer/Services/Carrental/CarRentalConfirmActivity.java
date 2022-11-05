@@ -80,9 +80,10 @@ public class CarRentalConfirmActivity extends AppCompatActivity {
                 Double.parseDouble(getIntent().getStringExtra("Destination_Latitude").toString()), Double.parseDouble(getIntent().getStringExtra("Destination_Longitude").toString()),
                 results);*/
         if(getIntent().getStringExtra("Service_Area").equals("Outside City"))
-        binding.carconfirmdistance.setText("Distance : 54 KM");
+        binding.carconfirmdistance.setVisibility(View.GONE);
         else
         {
+            binding.carconfirmdistance.setVisibility(View.VISIBLE);
             binding.carconfirmdistance.setText("Full day max duration 10 Hours");
         }
 
@@ -96,7 +97,7 @@ public class CarRentalConfirmActivity extends AppCompatActivity {
         appointment.put("Name", intent.getStringExtra("Name"));
         appointment.put("Phone_Number", intent.getStringExtra("PhoneNumber"));
         appointment.put("Phone_Number 2", intent.getStringExtra("PhoneNumber2"));
-        appointment.put("Service", "Carrental");
+        appointment.put("Service", "Car Rental");
         appointment.put("Email", intent.getStringExtra("Email"));
         appointment.put("AddressMap", intent.getStringExtra("AddressMap"));
         appointment.put("Address_Details", intent.getStringExtra("AddressDetails"));

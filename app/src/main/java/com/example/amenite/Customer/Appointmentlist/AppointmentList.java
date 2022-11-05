@@ -1,21 +1,30 @@
 package com.example.amenite.Customer.Appointmentlist;
 
 public class AppointmentList {
-        String Request_Time, Request_Date, Appointment_Id, Status, Service,Choose_Service, Appointment_Time, Appointment_Date;
-
+        String Request_Time, Request_Date, Appointment_Id, Appointment_Status, Service,Choose_Service, Appointment_Time, Appointment_Date, Profile_Pic;
     public AppointmentList()
     {
 
     }
-    public AppointmentList(String request_Time, String request_Date, String appointment_Id, String status, String service, String choose_Service, String appointment_Time, String appointment_Date) {
+
+    public AppointmentList(String request_Time, String request_Date, String appointment_Id, String appointment_Status, String service, String choose_Service, String appointment_Time, String appointment_Date, String profile_Pic) {
         Request_Time = request_Time;
         Request_Date = request_Date;
         Appointment_Id = appointment_Id;
-        Status = status;
+        Appointment_Status = appointment_Status;
         Service = service;
         Choose_Service = choose_Service;
         Appointment_Time = appointment_Time;
         Appointment_Date = appointment_Date;
+        Profile_Pic = profile_Pic;
+    }
+
+    public String getProfile_Pic() {
+        return Profile_Pic;
+    }
+
+    public void setProfile_Pic(String profile_Pic) {
+        Profile_Pic = profile_Pic;
     }
 
     public String getRequest_Time() {
@@ -43,11 +52,11 @@ public class AppointmentList {
     }
 
     public String getAppointment_Status() {
-        return Status;
+        return Appointment_Status;
     }
 
-    public void setAppointment_Status(String status) {
-        Status = status;
+    public void setAppointment_Status(String appointment_Status) {
+        Appointment_Status = appointment_Status;
     }
 
     public String getService() {

@@ -82,7 +82,7 @@ public class CustomerBeautyServiceActivity extends AppCompatActivity {
                 intent1.putExtra("Email", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentEmailTextview.getText().toString());
                 intent1.putExtra("AddressMap", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentMapAddressTextview.getText().toString());
                 intent1.putExtra("AddressDetails", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentAddressEdittext.getText().toString());
-                intent1.putExtra("Service", "Beauty");
+                intent1.putExtra("Service", "Beauty and Salon");
                 intent1.putExtra("Latitude", String.valueOf(finalLatitude));
                 intent1.putExtra("Longitude",String.valueOf(finalLongitude));
                 intent1.putExtra("PhoneNumber2", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentPhonenumber1Edittext.getText().toString());

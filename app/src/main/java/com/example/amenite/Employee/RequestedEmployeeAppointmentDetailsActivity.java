@@ -106,7 +106,7 @@ public class RequestedEmployeeAppointmentDetailsActivity extends AppCompatActivi
                         .update("Employee",User.Emailid
                         ,"Accepted_Date", now.getDayOfMonth() + "-" + now.getMonth().toString().substring(0, 3) + "-" + now.getYear()
                         ,"Accepted_Time", sample.format(new Date())
-                        ,"Status","Accepted");
+                        ,"Appointment_Status","Accepted");
                 dBresources.database.collection("Appointment").document(getIntent().getStringExtra("Appointment_Id"))
                         .collection("Requested_Employee").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override

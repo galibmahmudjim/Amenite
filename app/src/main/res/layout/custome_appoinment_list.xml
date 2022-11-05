@@ -88,9 +88,9 @@
                         android:layout_weight="1"
                         android:paddingLeft="10dp"
                         android:paddingBottom="5dp"
-                        android:textStyle="bold"
                         android:textColor="#883E2828"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -104,10 +104,10 @@
                             android:layout_weight="0.5"
                             android:paddingLeft="10dp"
                             android:paddingBottom="5dp"
-                            android:textStyle="bold"
                             android:text="ID: "
                             android:textColor="#883E2828"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/CustomerAppointmentlistCardviewIdTextview"
@@ -115,9 +115,9 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1.2"
                             android:paddingBottom="5dp"
-                            android:textStyle="bold"
                             android:textColor="#883E2828"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -135,9 +135,10 @@
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         android:text="Appointment Time:"
+                        android:id="@+id/apptext"
                         android:textColor="#883E2828"
-                        android:textStyle="bold"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -149,55 +150,60 @@
                     android:paddingBottom="5dp">
 
 
-                        <TextView
-                            android:id="@+id/CustomerAppointmentlistCardviewAppointmentDateTextview"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="match_parent"
-                            android:textStyle="bold"
-                            android:textColor="#883E2828"
-                            android:textSize="15dp" />
+                    <TextView
+                        android:id="@+id/CustomerAppointmentlistCardviewAppointmentDateTextview"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColor="#883E2828"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/CustomerAppointmentlistCardviewAppointmentTimeTextview"
-                            android:layout_width="0dp"
-                            android:layout_weight="2"
-                            android:layout_height="match_parent"
-                            android:textStyle="bold"
-                            android:textAlignment="viewStart"
-                            android:textColor="#883E2828"
-                            android:textSize="15dp" />
+                    <TextView
+                        android:id="@+id/CustomerAppointmentlistCardviewAppointmentTimeTextview"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:textAlignment="viewStart"
+                        android:textColor="#883E2828"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/CustomerAppointmentlistCardviewRequestagainButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/upper_line"
-                    android:focusable="true"
-                    android:padding="10dp"
-                    android:text="Request Again"
-                    android:textAlignment='textStart'
-                    android:textColor="#9E160C"
-                    android:textSize="15dp" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="left"
+                android:gravity="center"
                 android:orientation="vertical">
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="100dp"
+                    android:layout_width="70dp"
                     android:id="@+id/CustomerAppointmentlistImage"
-                    android:layout_height="100dp"/>
+                    android:layout_height="0dp"
+                    android:layout_weight="3"/>
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:numStars="5"
+                    style="?attr/ratingBarStyleSmall"
+                    android:layout_weight="1"
+                    android:scaleX="1"
+                    android:layout_marginTop="15dp"
+                    android:scaleY="1"
+                    android:id="@+id/CustomerAppointmentlistRating"
+                    android:transformPivotX="0dp"
+                    android:transformPivotY="0dp"
+                    android:isIndicator="true"
+                    android:max="5"/>
 
             </LinearLayout>
 
-        </LinearLayout>
 
+        </LinearLayout>
     </LinearLayout>
 
 

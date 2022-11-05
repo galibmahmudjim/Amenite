@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Token token = new Token();
+        DBresources dBresources = new DBresources();
+        dBresources.database.collection("User").document().update("Profile_Pic", Uri.parse("android.resource://" + getPackageName() + "/" + R.drawable.profile));
 
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
