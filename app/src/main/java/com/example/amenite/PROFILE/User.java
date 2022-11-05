@@ -14,6 +14,8 @@ public class User {
     public static String Emailid;
     public static String password;
     public static String Role;
+    public static String Rating;
+    public static String RateHead;
     public static String Phonenumber;
     public static String UserID;
     public static String Username;
@@ -43,6 +45,15 @@ public class User {
                                 FirebaseMessaging.getInstance().subscribeToTopic(getEmailid());
                             } else
                                 setEmailid(" ");
+                            if (documentSnapshot.get("Rating") != null) {
+                                setRating(documentSnapshot.get("Rating").toString());
+                            } else
+                                setRating(" ");
+                            if (documentSnapshot.get("RateHead") != null) {
+                                setRateHead(documentSnapshot.get("RateHead").toString());
+
+                            } else
+                                setRateHead(" ");
                             if (documentSnapshot.get("Name") != null)
                                 setFullname(documentSnapshot.get("Name").toString());
                             else
@@ -100,6 +111,22 @@ public class User {
             return true;
         } else
             return false;
+    }
+
+    public static String getRating() {
+        return Rating;
+    }
+
+    public static void setRating(String rating) {
+        Rating = rating;
+    }
+
+    public static String getRateHead() {
+        return RateHead;
+    }
+
+    public static void setRateHead(String rateHead) {
+        RateHead = rateHead;
     }
 
     public static String getService() {

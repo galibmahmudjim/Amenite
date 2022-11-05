@@ -48,14 +48,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
 
         AppointmentReqList appointmentReqList = appointmentReqLists.get(position);
-        holder.employeeAppointmentReqlistCardviewStatusTextview.setText(appointmentReqList.Status);
+        holder.employeeAppointmentReqlistCardviewStatusTextview.setText(appointmentReqList.Appointment_Status);
         holder.employeeAppointmentReqlistCardviewTimeTextview.setText(appointmentReqList.Request_Date+", "+appointmentReqList.Request_Time);
         holder.employeeAppointmentReqlistCardviewServiceTextview.setText(appointmentReqList.Service);
         holder.employeeAppointmentReqlistCardviewAppointmentTimeTextview.setText(appointmentReqList.Appointment_Time);
         holder.employeeAppointmentReqlistCardviewAppointmentDateTextview.setText(appointmentReqList.Appointment_Date);
         holder.employeeAppointmentReqlistCardviewIdTextview.setText(appointmentReqList.Appointment_Id);
         DBresources dBresources = new DBresources();
-        if(holder.employeeAppointmentReqlistCardviewServiceTextview.getText().toString().equals(User.getService()))
+        if(holder.employeeAppointmentReqlistCardviewServiceTextview.getText().toString().equals("Car Rental"))
         {
             holder.appreqtext.setText("Pickup Time");
             holder.employeeAppointmentReqlistCardviewServiceTextview.setText("Car Rental");

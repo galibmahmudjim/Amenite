@@ -73,13 +73,11 @@ public class EmployeeHomeFragment extends Fragment {
         mSwipeRefreshLayout.setRefreshing(true);
         homeset();
 
-        //String remaining1 = DateUtils.formatElapsedTime ((then.getTime() - now.getTime())/1000); // Remaining time to seconds
         DBresources dBresources = new DBresources();
         binding.employeehomecurrentappointmentcompletebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Log.d(TAG.TAG, "homeset: "+binding.employeehomecurrentappointmentcompletebutton.getText());
                 if(binding.employeehomecurrentappointmentcompletebutton.getText().equals("Start"))
                 {
                     String sDate1 = new String(appointmentLists.get(0).getAppointment_Date() + ":" + appointmentLists.get(0).getAppointment_Time());
@@ -96,10 +94,16 @@ public class EmployeeHomeFragment extends Fragment {
                         }
                         else
                         {
-                            dBresources.database.collection("Appointment").document(binding.employeehomecurrentappointment.employeehomeappid.getText().toString())
-                                    .update("Appointment_Status","Started",
-                                            "Start_Time",new Date());
-                            binding.employeehomecurrentappointmentcompletebutton.setText("Complete");
+                            Log.d(TAG.TAG, "onClickwd: "+binding.employeehomecurrentappointment.EmployeehomeCardviewIdTextview.getText().toString());
+                            dBresources.database.collection("Appointment").document(binding.employeehomecurrentappointment.EmployeehomeCardviewIdTextview.getText().toString())
+                                    .update("Appointment_Status","Started").addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+
+                                            binding.employeehomecurrentappointmentcompletebutton.setText("Complete");
+                                            homeset();
+                                        }
+                                    });
                         }
                     }
                     catch (ParseException e) {
@@ -108,10 +112,18 @@ public class EmployeeHomeFragment extends Fragment {
                 }
                 else
                 {
-                    dBresources.database.collection("Appointment").document(binding.employeehomecurrentappointment.employeehomeappid.getText().toString())
+                    dBresources.database.collection("Appointment").document(binding.employeehomecurrentappointment.EmployeehomeCardviewIdTextview.getText().toString())
                             .update("Appointment_Status","Completed",
                                     "Complete_Time",new Date());
-                    startActivity(new Intent(getActivity(),EmployeeActivity.class));
+                    dBresources.database.collection("Appointment").document(appointmentLists.get(0).getAppointment_Id())
+                            .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    Intent intent = new Intent(new Intent(getActivity(),TaskCompleteActivity.class));
+                                    intent.putExtra("Email",documentSnapshot.get("Email").toString());
+                                    startActivity(intent);
+                                }
+                            });
                 }
             }
         });
@@ -128,7 +140,7 @@ public class EmployeeHomeFragment extends Fragment {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
 
-                             if (queryDocumentSnapshot.get("Appointment_Status").toString().equals("Accepted")) {
+                             if (queryDocumentSnapshot.get("Appointment_Status").toString().equals("Accepted")||queryDocumentSnapshot.get("Appointment_Status").toString().equals("Started")) {
                                 appointmentLists.add(queryDocumentSnapshot.toObject(AppointmentList.class));
                             }
                         }
@@ -144,7 +156,12 @@ public class EmployeeHomeFragment extends Fragment {
                 Log.d(TAG.TAG, "onSuccess: "+appointmentLists.size());
                 mSwipeRefreshLayout.setRefreshing(false);
                 if (appointmentLists.size() == 1) {
-
+                    if(appointmentLists.get(0).getAppointment_Status().equals("Started"))
+                    {
+                        binding.employeehomecurrentappointmentcompletebutton.setText("Complete");
+                    }
+                    else
+                        binding.employeehomecurrentappointmentcompletebutton.setText("Start");
                     String sDate1 = new String(appointmentLists.get(0).getAppointment_Date() + ":" + appointmentLists.get(0).getAppointment_Time());
                     sDate1 = formatdate(sDate1);
                     SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy:hh:mm aa");
@@ -157,7 +174,7 @@ public class EmployeeHomeFragment extends Fragment {
                             sDate1 = formatdate(sDate1);
                             then = formatter1.parse(sDate1);
                             binding.curenttext.setText("Next Appointment");
-                            binding.employeehomecurrentappointmentcompletebutton.setText("Start");
+
                         } else {
 
                             binding.curenttext.setText("Current Appointment");
@@ -170,11 +187,11 @@ public class EmployeeHomeFragment extends Fragment {
 
                     binding.employeehomenextappointmentcard.setVisibility(View.GONE);
 
-                    binding.employeehomecurrentappointment.EmployeehomeCardviewStatusTextview.setText("Accepted");
-                    binding.employeehomecurrentappointment.EmployeehomeCardviewTimeTextview.setText(appointmentLists.get(0).getRequest_Date() + ", " + appointmentLists.get(0).getAppointment_Time());
+                    binding.employeehomecurrentappointment.EmployeehomeCardviewTimeTextview.setText(appointmentLists.get(0).getRequest_Date() + ", " + appointmentLists.get(0).getRequest_Time());
                     binding.employeehomecurrentappointment.EmployeehomeCardviewIdTextview.setText(appointmentLists.get(0).getAppointment_Id());
                     binding.employeehomecurrentappointment.EmployeehomeCardviewAppointmentTimeTextview.setText(appointmentLists.get(0).getAppointment_Time());
                     binding.employeehomecurrentappointment.EmployeehomeCardviewAppointmentDateTextview.setText(appointmentLists.get(0).getAppointment_Date());
+                    binding.employeehomecurrentappointment.EmployeehomeCardviewStatusTextview.setText(appointmentLists.get(0).getAppointment_Status());
                 } else if (appointmentLists.size() == 0) {
                     binding.employeehomenextappointmentcard.setVisibility(View.GONE);
                     binding.employeehomecurrentlayout.setVisibility(View.GONE);
@@ -194,24 +211,31 @@ public class EmployeeHomeFragment extends Fragment {
                             then = formatter1.parse(sDate1);
                             binding.curenttext.setText("Next Appointment");
                             binding.countdownView.start(then.getTime()-now.getTime());
+                            if(!appointmentLists.get(0).getAppointment_Status().equals("Started"))
                             binding.employeehomecurrentappointmentcompletebutton.setText("Start");
+                            else
+                                binding.employeehomecurrentappointmentcompletebutton.setText("Complete");
                         }else {
                             sDate1 = new String(appointmentLists.get(1).getAppointment_Date() + ":" + appointmentLists.get(1).getAppointment_Time());
                            sDate1 = formatdate(sDate1);
                             then = formatter1.parse(sDate1);
                             binding.countdownView.start(then.getTime()-now.getTime());
+                            if(!appointmentLists.get(0).getAppointment_Status().equals("Started"))
                             binding.employeehomecurrentappointmentcompletebutton.setText("Start");
+                            else
+                                binding.employeehomecurrentappointmentcompletebutton.setText("Complete");
                             binding.curenttext.setText("Current Appointment");
                             binding.employeehomenextappointmentcard.setVisibility(View.VISIBLE);
                         }
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
+                    Log.d(TAG.TAG, "onSuccess: "+appointmentLists.get(0).getRequest_Time());
                     binding.employeehomecurrentappointment.EmployeehomeCardviewTimeTextview.setText(appointmentLists.get(0).getRequest_Date() + ", " + appointmentLists.get(0).getRequest_Time());
                     binding.employeehomecurrentappointment.EmployeehomeCardviewIdTextview.setText(appointmentLists.get(0).getAppointment_Id());
                     binding.employeehomecurrentappointment.EmployeehomeCardviewAppointmentTimeTextview.setText(appointmentLists.get(0).getAppointment_Time());
                     binding.employeehomecurrentappointment.EmployeehomeCardviewAppointmentDateTextview.setText(appointmentLists.get(0).getAppointment_Date());
-                    binding.employeehomecurrentappointment.EmployeehomeCardviewStatusTextview.setText("Accepted");
+                    binding.employeehomecurrentappointment.EmployeehomeCardviewStatusTextview.setText(appointmentLists.get(0).getAppointment_Status());
                     binding.employeehomenextappointment.EmployeehomeCardviewTimeTextview.setText(appointmentLists.get(1).getRequest_Date() + ", " + appointmentLists.get(1).getAppointment_Time());
                     binding.employeehomenextappointment.EmployeehomeCardviewIdTextview.setText(appointmentLists.get(1).getAppointment_Id());
                     binding.employeehomenextappointment.EmployeehomeCardviewAppointmentTimeTextview.setText(appointmentLists.get(1).getAppointment_Time());
@@ -266,12 +290,14 @@ public class EmployeeHomeFragment extends Fragment {
         String date1 =appointmentLists.get(0).getAppointment_Date().toString();
         String[] part;
         part = date1.split("-");
-
+        Log.d(TAG.TAG, "formatdate: "+s);
+        String sDate1 = s;
+        if(part[1].length()>2)
+        {
         part[1]=part[1].substring(0,1)+part[1].substring(1,3).toLowerCase();
         DateTimeFormatter MONTH_FORMAT = DateTimeFormatter.ofPattern("MMM", Locale.ENGLISH); // supports Jan, Feb etc
         MONTH_FORMAT.parse(part[1]).get(ChronoField.MONTH_OF_YEAR);
         Month month = Month.from(MONTH_FORMAT.parse(part[1]));
-        String sDate1 = s;
         String hr, m, d, mo, y;
         String[] parts = sDate1.split("-");
         Integer n =month.getValue();
@@ -279,7 +305,16 @@ public class EmployeeHomeFragment extends Fragment {
         if (parts[0].length() == 1) parts[0] = "0" + parts[0];
         if (part[1].length() == 1)
             part[1]="0"+part[1];
-        sDate1 = parts[0]+"-"+part[1]+"-"+parts[2];
+        sDate1 = parts[0]+"-"+part[1]+"-"+parts[2];}
+        else
+        {
+            String hr, m, d, mo, y;
+            String[] parts = sDate1.split("-");
+            if (parts[0].length() == 1) parts[0] = "0" + parts[0];
+            if (parts[1].length() == 1)
+                parts[1]="0"+parts[1];
+            sDate1=parts[0]+"-"+parts[1]+"-"+parts[2];
+        }
         return sDate1;
     }
 

@@ -9,14 +9,13 @@ import android.view.View;
 import android.widget.RatingBar;
 
 import com.bumptech.glide.Glide;
-import com.example.amenite.Customer.Appointmentlist.AppointmentList;
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
-import com.example.amenite.R;
 import com.example.amenite.databinding.ActivityTaskCompleteBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -36,7 +35,6 @@ public class TaskCompleteActivity extends AppCompatActivity {
                 rating[0] = v;
             }
         });
-        AppointmentList appointmentList = getIntent().getParcelableExtra("Object");
         DBresources dBresources = new DBresources();
         User.RetriveData().addOnSuccessListener(new OnSuccessListener() {
             @Override
@@ -60,7 +58,8 @@ public class TaskCompleteActivity extends AppCompatActivity {
         binding.taskcompletebuttonok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TaskCompleteActivity.this,EmployeeActivity.class));
+                               startActivity(new Intent(TaskCompleteActivity.this,EmployeeActivity.class));
+
                 finish();
             }
         });

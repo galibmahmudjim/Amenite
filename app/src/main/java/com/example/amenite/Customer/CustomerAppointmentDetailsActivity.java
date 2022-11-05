@@ -32,8 +32,8 @@ public class CustomerAppointmentDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAppointmentDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.toolbar.appbartitle.setText("Appointment Details");
-        binding.toolbar.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        binding.toolbardetails.appbartitle.setText("Appointment Details");
+        binding.toolbardetails.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
