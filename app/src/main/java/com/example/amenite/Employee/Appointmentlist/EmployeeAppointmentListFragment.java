@@ -62,7 +62,6 @@ public class EmployeeAppointmentListFragment extends Fragment {
         binding.EmployeeAppointmentListShimmer.startShimmer();
 
         dBresources.database.collection("Appointment").whereEqualTo("Employee",User.Emailid)
-                .whereEqualTo("Service",User.Service)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

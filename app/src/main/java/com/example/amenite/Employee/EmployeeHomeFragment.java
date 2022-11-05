@@ -75,7 +75,7 @@ public class EmployeeHomeFragment extends Fragment {
                                 intent.putExtra("Email", documentSnapshot.get("Email").toString());
                                 dBresources.database.collection("Appointment")
                                         .document(appointmentLists.get(0).getAppointment_Id())
-                                        .update("Status", "Completed");
+                                        .update("Appointment_Status", "Completed");
                                 startActivity(intent);
                             }
                         });
@@ -105,6 +105,7 @@ public class EmployeeHomeFragment extends Fragment {
         Tasks.whenAllSuccess(t1).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
             @Override
             public void onSuccess(List<Object> objects) {
+
                 mSwipeRefreshLayout.setRefreshing(false);
                 if (appointmentLists.size() == 1) {
 
@@ -117,9 +118,8 @@ public class EmployeeHomeFragment extends Fragment {
                     try {
                         Date then= formatter1.parse(sDate1);
                         Date now = new Date();
-                        long diffInMillies1 = (now.getTime() - then.getTime());
-                        Log.d(TAG.TAG, "onSuccess: "+diffInMillies1);
-                        if(diffInMillies1<0)
+                        long diffInMillies1 = (then.getTime() - now.getTime());
+                        if(diffInMillies1>0)
                         {
                             sDate1 = new String(appointmentLists.get(0).getAppointment_Date()+":"+appointmentLists.get(0).getAppointment_Time());
                             String[] parts1 = sDate1.split("-");
@@ -135,13 +135,15 @@ public class EmployeeHomeFragment extends Fragment {
                             binding.curenttext.setText("Current Appointment");
                             binding.employeehomenextappointmentcard.setVisibility(View.VISIBLE);
                         }
-                        long diffInMillies = Math.abs(now.getTime() - then.getTime());
+                        long diffInMillies = (then.getTime() - now.getTime());
                         binding.countdownView.start(diffInMillies);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
 
                     binding.employeehomenextappointmentcard.setVisibility(View.GONE);
+
+                    binding.employeehomecurrentappointment.EmployeehomeCardviewStatusTextview.setText("Accepted");
                     binding.employeehomecurrentappointment.EmployeehomeCardviewTimeTextview.setText(appointmentLists.get(0).getRequest_Date() + ", " + appointmentLists.get(0).getAppointment_Time());
                     binding.employeehomecurrentappointment.EmployeehomeCardviewIdTextview.setText(appointmentLists.get(0).getAppointment_Id());
                     binding.employeehomecurrentappointment.EmployeehomeCardviewAppointmentTimeTextview.setText(appointmentLists.get(0).getAppointment_Time());
@@ -151,6 +153,8 @@ public class EmployeeHomeFragment extends Fragment {
                     binding.employeehomecurrentlayout.setVisibility(View.GONE);
                     binding.employeehomenotcurrent.setVisibility(View.VISIBLE);
                 } else {
+
+                    Log.d(TAG.TAG, "onSuccess: "+appointmentLists.get(0).getAppointment_Time());
                     String sDate1 = new String(appointmentLists.get(0).getAppointment_Date()+":"+appointmentLists.get(0).getAppointment_Time());
                     String hr,m,d,mo,y;
                     String[] parts = sDate1.split("-");
@@ -161,7 +165,6 @@ public class EmployeeHomeFragment extends Fragment {
                         Date then= formatter1.parse(sDate1);
                         Date now = new Date();
                         long diffInMillies1 = (now.getTime() - then.getTime());
-                        Log.d(TAG.TAG, "onSuccess: "+diffInMillies1);
                         if(diffInMillies1<0)
                         {
                             sDate1 = new String(appointmentLists.get(1).getAppointment_Date()+":"+appointmentLists.get(1).getAppointment_Time());
@@ -178,20 +181,23 @@ public class EmployeeHomeFragment extends Fragment {
                             binding.curenttext.setText("Current Appointment");
                             binding.employeehomenextappointmentcard.setVisibility(View.VISIBLE);
                         }
-                        long diffInMillies = Math.abs(now.getTime() - then.getTime());
+                        long diffInMillies = (then.getTime() - now.getTime());
+                        Log.d(TAG.TAG, "onSuccess: "+diffInMillies);
                         binding.countdownView.start(diffInMillies);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-
-                    binding.employeehomecurrentappointment.EmployeehomeCardviewTimeTextview.setText(appointmentLists.get(0).getAppointment_Date() + ", " + appointmentLists.get(0).getAppointment_Time());
+                    Log.d(TAG.TAG, "onSuccess: "+appointmentLists.get(1).getAppointment_Date());
+                    binding.employeehomecurrentappointment.EmployeehomeCardviewTimeTextview.setText(appointmentLists.get(0).getRequest_Date() + ", " + appointmentLists.get(0).getRequest_Time());
                     binding.employeehomecurrentappointment.EmployeehomeCardviewIdTextview.setText(appointmentLists.get(0).getAppointment_Id());
                     binding.employeehomecurrentappointment.EmployeehomeCardviewAppointmentTimeTextview.setText(appointmentLists.get(0).getAppointment_Time());
                     binding.employeehomecurrentappointment.EmployeehomeCardviewAppointmentDateTextview.setText(appointmentLists.get(0).getAppointment_Date());
+                    binding.employeehomecurrentappointment.EmployeehomeCardviewStatusTextview.setText("Accepted");
                     binding.employeehomenextappointment.EmployeehomeCardviewTimeTextview.setText(appointmentLists.get(1).getRequest_Date() + ", " + appointmentLists.get(1).getAppointment_Time());
                     binding.employeehomenextappointment.EmployeehomeCardviewIdTextview.setText(appointmentLists.get(1).getAppointment_Id());
                     binding.employeehomenextappointment.EmployeehomeCardviewAppointmentTimeTextview.setText(appointmentLists.get(1).getAppointment_Time());
                     binding.employeehomenextappointment.EmployeehomeCardviewAppointmentDateTextview.setText(appointmentLists.get(1).getAppointment_Date());
+                    binding.employeehomenextappointment.EmployeehomeCardviewStatusTextview.setText("Accepted");
 
                 }
             }
