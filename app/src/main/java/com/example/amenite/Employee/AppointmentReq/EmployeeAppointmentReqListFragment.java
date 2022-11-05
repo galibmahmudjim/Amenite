@@ -77,7 +77,9 @@ public class EmployeeAppointmentReqListFragment extends Fragment {
                                             for (QueryDocumentSnapshot queryDocumentSnapshot1 : task.getResult()) {
                                                 if (queryDocumentSnapshot1.contains("Email") && queryDocumentSnapshot.contains("Appointment_Status")) {
                                                     if (queryDocumentSnapshot1.get("Email").toString().equals(User.Emailid) && queryDocumentSnapshot.get("Appointment_Status").equals("Pending")) {
-                                                        appointmentReqLists.add(queryDocumentSnapshot.toObject(AppointmentReqList.class));
+                                                        {
+                                                            appointmentReqLists.add(queryDocumentSnapshot.toObject(AppointmentReqList.class));
+                                                        }
                                                     }
                                                 }
                                             }

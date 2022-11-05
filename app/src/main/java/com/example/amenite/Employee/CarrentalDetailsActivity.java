@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -131,7 +132,7 @@ public class CarrentalDetailsActivity extends AppCompatActivity {
                                 .update("Appointment_Status","cancelled");
 
                     }
-                    onBackPressed();
+                    startActivity(new Intent(CarrentalDetailsActivity.this,EmployeeActivity.class));
                 });
                 confirmlogout.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) ->
 
@@ -148,27 +149,36 @@ public class CarrentalDetailsActivity extends AppCompatActivity {
         binding.carrentDetailsAcceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LocalDateTime now = LocalDateTime.now();
-                SimpleDateFormat sample = new SimpleDateFormat("hh:mm aa");
-                dBresources.database.collection("Appointment").document(getIntent().getStringExtra("Appointment_Id"))
-                        .update("Employee", User.Emailid
-                                , "Accepted_Date", now.getDayOfMonth() + "-" + now.getMonth().toString().substring(0, 3) + "-" + now.getYear()
-                                , "Accepted_Time", sample.format(new Date())
-                                , "Appointment_Status", "Accepted");
-                dBresources.database.collection("Appointment").document(getIntent().getStringExtra("Appointment_Id"))
-                        .collection("Requested_Employee").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
-                                    dBresources.database.collection("Appointment").document(getIntent().getStringExtra("Appointment_Id"))
-                                            .collection("Requested_Employee").document(queryDocumentSnapshot.getId())
-                                            .delete();
+                Log.d(TAG.TAG, "onClick: "+binding.carrentDetailsAcceptButton.getText());
+                if(binding.carrentDetailsAcceptButton.getText().toString().equals("Call"))
+                {
+                    Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+                    dialIntent.setData(Uri.parse("tel:" + binding.carrentDetailsPhone1Textview.getText().toString()));
+                    startActivity(dialIntent);
+                }
+                else {
+                    LocalDateTime now = LocalDateTime.now();
+                    SimpleDateFormat sample = new SimpleDateFormat("hh:mm aa");
+                    dBresources.database.collection("Appointment").document(getIntent().getStringExtra("Appointment_Id"))
+                            .update("Employee", User.Emailid
+                                    , "Accepted_Date", now.getDayOfMonth() + "-" + now.getMonth().toString().substring(0, 3) + "-" + now.getYear()
+                                    , "Accepted_Time", sample.format(new Date())
+                                    , "Appointment_Status", "Accepted");
+                    dBresources.database.collection("Appointment").document(getIntent().getStringExtra("Appointment_Id"))
+                            .collection("Requested_Employee").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
+                                        dBresources.database.collection("Appointment").document(getIntent().getStringExtra("Appointment_Id"))
+                                                .collection("Requested_Employee").document(queryDocumentSnapshot.getId())
+                                                .delete();
+                                    }
                                 }
-                            }
-                        });
-                Intent intent1 = new Intent(CarrentalDetailsActivity.this, EmployeeActivity.class);
-                intent1.putExtra("currentFragment", "27");
-                startActivity(intent1);
+                            });
+                    Intent intent1 = new Intent(CarrentalDetailsActivity.this, EmployeeActivity.class);
+                    intent1.putExtra("currentFragment", "27");
+                    startActivity(intent1);
+                }
             }
         });
     }

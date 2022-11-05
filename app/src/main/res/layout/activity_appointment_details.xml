@@ -10,7 +10,7 @@
     android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
 
     <include
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbardetails"
         layout="@layout/toolbar" />
 
     <ScrollView

@@ -213,7 +213,6 @@
                                 android:layout_height="match_parent"
                                 android:paddingLeft="20dp"
                                 android:paddingTop="20dp"
-                                android:text="Phone"
                                 android:textColor="@color/black"
                                 android:textSize="15dp" />
                         </LinearLayout>
@@ -632,7 +631,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:elevation="25dp"
-                    android:text="Cancel"
                     android:textAlignment="center" />
             </LinearLayout>
 
@@ -649,7 +647,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:elevation="25dp"
-                    android:text="Call"
                     android:textAlignment="center" />
             </LinearLayout>
         </LinearLayout>
