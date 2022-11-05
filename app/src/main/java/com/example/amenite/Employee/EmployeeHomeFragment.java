@@ -121,7 +121,7 @@ public class EmployeeHomeFragment extends Fragment {
                         Log.d(TAG.TAG, "onSuccess: "+diffInMillies1);
                         if(diffInMillies1<0)
                         {
-                            sDate1 = new String(appointmentLists.get(1).getAppointment_Date()+":"+appointmentLists.get(1).getAppointment_Time());
+                            sDate1 = new String(appointmentLists.get(0).getAppointment_Date()+":"+appointmentLists.get(0).getAppointment_Time());
                             String[] parts1 = sDate1.split("-");
                             if(parts1[0].length()==1)sDate1="0"+sDate1;
                             if(parts1[1].length()==1)sDate1=sDate1.substring(0,3)+"0"+sDate1.substring(3,sDate1.length());
