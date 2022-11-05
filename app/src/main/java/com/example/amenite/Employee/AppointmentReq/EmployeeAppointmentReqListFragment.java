@@ -60,7 +60,7 @@ public class EmployeeAppointmentReqListFragment extends Fragment {
         myAdapter = new MyAdapter(getActivity(), appointmentReqLists);
         recyclerView.setAdapter(myAdapter);
         Task t1 = User.RetriveData();
-        t1.addOnSuccessListener(new OnSuccessListener() {
+        Task t2 = t1.addOnSuccessListener(new OnSuccessListener() {
             @Override
             public void onSuccess(Object o) {
                 dBresources.database.collection("Appointment").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -85,9 +85,21 @@ public class EmployeeAppointmentReqListFragment extends Fragment {
                                             myAdapter.notifyDataSetChanged();
                                         }
                                     });
+
                         }
+
                     }
                 });
+
+            }
+        });
+        t2.addOnSuccessListener(new OnSuccessListener() {
+            @Override
+            public void onSuccess(Object o) {
+
+                binding.EmployeeAppointmentReqListShmimmer.stopShimmer();
+                binding.EmployeeAppointmentReqListShmimmer.setVisibility(View.GONE);
+                binding.EmployeeApoointmentReqlistRecyclerview.setVisibility(View.VISIBLE);
             }
         });
         return view;
