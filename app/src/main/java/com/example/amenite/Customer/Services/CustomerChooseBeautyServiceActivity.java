@@ -32,7 +32,6 @@ public class CustomerChooseBeautyServiceActivity extends AppCompatActivity {
                 intent1.putExtras(extras);
                 intent1.putExtra("ChooseService","Beauty Care");
                 startActivity(intent1);
-                finish();
             }
         });
         binding.CustomerChooseBeautyserviceHairButton.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +42,6 @@ public class CustomerChooseBeautyServiceActivity extends AppCompatActivity {
                intent1.putExtras(extras);
                 intent1.putExtra("ChooseService","Hair");
                 startActivity(intent1);
-                finish();
             }
         });
         binding.CustomerChooseBeautyserviceMakeupButton.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +51,6 @@ public class CustomerChooseBeautyServiceActivity extends AppCompatActivity {
                 intent1.putExtras(extras);
                 intent1.putExtra("ChooseService","Make Up");
                 startActivity(intent1);
-                finish();
             }
         });
     }
@@ -66,6 +63,5 @@ public class CustomerChooseBeautyServiceActivity extends AppCompatActivity {
         Intent intent1 = new Intent(CustomerChooseBeautyServiceActivity.this, CustomerBeautyServiceActivity.class);
         intent1.putExtras(extras);
         startActivity(intent1);
-        finish();
     }
 }

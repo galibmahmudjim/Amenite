@@ -49,7 +49,6 @@ public class CustomerBeautyServiceActivity extends AppCompatActivity {
                 intent.putExtra("AddressDetails", activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentAddressEdittext.getText().toString());
                 intent.putExtra("Activity", CustomerBeautyServiceActivity.class);
                 startActivity(intent);
-                finish();
 
             }
         });
@@ -92,7 +91,6 @@ public class CustomerBeautyServiceActivity extends AppCompatActivity {
                     activityCustomerBeautyServiceBinding.CutomerBeautyAppointmentMapAddressTextview.setError("Pick Address from map");
                 } else {
                     startActivity(intent1);
-                    finish();
                 }
 
             }

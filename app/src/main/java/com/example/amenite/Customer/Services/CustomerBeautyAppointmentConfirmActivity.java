@@ -68,7 +68,6 @@ public class CustomerBeautyAppointmentConfirmActivity extends AppCompatActivity 
                     intent1.putExtra("Time",binding.CustomerBeautyAppointmentConfirmActivityTimeButton.getText().toString());
                     intent1.putExtra("Additional Service",binding.CustomerBeautyAppointmentConfirmActivityAdditionalserviceExittext.getText().toString());
                    startActivity(intent1);
-                   finish();
                 }
             }
         });
