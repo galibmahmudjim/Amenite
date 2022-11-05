@@ -127,6 +127,7 @@ public class EmployeeHomeFragment extends Fragment {
                             if(parts1[1].length()==1)sDate1=sDate1.substring(0,3)+"0"+sDate1.substring(3,sDate1.length());
                             then = formatter1.parse(sDate1);
                             binding.curenttext.setText("Next Appointment");
+                            binding.employeehomecurrentappointmentcompletebutton.setText("Start");
                             binding.employeehomenextappointmentcard.setVisibility(View.GONE);
                         }
                         else
@@ -173,6 +174,7 @@ public class EmployeeHomeFragment extends Fragment {
                             if(parts1[1].length()==1)sDate1=sDate1.substring(0,3)+"0"+sDate1.substring(3,sDate1.length());
                             then = formatter1.parse(sDate1);
                             binding.curenttext.setText("Next Appointment");
+                            binding.employeehomecurrentappointmentcompletebutton.setText("Start");
                             binding.employeehomenextappointmentcard.setVisibility(View.GONE);
                         }
                         else
