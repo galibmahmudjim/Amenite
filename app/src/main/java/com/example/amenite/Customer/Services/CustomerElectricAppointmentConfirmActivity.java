@@ -66,6 +66,7 @@ public class CustomerElectricAppointmentConfirmActivity extends AppCompatActivit
                     intent1.putExtra("Time",binding.CustomerElectricAppointmentConfirmActivityTimeButton.getText().toString());
                     intent1.putExtra("Additional Service",binding.CustomerElectricAppointmentConfirmActivityAdditionalserviceExittext.getText().toString());
                     startActivity(intent1);
+                    finish();
                 }
             }
         });
@@ -76,9 +77,10 @@ public class CustomerElectricAppointmentConfirmActivity extends AppCompatActivit
     public void onBackPressed() {
         super.onBackPressed();
         Bundle extras =getIntent().getExtras();
-        Intent intent1 = new Intent(CustomerElectricAppointmentConfirmActivity.this,CustomerElectricServiceActivity.class);
+        Intent intent1 = new Intent(CustomerElectricAppointmentConfirmActivity.this,ElectricchoiceActivity.class);
         intent1.putExtras(extras);
         startActivity(intent1);
+        finish();
     }
 
 

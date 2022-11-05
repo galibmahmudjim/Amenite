@@ -68,7 +68,7 @@ public class CustomerElectricServiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onCreate: "+finalLatitude);
-                Intent intent1 = new Intent(CustomerElectricServiceActivity.this, CustomerElectricAppointmentConfirmActivity.class);
+                Intent intent1 = new Intent(CustomerElectricServiceActivity.this, ElectricchoiceActivity.class);
                 intent1.putExtra("Name", binding.CutomerElectricAppointmentNameTextview.getText().toString());
                 intent1.putExtra("PhoneNumber", binding.CutomerElectricAppointmentPhonenumberTextview.getText().toString());
                 intent1.putExtra("PhoneNumber2", binding.CutomerElectricAppointmentPhonenumber1Edittext.getText().toString());
