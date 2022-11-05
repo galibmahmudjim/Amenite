@@ -24,6 +24,8 @@ public class User {
     public static String Latitude;
     public static String Date_of_Birth;
     public static String Profile_Pic;
+    public static String Service;
+
 
     public User() {
         RetriveData();
@@ -82,6 +84,10 @@ public class User {
                                 setProfile_Pic(documentSnapshot.get("Profile_Pic").toString());
                             else
                                 setProfile_Pic(" ");
+                            if (documentSnapshot.contains("Service"))
+                                setService(documentSnapshot.get("Service").toString());
+                            else
+                                setService(" ");
                         }
                     }
                 });
@@ -94,6 +100,14 @@ public class User {
             return true;
         } else
             return false;
+    }
+
+    public static String getService() {
+        return Service;
+    }
+
+    public static void setService(String service) {
+        Service = service;
     }
 
     public static String getEmailid() {

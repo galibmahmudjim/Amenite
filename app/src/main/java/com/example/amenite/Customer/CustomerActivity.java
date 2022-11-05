@@ -73,6 +73,14 @@ public class CustomerActivity extends AppCompatActivity {
                         activityCustomerBinding.CustomerActivityToolbarTextview.setText("Appointment");
 
                         break;
+                    case R.id.Joinus:
+                        User.RetriveData();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.CustomerActivityFragmentContainer, new EmployeSignupFragment())
+                                .commit();
+                        activityCustomerBinding.CustomerActivityToolbarTextview.setText("Employee Registration");
+
+                        break;
                     case R.id.customerMenuProfile:
                         Task t1 = User.RetriveData();
                         Tasks.whenAllSuccess(t1).
@@ -100,7 +108,6 @@ public class CustomerActivity extends AppCompatActivity {
                                 commit();
                         activityCustomerBinding.CustomerActivityToolbarTextview.setText("Home");
                         break;
-
                     case R.id.customerMenuContactus:
 
                         getSupportFragmentManager().

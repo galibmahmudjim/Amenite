@@ -1,6 +1,7 @@
 package com.example.amenite.Employee.AppointmentReq;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.amenite.Customer.CustomerAppointmentDetailsActivity;
 import com.example.amenite.DBRes.DBresources;
+import com.example.amenite.Employee.CarrentalDetailsActivity;
 import com.example.amenite.Employee.RequestedEmployeeAppointmentDetailsActivity;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
+import com.example.amenite.TAG;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -52,6 +55,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.employeeAppointmentReqlistCardviewAppointmentDateTextview.setText(appointmentReqList.Appointment_Date);
         holder.employeeAppointmentReqlistCardviewIdTextview.setText(appointmentReqList.Appointment_Id);
         DBresources dBresources = new DBresources();
+        if(holder.employeeAppointmentReqlistCardviewServiceTextview.getText().toString().equals(User.getService()))
+        {
+            holder.appreqtext.setText("Pickup Time");
+            holder.employeeAppointmentReqlistCardviewServiceTextview.setText("Car Rental");
+        }
+        else
+        {
+            holder.appreqtext.setText("Appointment Time");
+        }
         User.RetriveData().addOnSuccessListener(new OnSuccessListener() {
             @Override
             public void onSuccess(Object o) {
@@ -76,7 +88,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), RequestedEmployeeAppointmentDetailsActivity.class);
+                Intent intent;
+                Log.d(TAG.TAG, "onClick: "+holder.employeeAppointmentReqlistCardviewServiceTextview.getText());
+                if(holder.employeeAppointmentReqlistCardviewServiceTextview.getText()=="Car Rental"){
+                     intent = new Intent(view.getContext(), CarrentalDetailsActivity.class);}
+                    else {
+                     intent = new Intent(view.getContext(), RequestedEmployeeAppointmentDetailsActivity.class);
+                }
                 intent.putExtra("Appointment_Id",holder.employeeAppointmentReqlistCardviewIdTextview.getText().toString());
                 view.getContext().startActivity(intent);
             }
@@ -97,6 +115,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         TextView employeeAppointmentReqlistCardviewAppointmentDateTextview;
         TextView employeeAppointmentReqlistCardviewAppointmentTimeTextview;
         TextView employeeAppointmentReqlistCardviewIdTextview;
+        TextView appreqtext;
         ImageView employeeAppointmentReqlistImage;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -108,6 +127,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             employeeAppointmentReqlistCardviewStatusTextview = itemView.findViewById(R.id.EmployeeAppointmentReqlistCardviewStatusTextview);
             employeeAppointmentReqlistCardviewIdTextview = itemView.findViewById(R.id.EmployeeAppointmentReqlistCardviewIdTextview);
             employeeAppointmentReqlistImage = itemView.findViewById(R.id.EmployeeAppointmentReqlistImage);
+            appreqtext = itemView.findViewById(R.id.appreqtext);
         }
     }
 }

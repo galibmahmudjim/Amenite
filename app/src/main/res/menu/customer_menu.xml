@@ -32,7 +32,11 @@
             </group>
         </menu>
     </item>
-    <group>
+    <group android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/work"
+            android:id="@+id/Joinus"
+            android:title="Join Us" />
         <item
             android:id="@+id/ExitApp"
             android:title="Exit" />

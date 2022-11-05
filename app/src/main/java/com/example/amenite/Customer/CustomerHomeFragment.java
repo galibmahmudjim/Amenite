@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.amenite.Customer.Services.CustomerBeautyServiceActivity;
 import com.example.amenite.Customer.Services.Carrental.CustomerCarrentalServiceActivity;
 import com.example.amenite.Customer.Services.CustomerElectricServiceActivity;
+import com.example.amenite.Customer.Services.CustomerHomeServiceActivity;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
 import com.example.amenite.databinding.FragmentCustomerHomeBinding;
@@ -33,6 +34,7 @@ public class CustomerHomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentCustomerHomeBinding = FragmentCustomerHomeBinding.inflate(inflater, container, false);
         View view = fragmentCustomerHomeBinding.getRoot();
+        User.RetriveData();
         TextView toolbartextview = getActivity().findViewById(R.id.CustomerActivityToolbarTextview);
         fragmentCustomerHomeBinding.CustomerHomeFragmentBeautyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +49,19 @@ public class CustomerHomeFragment extends Fragment {
                 });
 
 
+            }
+        });
+        fragmentCustomerHomeBinding.CustomerHomeFragmentHomeserviceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Task t1 = User.RetriveData();
+                Tasks.whenAllSuccess(t1).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
+                    @Override
+                    public void onSuccess(List<Object> objects) {
+                        startActivity(new Intent(getActivity(), CustomerHomeServiceActivity.class));
+
+                    }
+                });
             }
         });
         fragmentCustomerHomeBinding.CustomerHomeFragmentElectronicandappliancesButton.setOnClickListener(new View.OnClickListener() {

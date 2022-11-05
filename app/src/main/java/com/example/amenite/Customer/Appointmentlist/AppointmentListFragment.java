@@ -21,10 +21,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 
 public class AppointmentListFragment extends Fragment {
@@ -51,13 +55,14 @@ public class AppointmentListFragment extends Fragment {
         recyclerView.setAdapter(myAdapter);
         binding.AppointmentListShimmer.startShimmer();
         dBresources.database.collection("Appointment").whereEqualTo("Email",User.Emailid)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+              .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         for(DocumentChange documentChange : value.getDocumentChanges())
                         {
                             appoinmentLists.add(documentChange.getDocument().toObject(AppointmentList.class));
                         }
+
                         binding.AppointmentListShimmer.stopShimmer();
                         binding.AppointmentListShimmer.setVisibility(View.GONE);
                         binding.CustomerApoointmentlistRecyclerview.setVisibility(View.VISIBLE);

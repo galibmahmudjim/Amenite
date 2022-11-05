@@ -30,7 +30,6 @@ public class CustomerElectricServiceActivity extends AppCompatActivity {
         });
         binding.CutomerElectricAppointmentNameTextview.setText(User.Fullname);
         binding.CutomerElectricAppointmentMapAddressTextview.setText(User.getAddress().toString());
-        Log.d(TAG, "onCreate:fd " + binding.CutomerElectricAppointmentMapAddressTextview.getText());
         binding.CutomerElectricAppointmentPhonenumberTextview.setText(User.Phonenumber);
         binding.CutomerElectricAppointmentEmailTextview.setText(User.Emailid);
         binding.CutomerElectricAppointmentPhonenumber1Edittext.setText(getIntent().getStringExtra("PhoneNumber2"));

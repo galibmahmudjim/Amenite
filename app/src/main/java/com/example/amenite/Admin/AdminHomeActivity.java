@@ -1,15 +1,21 @@
 package com.example.amenite.Admin;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.amenite.Admin.JobApplication.JobApplicationActivity;
+import com.example.amenite.Customer.CustomerActivity;
 import com.example.amenite.R;
+import com.example.amenite.Welcome;
 import com.example.amenite.databinding.ActivityAdminHomeBinding;
+import com.google.firebase.auth.FirebaseAuth;
 //import com.example.amenite.databinding.ActivityCustomerBinding;
 
 public class AdminHomeActivity extends AppCompatActivity {
@@ -48,6 +54,35 @@ public class AdminHomeActivity extends AppCompatActivity {
 
                 startActivity(new Intent(AdminHomeActivity.this, EmployeeListActivity.class));
 
+            }
+        });
+        findViewById(R.id.jobaalication).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminHomeActivity.this, JobApplicationActivity.class));
+            }
+        });
+        findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder confirmlogout = new AlertDialog.Builder(AdminHomeActivity.this);
+                confirmlogout.setMessage("Do you want to Logout?");
+                confirmlogout.setTitle("Logout");
+                confirmlogout.setCancelable(false);
+                confirmlogout.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) ->
+
+                {
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(AdminHomeActivity.this, Welcome.class));
+                    finish();
+                });
+                confirmlogout.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) ->
+
+                {
+                    dialog.cancel();
+                });
+                AlertDialog alertDialog = confirmlogout.create();
+                alertDialog.show();
             }
         });
 

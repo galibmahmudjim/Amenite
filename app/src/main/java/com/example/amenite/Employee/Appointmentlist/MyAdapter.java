@@ -55,6 +55,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.employeeAppointmentlistCardviewAppointmentTimeTextview.setText(appointmentList.Appointment_Time);
         holder.employeeAppointmentlistCardviewAppointmentDateTextview.setText(appointmentList.Appointment_Date);
         holder.employeeAppointmentlistCardviewIdTextview.setText(appointmentList.Appointment_Id);
+        if(User.Service=="Carrental")
+        {
+            holder.apptext.setText("Pickup Time");
+        }
         DBresources dBresources = new DBresources();
         User.RetriveData().addOnSuccessListener(new OnSuccessListener() {
             @Override
@@ -102,6 +106,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         TextView employeeAppointmentlistCardviewAppointmentTimeTextview;
         TextView employeeAppointmentlistCardviewIdTextview;
         ImageView employeeAppointmentlistImage;
+        TextView apptext;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -112,6 +117,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             employeeAppointmentlistCardviewStatusTextview = itemView.findViewById(R.id.EmployeeAppointmentlistCardviewStatusTextview);
             employeeAppointmentlistCardviewIdTextview = itemView.findViewById(R.id.EmployeeAppointmentlistCardviewIdTextview);
             employeeAppointmentlistImage = itemView.findViewById(R.id.EmployeeAppointmentlistImage);
+            apptext = itemView.findViewById(R.id.apptext);
         }
     }
 }

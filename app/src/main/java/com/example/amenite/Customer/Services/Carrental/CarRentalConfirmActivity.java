@@ -96,13 +96,15 @@ public class CarRentalConfirmActivity extends AppCompatActivity {
         appointment.put("Name", intent.getStringExtra("Name"));
         appointment.put("Phone_Number", intent.getStringExtra("PhoneNumber"));
         appointment.put("Phone_Number 2", intent.getStringExtra("PhoneNumber2"));
-        appointment.put("Service", intent.getStringExtra("Service"));
+        appointment.put("Service", "Carrental");
         appointment.put("Email", intent.getStringExtra("Email"));
         appointment.put("AddressMap", intent.getStringExtra("AddressMap"));
         appointment.put("Address_Details", intent.getStringExtra("AddressDetails"));
         appointment.put("Pickup_Address", intent.getStringExtra("Pickup_Location"));
         appointment.put("Service_Area", intent.getStringExtra("Service_Area"));
-        appointment.put("Destination_Address", intent.getStringExtra("Destination"));
+        appointment.put("Destination_Address", intent.getStringExtra("Destination_Location"));
+        appointment.put("Appointment_Date", intent.getStringExtra("Pickup_Date"));
+        appointment.put("Appointment_Time", intent.getStringExtra("Pickup_Time"));
         appointment.put("Pickup_Date", intent.getStringExtra("Pickup_Date"));
         appointment.put("Pickup_Time", intent.getStringExtra("Pickup_Time"));
 

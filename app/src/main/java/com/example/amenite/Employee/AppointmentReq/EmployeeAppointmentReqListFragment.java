@@ -20,6 +20,7 @@ import com.example.amenite.TAG;
 import com.example.amenite.databinding.FragmentAppointmentListBinding;
 import com.example.amenite.databinding.FragmentEmployeeAppointmentReqListBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -58,33 +59,37 @@ public class EmployeeAppointmentReqListFragment extends Fragment {
         appointmentReqLists = new ArrayList<>();
         myAdapter = new MyAdapter(getActivity(), appointmentReqLists);
         recyclerView.setAdapter(myAdapter);
-
-        dBresources.database.collection("Appointment").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        Task t1 = User.RetriveData();
+        t1.addOnSuccessListener(new OnSuccessListener() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
-
-                    dBresources.database.collection("Appointment").document(queryDocumentSnapshot.getId())
-                            .collection("Requested_Employee").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    for (QueryDocumentSnapshot queryDocumentSnapshot1 : task.getResult()) {
-                                        if (queryDocumentSnapshot1.contains("Email")) {
-                                            if (queryDocumentSnapshot1.get("Email").toString().equals(User.Emailid)) {
-                                                appointmentReqLists.add(queryDocumentSnapshot.toObject(AppointmentReqList.class));
+            public void onSuccess(Object o) {
+                dBresources.database.collection("Appointment").whereEqualTo("Service", User.Service).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
+                            dBresources.database.collection("Appointment").document(queryDocumentSnapshot.getId())
+                                    .collection("Requested_Employee").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            for (QueryDocumentSnapshot queryDocumentSnapshot1 : task.getResult()) {
+                                                if (queryDocumentSnapshot1.contains("Email") && queryDocumentSnapshot.contains("Status")) {
+                                                    if (queryDocumentSnapshot1.get("Email").toString().equals(User.Emailid)&&queryDocumentSnapshot.get("Status").equals("Pending")) {
+                                                        appointmentReqLists.add(queryDocumentSnapshot.toObject(AppointmentReqList.class));
+                                                    }
+                                                }
                                             }
+                                            binding.EmployeeAppointmentReqListShmimmer.stopShimmer();
+                                            binding.EmployeeAppointmentReqListShmimmer.setVisibility(View.GONE);
+                                            binding.EmployeeApoointmentReqlistRecyclerview.setVisibility(View.VISIBLE);
+                                            myAdapter.notifyDataSetChanged();
                                         }
-                                    }
-                                    binding.EmployeeAppointmentReqListShmimmer.stopShimmer();
-                                    binding.EmployeeAppointmentReqListShmimmer.setVisibility(View.GONE);
-                                    binding.EmployeeApoointmentReqlistRecyclerview.setVisibility(View.VISIBLE);
-                                    myAdapter.notifyDataSetChanged();
-                                }
-                            });
-                }
+                                    });
+                        }
+                    }
+                });
             }
         });
-
         return view;
+
     }
 }

@@ -2,99 +2,215 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/gradient"
-    android:orientation="vertical"
     android:id="@+id/pullToRefresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        >
 
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            app:cardCornerRadius="12dp"
-            android:layout_margin="5dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <TextView
+                android:id="@+id/employeehomenotcurrent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="30dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="No Appointment"
                 android:textAlignment="center"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
-                android:text="Current Appointment"/>
-            <include layout="@layout/employee_appoinment_list"
-                android:id="@+id/employeehomecurrentappointment"/>
-                <LinearLayout
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/employeehomecurrentlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Complete"
-                        android:textStyle="bold"
-                        android:id="@+id/employeehomecurrentappointmentcompletebutton"/>
-                </LinearLayout>
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="30dp"
+                    android:paddingBottom="20dp"
+                    app:cardCornerRadius="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/coutdownlayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="15dp">
+
+                            <TextView
+                                android:id="@+id/counttexttext"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="23dp"
+                                android:text="Next appointment"
+                                android:textAlignment="center"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="#8BC34A"
+                                android:textSize="20sp" />
+
+                            <cn.iwgang.countdownview.CountdownView
+                                android:id="@+id/countdownView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="30dp"
+                                app:isHideTimeBackground="false"
+                                app:isShowDay="true"
+                                app:isShowHour="true"
+                                app:isShowMinute="true"
+                                app:isShowSecond="true"
+                                app:suffixDay="d"
+                                app:suffixGravity="center"
+                                app:suffixHour="h"
+                                app:suffixMillisecond="ms"
+                                app:suffixMinute="m"
+                                app:suffixSecond="s"
+                                app:suffixTextColor="#4CAF50"
+                                app:suffixTextSize="12sp"
+                                app:timeBgColor="@color/slategray"
+                                app:timeBgRadius="4dp"
+                                app:timeTextColor="#FFFFFF"
+                                app:timeTextSize="32sp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="30dp"
+                            android:text="Current Appointment"
+                            android:id="@+id/curenttext"
+                            android:textAlignment="center"
+                            android:textSize="25dp"
+                            android:textStyle="bold" />
+
+
+                        <include
+                            android:id="@+id/employeehomecurrentappointment"
+                            layout="@layout/employeehome"
+                            android:layout_height="100dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_width="350dp"/>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/employeehomecurrentappointmentcompletebutton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Complete"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
             </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            app:cardCornerRadius="12dp"
-            android:layout_marginTop="10dp"
-            android:layout_margin="1dp">
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/employeehomenextappointmentcard"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="20dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="30dp"
-                    android:textAlignment="center"
-                    android:textSize="25dp"
-                    android:textStyle="bold"
-                    android:text="Next Appointment"/>
-                <include layout="@layout/employee_appoinment_list"
-                    android:id="@+id/employeehomenextappointment"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="30dp"
-                    android:orientation="horizontal">
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="Cancel"
-                        android:textStyle="bold"
-                        android:id="@+id/employeehomenextappointmentcancelbutton"/>
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="Start"
-                        android:textStyle="bold"
-                        android:id="@+id/employeehomenextappointmentstartbutton"/>
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp"
+                        android:text="Next Appointment"
+                        android:textAlignment="center"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/employeehomenotnext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:text="No Appointment"
+                        android:textAlignment="center"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/employeehomenextlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <include
+                            android:id="@+id/employeehomenextappointment"
+                            layout="@layout/employeehome"
+                            android:layout_height="100dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_width="350dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="30dp">
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/employeehomenextappointmentcancelbutton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Cancel"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/employeehomenextappointmentstartbutton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Start"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
