@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RatingBar;
 
 import com.bumptech.glide.Glide;
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.PROFILE.User;
+import com.example.amenite.TAG;
 import com.example.amenite.databinding.ActivityTaskCompleteBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,6 +31,7 @@ public class TaskCompleteActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Intent intent = getIntent();
         final double[] rating = {0.0};
+        final String[] id = {""};
         binding.taskcompleterating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
@@ -44,6 +47,7 @@ public class TaskCompleteActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
+                                    id[0] = queryDocumentSnapshot.getId();
                                     binding.taskcompletename.setText(queryDocumentSnapshot.get("Name").toString());
                                     if (queryDocumentSnapshot.contains("Profile_Pic")) {
                                         Glide.with(TaskCompleteActivity.this)
@@ -58,31 +62,27 @@ public class TaskCompleteActivity extends AppCompatActivity {
         binding.taskcompletebuttonok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dBresources.database.collection("User").whereEqualTo("Email",getIntent().getStringExtra("Email"))
-                                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                            @Override
-                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                for (DocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots.getDocuments())
-                                {
-                                    double rate = 0;
-                                    int ih = 0;
-                                    if(queryDocumentSnapshot.contains("Rating"))
-                                    {
-                                        Double i = Double.parseDouble(queryDocumentSnapshot.get("Rating").toString());
-                                         ih = Integer.parseInt(queryDocumentSnapshot.get("RateHead").toString());
-                                         rate = (i*ih+rating[0])/(ih+1);
+                dBresources.database.collection("User").document(id[0]).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        double rate = 0;
+                        int ih = 0;
+                        if (documentSnapshot.contains("Rating")) {
+                            Double i = Double.parseDouble(documentSnapshot.get("Rating").toString());
+                            ih = Integer.parseInt(documentSnapshot.get("RateHead").toString());
+                            rate = (i * ih + rating[0]) / (ih + 1);
 
-                                    }
-                                    dBresources.database.collection("User").document(queryDocumentSnapshot.get("UserID").toString())
-                                        .update("Rating",String.valueOf(rate),
-                                                "RateHead",String.valueOf(ih+1));
+                        }
+                        Log.d(TAG.TAG, "onSuccess: "+rating[0]);
+                        dBresources.database.collection("User").document(id[0])
+                                .update("Rating", String.valueOf(rate),
+                                        "RateHead", String.valueOf(ih + 1));
 
-                                    startActivity(new Intent(TaskCompleteActivity.this,EmployeeActivity.class));
+                        startActivity(new Intent(TaskCompleteActivity.this, EmployeeActivity.class));
 
-                                    finish();
-                                }
-                            }
-                        });
+                        finish();
+                    }
+                });
             }
         });
 

@@ -20,7 +20,9 @@ import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.Employee.CarrentalDetailsActivity;
 import com.example.amenite.R;
 import com.example.amenite.TAG;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -59,16 +61,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                         .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        dBresources.database.collection("User").whereEqualTo("Email",documentSnapshot.get("Employee".toString()))
-                                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        dBresources.database.collection("User").whereEqualTo("Email",documentSnapshot.get("Employee"))
+                                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                     @Override
-                                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                        for (QueryDocumentSnapshot queryDocumentSnapshot: queryDocumentSnapshots)
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        for(QueryDocumentSnapshot queryDocumentSnapshot : task.getResult())
                                         {
                                             if(queryDocumentSnapshot.contains("Profile_Pic"))
-                                            Glide.with(context)
-                                                    .load(queryDocumentSnapshot.get("Profle_Pic"))
-                                                    .into(holder.customerAppointmentlistImage);
+                                            {
+                                                Glide.with(context)
+                                                        .load(queryDocumentSnapshot.get("Profile_Pic"))
+                                                        .into(holder.customerAppointmentlistImage);
+                                            }
                                             if(queryDocumentSnapshot.contains("Rating"))
                                                 holder.customerAppointmentlistRating.setRating(Float.parseFloat(queryDocumentSnapshot.get("Rating").toString()));
                                         }

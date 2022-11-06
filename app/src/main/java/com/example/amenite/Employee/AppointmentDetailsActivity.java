@@ -105,7 +105,13 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG.TAG, "onClick: " + binding.EmployeeAppointmentcallButton.getText());
-                if (binding.EmployeeAppointmentcallButton.getText().toString().equals("Call")) {
+
+                if (binding.EmployeeAppointmentcallButton.getText().toString().equals("Next")) {
+                    Intent intent1 = new Intent(AppointmentDetailsActivity.this,TaskCompleteActivity.class);
+                    intent1.putExtra("Email",binding.EmployeeAppointmentDetailsEmailTextview.getText().toString());
+                    startActivity(intent1);
+                }
+               else if (binding.EmployeeAppointmentcallButton.getText().toString().equals("Call")) {
                     Intent dialIntent = new Intent(Intent.ACTION_DIAL);
                     dialIntent.setData(Uri.parse("tel:" + binding.EmployeeAppointmentPhone1Textview.getText().toString()));
                     startActivity(dialIntent);
@@ -153,6 +159,11 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
                                 binding.EmployeeAppointmentDetailsAppointmentstatusTextview.setText(documentSnapshot.get("Appointment_Status").toString());
                                 binding.EmployeeAppointmentDetailsEmailTextview.setText(documentSnapshot.get("Email").toString());
                                 binding.EmployeeAppointmentPhone1Textview.setText(documentSnapshot.get("Phone_Number").toString());
+                                if(documentSnapshot.get("Appointment_Status").equals("Completed"))
+                                {
+                                    binding.EmployeeAppointmentcallButton.setText("Next");
+                                    binding.EmployeeAppointmentCancelButton.setVisibility(View.GONE);
+                                }
                                 if (!documentSnapshot.get("Phone_Number 2").toString().isEmpty() && documentSnapshot.get("Phone_Number 2").toString() != null)
                                     binding.EmployeeAppointmentPhone2Textview.setText(documentSnapshot.get("Phone_Number 2").toString());
                                 else

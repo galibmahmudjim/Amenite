@@ -10,6 +10,7 @@
     android:paddingStart="5dp"
     android:paddingLeft="5dp"
     android:paddingBottom="10dp"
+    android:layout_marginBottom="30dp"
     app:cardCornerRadius="12dp">
 
     <LinearLayout
@@ -190,8 +191,11 @@
                     android:layout_height="0dp"
                     android:numStars="5"
                     style="?attr/ratingBarStyleSmall"
+                    android:progressTint="@color/quantum_yellow"
+                    android:secondaryProgressTint="@color/quantum_yellow"
                     android:layout_weight="1"
-                    android:scaleX="1"
+                    android:scaleX="01"
+                    android:minHeight="30dp"
                     android:layout_marginTop="15dp"
                     android:scaleY="1"
                     android:id="@+id/CustomerAppointmentlistRating"

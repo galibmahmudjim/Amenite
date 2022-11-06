@@ -63,7 +63,13 @@ public class CarrentalDetailsActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot documentSnapshot = task.getResult();
                             if (documentSnapshot.exists()) {
-                                if (documentSnapshot.get("Appointment_Status").equals("Accepted")) {
+
+                                if (binding.carrentDetailsAcceptButton.getText().toString().equals("Next")) {
+                                    Intent intent1 = new Intent(CarrentalDetailsActivity.this,TaskCompleteActivity.class);
+                                    intent1.putExtra("Email",binding.carrentEmailTextview.getText().toString());
+                                    startActivity(intent1);
+                                }
+                                else if (documentSnapshot.get("Appointment_Status").equals("Accepted")) {
                                     binding.carrentDetailsAcceptButton.setText("Call");
                                     binding.carrentDetailsRejectButton.setText("Cancel");
                                 } else if (documentSnapshot.get("Appointment_Status").equals("Completed")) {
@@ -78,7 +84,11 @@ public class CarrentalDetailsActivity extends AppCompatActivity {
                                     binding.carrentDetailsAcceptButton.setVisibility(View.GONE);
                                     binding.carrentDetailsRejectButton.setVisibility(View.GONE);
                                 }
-
+                                if(documentSnapshot.get("Appointment_Status").equals("Completed"))
+                                {
+                                    binding.carrentDetailsAcceptButton.setText("Next");
+                                    binding.carrentDetailsRejectButton.setVisibility(View.GONE);
+                                }
                                 binding.RcarrentNameTextview.setText(documentSnapshot.get("Name").toString());
                                 binding.carrentEmailTextview.setText(documentSnapshot.get("Email").toString());
                                 binding.carrentDetailsPhone1Textview.setText(documentSnapshot.get("Phone_Number").toString());

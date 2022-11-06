@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -76,6 +77,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                                                 .load(queryDocumentSnapshot.get("Profile_Pic"))
                                                 .into(holder.employeeAppointmentlistImage);
                                     }
+                                    if(queryDocumentSnapshot.contains("Rating"))
+                                        holder.employeeAppointmentlistRating.setRating(Float.parseFloat(queryDocumentSnapshot.get("Rating").toString()));
+
                                 }
                             }
                         });
@@ -115,6 +119,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         TextView employeeAppointmentlistCardviewIdTextview;
         ImageView employeeAppointmentlistImage;
         TextView apptext;
+        RatingBar employeeAppointmentlistRating;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -126,6 +131,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             employeeAppointmentlistCardviewIdTextview = itemView.findViewById(R.id.EmployeeAppointmentlistCardviewIdTextview);
             employeeAppointmentlistImage = itemView.findViewById(R.id.EmployeeAppointmentlistImage);
             apptext = itemView.findViewById(R.id.apptext);
+            employeeAppointmentlistRating = itemView.findViewById(R.id.EmployeeAppointmentlistRating);
         }
     }
 }

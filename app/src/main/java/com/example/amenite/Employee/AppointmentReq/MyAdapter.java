@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.amenite.Customer.CustomerAppointmentDetailsActivity;
 import com.example.amenite.DBRes.DBresources;
 import com.example.amenite.Employee.CarrentalDetailsActivity;
+import com.example.amenite.Employee.EmployeeActivity;
 import com.example.amenite.Employee.RequestedEmployeeAppointmentDetailsActivity;
 import com.example.amenite.PROFILE.User;
 import com.example.amenite.R;
@@ -88,15 +89,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent;
-                Log.d(TAG.TAG, "onClick: "+holder.employeeAppointmentReqlistCardviewServiceTextview.getText());
-                if(holder.employeeAppointmentReqlistCardviewServiceTextview.getText()=="Car Rental"){
-                     intent = new Intent(view.getContext(), CarrentalDetailsActivity.class);}
-                    else {
-                     intent = new Intent(view.getContext(), RequestedEmployeeAppointmentDetailsActivity.class);
+               if(holder.employeeAppointmentReqlistCardviewServiceTextview.getText().equals("Car Rental")){
+                    Intent intent = new Intent(view.getContext(), CarrentalDetailsActivity.class);
+                   intent.putExtra("Appointment_Id",holder.employeeAppointmentReqlistCardviewIdTextview.getText().toString());
+
+                   view.getContext().startActivity(intent);
                 }
+               else
+               {
+                   Intent intent = new Intent(context, RequestedEmployeeAppointmentDetailsActivity.class);
+
                 intent.putExtra("Appointment_Id",holder.employeeAppointmentReqlistCardviewIdTextview.getText().toString());
-                view.getContext().startActivity(intent);
+                view.getContext().startActivity(intent);}
             }
         });
 
