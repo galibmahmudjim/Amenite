@@ -58,9 +58,31 @@ public class TaskCompleteActivity extends AppCompatActivity {
         binding.taskcompletebuttonok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                               startActivity(new Intent(TaskCompleteActivity.this,EmployeeActivity.class));
+                dBresources.database.collection("User").whereEqualTo("Email",getIntent().getStringExtra("Email"))
+                                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                for (DocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots.getDocuments())
+                                {
+                                    double rate = 0;
+                                    int ih = 0;
+                                    if(queryDocumentSnapshot.contains("Rating"))
+                                    {
+                                        Double i = Double.parseDouble(queryDocumentSnapshot.get("Rating").toString());
+                                         ih = Integer.parseInt(queryDocumentSnapshot.get("RateHead").toString());
+                                         rate = (i*ih+rating[0])/(ih+1);
 
-                finish();
+                                    }
+                                    dBresources.database.collection("User").document(queryDocumentSnapshot.get("UserID").toString())
+                                        .update("Rating",String.valueOf(rate),
+                                                "RateHead",String.valueOf(ih+1));
+
+                                    startActivity(new Intent(TaskCompleteActivity.this,EmployeeActivity.class));
+
+                                    finish();
+                                }
+                            }
+                        });
             }
         });
 
